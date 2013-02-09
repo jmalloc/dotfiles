@@ -35,39 +35,43 @@ function build-prompt {
     if [[ $BRANCH != "" ]]; then
 
         local GIT_ROOT="$(git rev-parse --show-toplevel)"
-        local REPO_NAME="$(basename $GIT_ROOT)"
 
-        if [[ "$(pwd)" == $GIT_ROOT ]]; then
-            local CURRENT_DIR=""
-        else
-            local CURRENT_DIR=" $(pwd | cut -c$(expr 2 + ${#GIT_ROOT})-)"
+        if [[ $GIT_ROOT != $HOME ]]; then
+
+            local REPO_NAME="$(basename $GIT_ROOT)"
+
+            if [[ "$(pwd)" == $GIT_ROOT ]]; then
+                local CURRENT_DIR=""
+            else
+                local CURRENT_DIR=" $(pwd | cut -c$(expr 2 + ${#GIT_ROOT})-)"
+            fi
+
+            local NAME_REV=
+
+            if [[ $BRANCH == "(no branch)" ]]; then
+                NAME_REV=$(git name-rev --name-only --tags --no-undefined HEAD 2>/dev/null)
+            fi
+
+            if [[ $NAME_REV == "" ]]; then
+                NAME_REV=$(git name-rev --name-only --no-undefined HEAD 2>/dev/null)
+            fi
+
+            if [[ $NAME_REV == "" ]]; then
+                NAME_REV=$(git rev-parse --short HEAD)
+            fi
+
+            if [[ $BRANCH == "develop" ]]; then
+                local BRANCH_INFO="${GREEN}develop${RESET}"
+            elif [[ $BRANCH == "master" ]]; then
+                local BRANCH_INFO="${YELLOW}master${RESET}"
+            elif [[ $BRANCH == "(no branch)" ]]; then
+                local BRANCH_INFO="${RED}${NAME_REV}${RESET}"
+            else
+                local BRANCH_INFO="${WHITE}${BRANCH}${RESET}"
+            fi
+
+            LOCATION="${GREEN}${REPO_NAME}${RESET} $BRANCH_INFO${BLUE}${CURRENT_DIR}${RESET}"
         fi
-
-        local NAME_REV=
-
-        if [[ $BRANCH == "(no branch)" ]]; then
-            NAME_REV=$(git name-rev --name-only --tags --no-undefined HEAD 2>/dev/null)
-        fi
-
-        if [[ $NAME_REV == "" ]]; then
-            NAME_REV=$(git name-rev --name-only --no-undefined HEAD 2>/dev/null)
-        fi
-
-        if [[ $NAME_REV == "" ]]; then
-            NAME_REV=$(git rev-parse --short HEAD)
-        fi
-
-        if [[ $BRANCH == "develop" ]]; then
-            local BRANCH_INFO="${GREEN}develop${RESET}"
-        elif [[ $BRANCH == "master" ]]; then
-            local BRANCH_INFO="${YELLOW}master${RESET}"
-        elif [[ $BRANCH == "(no branch)" ]]; then
-            local BRANCH_INFO="${RED}${NAME_REV}${RESET}"
-        else
-            local BRANCH_INFO="${WHITE}${BRANCH}${RESET}"
-        fi
-
-        LOCATION="${GREEN}${REPO_NAME}${RESET} $BRANCH_INFO${BLUE}${CURRENT_DIR}${RESET}"
     fi
 
     PS1="!\! \A ${USER_INFO}${HOST_INFO}${HOST_SEPARATOR}${RESET}${LOCATION} \$ "
