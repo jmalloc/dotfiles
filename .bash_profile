@@ -91,6 +91,13 @@ alias less='less -r'
 alias ls='ls -G'
 alias root='cd $(git rev-parse --show-toplevel)'
 
+alias gf='git flow'
+alias gfi='git checkout master && git flow init -d'
+alias gff='git flow feature'
+alias gfr='git flow release'
+alias gfh='git flow hotfix'
+alias gfs='git flow support'
+
 if [ -f ~/.aliases ]; then
     source ~/.aliases
 fi
