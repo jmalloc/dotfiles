@@ -43,9 +43,9 @@ function goto {
 alias less='less -r'
 
 if [[ $(uname) == "Darwin" ]]; then
-    alias ls='ls -G'
+    alias ls='ls -lhG'
 else
-    alias ls='ls --color'
+    alias ls='ls -lh --color --group-directories-first'
 fi
 
 if [ $(which git-flow 2>/dev/null) ]; then
