@@ -32,9 +32,12 @@ function goto {
             echo " * ${project}"
         done
         return 1
+    elif [[ "$1" != "" && "$path" == "" ]]; then
+        color-red "No such project."
+        echo
+    else
+        cd $path
     fi
-
-    cd $path
 }
 
 alias less='less -r'
