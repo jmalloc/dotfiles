@@ -21,7 +21,7 @@ function color-blue {
 }
 
 function color-magenta {
-    colorize 5 "$@"
+    colorize 56 "$@"
 }
 
 function color-cyan {

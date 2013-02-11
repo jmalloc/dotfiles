@@ -17,7 +17,7 @@ function build-prompt {
 
         if [ $git ]; then
             local path=''
-            if [[ $location != $git ]]; then
+            if [[ $(pwd) != $git ]]; then
                 path=" $(pwd | cut -c$(expr 2 + ${#git})-)"
             fi
 
@@ -36,7 +36,7 @@ function build-prompt {
                 branch=$(color-green $branch)
             fi
 
-            location="$(color-green $(git-repo)) ${branch}$(color-blue $path)"
+            location="$(color-magenta $(git-repo)) ${branch}$(color-blue "$path")"
         fi
     fi
 
