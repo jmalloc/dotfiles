@@ -11,7 +11,7 @@ function build-prompt {
         auth="${auth}$(color-yellow "@\h")"
     fi
 
-    if [ $(which git) ]; then
+    if [ $(which git 2>/dev/null) ]; then
         local git=$(git-root)
         local location=$(color-blue "\w")
 

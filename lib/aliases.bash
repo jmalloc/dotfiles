@@ -43,7 +43,7 @@ function goto {
 alias less='less -r'
 alias ls='ls -G'
 
-if [ $(which git-flow) ]; then
+if [ $(which git-flow 2>/dev/null) ]; then
     alias gf='git flow'
     alias gfi='git checkout master && git flow init -d'
     alias gff='git flow feature'
