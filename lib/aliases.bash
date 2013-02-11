@@ -41,7 +41,12 @@ function goto {
 }
 
 alias less='less -r'
-alias ls='ls -G'
+
+if [[ $(uname) == "Darwin" ]]; then
+    alias ls='ls -G'
+else
+    alias ls='ls --color'
+fi
 
 if [ $(which git-flow 2>/dev/null) ]; then
     alias gf='git flow'
