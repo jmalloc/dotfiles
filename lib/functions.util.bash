@@ -6,7 +6,13 @@ function util-dev-folder {
     fi
 }
 
-function clone-repo {
+# Open a github repo in browser ...
+function ropen {
+    open "https://github.com/$(git-repo)"
+}
+
+# Clone a repo from github
+function rclone {
     local dir=$1
     local repo=$2
     local base="$(util-dev-folder)/${dir}"
@@ -22,9 +28,9 @@ function clone-repo {
     cd $repo
 }
 
-function goto-repo {
+# CHange directory to a repo ...
+function rcd {
     local base=$(util-dev-folder)
-
     local path=
     local projects=
     local multiple=
