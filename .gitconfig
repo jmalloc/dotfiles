@@ -1,0 +1,9 @@
+[user]
+    name = James Harris
+    email = james.harris@icecave.com.au
+
+[color]
+    ui = auto
+
+[push]
+    default = simple
