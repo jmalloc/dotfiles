@@ -1,0 +1,18 @@
+#!/bin/bash
+
+sudo port install \
+    php54 \
+    php54-apc \
+    php54-curl \
+    php54-http \
+    php54-mbstring \
+    php54-mcrypt \
+    php54-mysql \
+    php54-openssl \
+    php54-pcntl \
+    php54-posix \
+    php54-soap \
+    php54-xdebug \
+    php54-zip \
+    git-core \
+    nodejs
