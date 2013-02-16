@@ -4,8 +4,8 @@ function git-root {
 
 function git-path {
     local root=$(git-root)
-    if [[ $root ]]; then
-        echo $(pwd | cut -c$(expr 2 + ${#root})-)
+    if [[ "$root" ]]; then
+        echo $(pwd | cut -c$(expr 1 + ${#root})-)
     fi
 }
 

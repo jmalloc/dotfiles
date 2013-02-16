@@ -15,15 +15,11 @@ function build-prompt {
         local git=$(git-root)
         local location=$(color-blue "\w")
 
-        if [ $git ]; then
-            local path=''
-            if [[ $(pwd) != $git ]]; then
-                path=" $(pwd | cut -c$(expr 2 + ${#git})-)"
-            fi
-
+        if [ "$git" ]; then
             local branch=$(git-branch)
             local rev=$(git-rev)
-        
+            local path=$(git-path)
+
             if [[ $branch == "develop" ]]; then
                 branch=$(color-white develop)
             elif [[ $branch == "master" ]]; then
