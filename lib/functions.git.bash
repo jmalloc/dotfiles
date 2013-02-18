@@ -14,7 +14,7 @@ function git-branch {
 }
 
 function git-repo {
-    git config --list | grep remote.origin.url | egrep -o "[^/:]+/[^/]+.git" | sed "s/.git//g" 2>/dev/null \
+    git config --list | grep remote.origin.url | egrep -o "[^/:]+/[^/]+.git" | sed "s/.git$//" 2>/dev/null \
     || basename $(git-root)
 }
 
