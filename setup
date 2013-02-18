@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo xcode-select -switch /usr/bin
+
 sudo port install \
     php54 \
     php54-apc \
