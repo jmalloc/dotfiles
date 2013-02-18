@@ -1,9 +1,9 @@
 # Sublime Text 3 ...
-if [ -d "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin" ]; then
-	PATH="$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin"
+if [ -d "/Applications/Sublime Text.app/Contents/SharedSupport/bin" ]; then
+	PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 # Sublime Text 2
-elif [ -d "/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin" ]; then
-	PATH="$PATH:/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin"
+elif [ -d "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin" ]; then
+	PATH="$PATH:/Applications/Sublime Text 2.app/Contents/SharedSupport/bin"
 fi
 
 SUBLIME=$(which subl 2>/dev/null)
