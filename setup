@@ -35,3 +35,6 @@ mv /usr/local/bin/composer.phar /usr/local/bin/composer
 
 curl -s http://pear.phpunit.de/get/phpunit.phar -o /usr/local/bin/phpunit
 chmod +x /usr/local/bin/phpunit
+
+echo "date.timezone = 'Australia/Brisbane'" > /opt/local/etc/php54/php.ini
+echo "phar.readonly = 0" >> /opt/local/etc/php54/php.ini
