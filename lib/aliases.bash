@@ -1,4 +1,5 @@
 alias less='less -r'
+alias grep='grep --color'
 
 if [[ $(uname) == "Darwin" ]]; then
     alias ls='ls -lhG'
