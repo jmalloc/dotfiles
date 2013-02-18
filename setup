@@ -1,8 +1,14 @@
 #!/bin/bash
 
-sudo xcode-select -switch /usr/bin
+# Make sure is run as root ...
+if [[ $UID != 0 ]]; then
+    sudo "$0" "$@"
+    exit $?
+fi
 
-sudo port install \
+xcode-select -switch /usr/bin
+
+port install \
     php54 \
     php54-apc \
     php54-curl \
@@ -18,3 +24,6 @@ sudo port install \
     php54-zip \
     git-core \
     nodejs
+
+port select php php54
+
