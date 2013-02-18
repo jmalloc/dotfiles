@@ -1,5 +1,7 @@
 function util-dev-folder {
-    if [ -d ~/Documents/Development/icecave ]; then
+    if [ -d ~/Documents/GitHub ]; then
+	echo ~/Documents/GitHub
+    elif [ -d ~/Documents/Development/icecave ]; then
         echo ~/Documents/Development
     elif [ -d ~/Documents/icecave ]; then
         echo ~/Documents
