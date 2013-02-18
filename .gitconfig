@@ -2,6 +2,12 @@
     name = James Harris
     email = james.harris@icecave.com.au
 
+[core]
+    autocrlf = input
+
+[help]
+    autocorrect = 1
+
 [color]
     ui = auto
 
