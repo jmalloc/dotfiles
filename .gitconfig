@@ -4,6 +4,7 @@
 
 [core]
     autocrlf = input
+    excludesfile = ~/.gitignore.global
 
 [help]
     autocorrect = 1
