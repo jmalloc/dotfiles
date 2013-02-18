@@ -7,8 +7,14 @@ if [[ $UID != 0 ]]; then
     exit $?
 fi
 
+# Install xcodebuild shim ...
+# http://randomfoo.net/2012/08/03/macports-without-xcode
+mv /usr/bin/xcodebuild /usr/bin/xcodebuild.orig
+cp res/xcodebuild /usr/bin
+chmod +x /usr/bin/xcodebuild
 xcode-select -switch /usr/bin
 
+# Install all the things ...
 port install \
     php54 \
     php54-apc \
@@ -24,21 +30,19 @@ port install \
     php54-xdebug \
     php54-zip \
     git-core \
+    git-flow \
     nodejs
 
+# Make PHP 5.4 the default ...
 port select php php54
+cp res/php.ini /opt/local/etc/php54
 
 mkdir -p /usr/local/bin
 
+# Install composer ...
 curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 mv /usr/local/bin/composer.phar /usr/local/bin/composer
 
+# Install phpunit ...
 curl -s http://pear.phpunit.de/get/phpunit.phar -o /usr/local/bin/phpunit
 chmod +x /usr/local/bin/phpunit
-
-cd /tmp
-curl -s https://raw.github.com/nvie/gitflow/develop/contrib/gitflow-installer.sh -o /tmp/gitflow-installer.sh
-bash /tmp/gitflow-installer.sh
-
-echo "date.timezone = 'Australia/Brisbane'" > /opt/local/etc/php54/php.ini
-echo "phar.readonly = 0" >> /opt/local/etc/php54/php.ini
