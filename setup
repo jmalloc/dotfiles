@@ -31,6 +31,7 @@ port install \
     php54-zip \
     git-core \
     git-flow \
+    hub \
     nodejs \
     npm
 
