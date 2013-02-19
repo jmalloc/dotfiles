@@ -31,7 +31,8 @@ port install \
     php54-zip \
     git-core \
     git-flow \
-    nodejs
+    nodejs \
+    npm
 
 # Make PHP 5.4 the default ...
 port select php php54
@@ -46,3 +47,6 @@ mv /usr/local/bin/composer.phar /usr/local/bin/composer
 # Install phpunit ...
 curl -s http://pear.phpunit.de/get/phpunit.phar -o /usr/local/bin/phpunit
 chmod +x /usr/local/bin/phpunit
+
+# Install coffeescript ...
+npm install -g coffee-script
