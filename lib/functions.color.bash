@@ -25,7 +25,7 @@ function color-magenta {
 }
 
 function color-cyan {
-    colorize 6 "$@"
+    colorize 45 "$@"
 }
 
 function color-white {
@@ -37,7 +37,7 @@ function color-grey {
 }
 
 function color-dark-grey {
-    colorize 16 "$@"
+    colorize 234 "$@"
 }
 
 function color-reset {

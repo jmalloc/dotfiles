@@ -46,24 +46,15 @@ function rcd {
         cd $matches
         repo=$(git-repo)
         if [ ! -z $repo ]; then
-            echo
-            echo "$(color-grey)Found $(color-magenta)${repo} $(color-grey)at $(color-blue)$(pwd)"
-            echo
+            echo "  $(color-green)>>> $(color-magenta)$repo $(color-dark-grey)found in $(color-blue)$(pwd)"
         fi
     elif [ $count -eq 0 ]; then
-        echo
-        echo "$(color-grey)Repository $(color-red)${name} $(color-grey)does not exist."
-        echo
+        echo "  $(color-red)!!! $(color-dark-grey)Repository $(color-grey)${name} $(color-dark-grey)does not exist."
     else
-        echo
-        echo "$(color-grey)Found $(color-red)${count} $(color-grey)repositories matching $(color-red)${name}$(color-grey):"
-        echo
-
+        echo "  $(color-yellow)??? $(color-dark-grey)Found $(color-grey)${count} $(color-dark-grey)repositories matching $(color-grey)${name}$(color-dark-grey):"
         for repo in $matches; do
-            echo " $(color-grey)* $(color-magenta)$(echo $repo | cut -c$(expr 2 + ${#base})-)"
+            echo "    $(color-yellow)- $(color-magenta)$(echo $repo | cut -c$(expr 2 + ${#base})-)"
         done
-
-        echo
     fi
 
     color-reset
