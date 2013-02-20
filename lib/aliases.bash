@@ -7,6 +7,10 @@ else
     alias ls='ls -lh --color --group-directories-first'
 fi
 
+if [ $(which hub 2>/dev/null) ]; then
+    alias git='hub'
+fi
+
 if [ $(which git-flow 2>/dev/null) ]; then
     alias gf='git flow'
     alias gfi='git checkout master && git flow init -d'

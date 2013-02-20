@@ -1,5 +1,7 @@
+REAL_GIT=$(which git)
+
 function git-root {
-    git rev-parse --show-toplevel 2> /dev/null
+    $REAL_GIT rev-parse --show-toplevel 2> /dev/null
 }
 
 function git-path {
@@ -10,24 +12,24 @@ function git-path {
 }
 
 function git-branch {
-    git branch --no-color 2> /dev/null | egrep '^\* [^\(]' | cut -c3-
+    $REAL_GIT branch --no-color 2> /dev/null | egrep '^\* [^\(]' | cut -c3-
 }
 
 function git-repo {
-    git config --list | grep remote.origin.url | egrep -o "[^/:]+/[^/]+.git" | sed "s/.git$//" 2>/dev/null \
+    $REAL_GIT config --list | grep remote.origin.url | egrep -o "[^/:]+/[^/]+.git" | sed "s/.git$//" 2>/dev/null \
     || basename $(git-root)
 }
 
 function git-rev-hash {
-    git rev-parse --short HEAD 2> /dev/null
+    $REAL_GIT rev-parse --short HEAD 2> /dev/null
 }
 
 function git-rev-tag {
-    git name-rev --name-only --tags --no-undefined HEAD 2> /dev/null
+    $REAL_GIT name-rev --name-only --tags --no-undefined HEAD 2> /dev/null
 }
 
 function git-rev-branch {
-    git name-rev --name-only --no-undefined HEAD 2>/dev/null
+    $REAL_GIT name-rev --name-only --no-undefined HEAD 2>/dev/null
 }
 
 function git-rev {
