@@ -14,7 +14,7 @@ function rclone {
 
 # Open coverage reports in a browser.
 function rcov {
-    open artifacts/test/coverage/index.html
+    open artifacts/tests/coverage/index.html
 }
 
 function ropen {
