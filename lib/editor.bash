@@ -10,9 +10,9 @@ SUBLIME=$(which subl 2>/dev/null)
 TEXTMATE=$(which mate 2>/dev/null)
 
 if [[ $SUBLIME ]]; then
-	VISUAL="${SUBLIME} -w"
+	VISUAL="subl -w"
 elif [[ $TEXTMATE ]]; then
-    VISUAL="${TEXTMATE} -w"
+    VISUAL="mate -w"
 else
 	VISUAL=vim
 fi
