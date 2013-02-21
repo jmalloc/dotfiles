@@ -37,6 +37,8 @@ port install \
     nodejs \
     npm
 
+port select gcc mp-gcc47
+
 # Make PHP 5.4 the default ...
 port select php php54
 cp res/php.ini /opt/local/etc/php54
