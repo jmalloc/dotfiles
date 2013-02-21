@@ -29,6 +29,7 @@ port install \
     php54-soap \
     php54-xdebug \
     php54-zip \
+    gcc47 \
     subversion \
     git-core \
     git-flow \
