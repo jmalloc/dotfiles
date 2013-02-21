@@ -8,7 +8,7 @@ function rclone {
     local dir="$(github-directory)/${repo}"
 
     mkdir -p "$(dirname $dir)"
-    hub clone $repo $dir
+    hub clone -p $repo $dir
     rcd $repo
 }
 
