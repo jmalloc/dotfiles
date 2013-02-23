@@ -53,5 +53,6 @@ mv /usr/local/bin/composer.phar /usr/local/bin/composer
 curl -s http://pear.phpunit.de/get/phpunit.phar -o /usr/local/bin/phpunit
 chmod +x /usr/local/bin/phpunit
 
-# Install coffeescript ...
+# Install node stuff ...
 npm install -g coffee-script
+npm install -g bower
