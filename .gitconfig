@@ -12,5 +12,8 @@
 [color]
     ui = auto
 
+[format]
+    pretty = %C(white)%h%C(reset) %C(blue)%cn%C(reset) :%C(green)%d%C(reset) %s %C(blue)(%cr)%C(reset)
+
 [push]
     default = simple
