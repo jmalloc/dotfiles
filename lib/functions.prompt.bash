@@ -27,7 +27,7 @@ function build-prompt {
             elif [[ $rev == "" ]]; then
                 branch=$(color-yellow "<empty>")
             elif [[ $branch == "" ]]; then
-                branch=$(color-red $rev)
+                branch=$(color-red "<${rev}>")
             else
                 branch=$(color-green $branch)
             fi
