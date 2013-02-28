@@ -16,7 +16,9 @@ xcode-select -switch /usr/bin
 
 # Install all the things ...
 port install \
+    php53 \
     php54 \
+    php55 \
     php54-apc \
     php54-curl \
     php54-http \
