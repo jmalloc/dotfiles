@@ -32,7 +32,10 @@ port install \
     php54-xdebug \
     php54-zip \
     gcc47 \
+    autoconf \
+    autoconf-archive \
     boost \
+    boost-build \
     subversion \
     git-core \
     git-flow \
