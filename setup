@@ -44,6 +44,11 @@ port install \
     npm \
     rb-rubygems
 
+
+# Loops like rb-rubygems package does not symlink the gem executable correctly.
+port select ruby ruby18
+ln -s /opt/local/libexec/ruby1.8/gem /opt/local/bin/gem
+
 port select gcc mp-gcc47
 
 # Make PHP 5.4 the default ...
