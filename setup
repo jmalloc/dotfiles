@@ -41,7 +41,8 @@ port install \
     git-flow \
     hub \
     nodejs \
-    npm
+    npm \
+    rb-rubygems
 
 port select gcc mp-gcc47
 
