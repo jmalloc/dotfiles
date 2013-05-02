@@ -11,14 +11,18 @@ function build-prompt {
         auth="${auth}$(color-yellow "@\h")"
     fi
 
+    local location=$(color-blue "\w")
+    local title=""
+
     if [ $(which git 2>/dev/null) ]; then
         local git=$(git-root)
-        local location=$(color-blue "\w")
 
         if [ "$git" ]; then
+            local repo=$(git-repo)
             local branch=$(git-branch)
             local rev=$(git-rev)
             local path=$(git-path)
+            title="$repo $branch"
 
             if [[ $branch == "develop" ]]; then
                 branch=$(color-white develop)
@@ -26,17 +30,19 @@ function build-prompt {
                 branch=$(color-red master)
             elif [[ $rev == "" ]]; then
                 branch=$(color-yellow "<empty>")
+                title="$repo <empty>"
             elif [[ $branch == "" ]]; then
                 branch=$(color-red "<${rev}>")
+                title="$repo <${rev}>"
             else
                 branch=$(color-green $branch)
             fi
 
-            location="$(color-magenta $(git-repo)) ${branch}$(color-blue "$path")"
+            location="$(color-magenta $repo) ${branch}$(color-blue "$path")"
         fi
     fi
 
-    local prompt="$(color-dark-grey "\A") $auth $location$(color-dark-grey :) $(color-reset)"
+    local prompt="\033]0;${title}\007$(color-dark-grey "\A") $auth $location$(color-dark-grey :) $(color-reset)"
 
     if [[ $(uname) == "Darwin" ]]; then
         PS1=$(echo "$prompt" | sed -E "s/[ ]+/ /g")
