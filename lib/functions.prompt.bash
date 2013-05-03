@@ -22,7 +22,7 @@ function build-prompt {
             local branch=$(git-branch)
             local rev=$(git-rev)
             local path=$(git-path)
-            title="$repo $branch"
+            title="$repo"
 
             if [[ $branch == "develop" ]]; then
                 branch=$(color-white develop)
@@ -30,10 +30,8 @@ function build-prompt {
                 branch=$(color-red master)
             elif [[ $rev == "" ]]; then
                 branch=$(color-yellow "<empty>")
-                title="$repo <empty>"
             elif [[ $branch == "" ]]; then
                 branch=$(color-red "<${rev}>")
-                title="$repo <${rev}>"
             else
                 branch=$(color-green $branch)
             fi
