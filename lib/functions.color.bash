@@ -1,5 +1,11 @@
+ESCAPE_COLOR_CODES=false
+
 function colorize {
-    echo -n $(tput setaf $1)
+    if [[ $ESCAPE_COLOR_CODES == "true" ]]; then
+        echo -n "\[$(tput setaf $1)\]"
+    else
+        echo -n $(tput setaf $1)
+    fi
     shift
     echo -n "$@"
 }
@@ -41,5 +47,9 @@ function color-dark-grey {
 }
 
 function color-reset {
-    echo -n $(tput sgr0)
+    if [[ $ESCAPE_COLOR_CODES == "true" ]]; then
+        echo -n "\[$(tput sgr0)\]"
+    else
+        echo -n $(tput sgr0)
+    fi
 }

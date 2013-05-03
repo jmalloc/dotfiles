@@ -2,6 +2,8 @@ PROMPT_COMMAND=build-prompt
 DEFAULT_USERNAME=james
 
 function build-prompt {
+    ESCAPE_COLOR_CODES=true
+
     local auth=''
     if [[ $USER != $DEFAULT_USERNAME ]]; then
         auth=$(color-yellow $USER)
@@ -40,11 +42,13 @@ function build-prompt {
         fi
     fi
 
-    local prompt="\033]0;${title}\007$(color-dark-grey "\A") $auth $location$(color-dark-grey :) $(color-reset)"
+    local prompt="\[\033]0;${title}\007\]$(color-dark-grey "\A") $auth $location$(color-dark-grey :) $(color-reset)"
 
     if [[ $(uname) == "Darwin" ]]; then
         PS1=$(echo "$prompt" | sed -E "s/[ ]+/ /g")
     else
         PS1=$(echo "$prompt" | sed -r "s/[ ]+/ /g")
     fi
+
+    ESCAPE_COLOR_CODES=false
 }
