@@ -11,3 +11,5 @@ done
 if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi
+
+unset filename
