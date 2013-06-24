@@ -18,7 +18,6 @@ xcode-select -switch /usr/bin
 port install \
     php53 \
     php54 \
-    php55 \
     php54-apc \
     php54-curl \
     php54-http \
@@ -31,6 +30,18 @@ port install \
     php54-soap \
     php54-xdebug \
     php54-zip \
+    php55 \
+    php55-curl \
+    php55-http \
+    php55-mbstring \
+    php55-mcrypt \
+    php55-mysql \
+    php55-openssl \
+    php55-pcntl \
+    php55-posix \
+    php55-soap \
+    php55-xdebug \
+    php55-zip \
     gcc47 \
     autoconf \
     autoconf-archive \
