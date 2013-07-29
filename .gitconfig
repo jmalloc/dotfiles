@@ -7,7 +7,7 @@
     excludesfile = ~/.gitignore.global
 
 [help]
-    autocorrect = 3
+    autocorrect = 30
 
 [color]
     ui = auto
