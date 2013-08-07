@@ -13,7 +13,7 @@
     ui = auto
 
 [format]
-    pretty = %C(white)%h%C(reset) %C(blue)%cn%C(reset) :%C(green)%d%C(reset) %s %C(blue)(%cr)%C(reset)
+    pretty = %C(magenta dim)%h%C(reset) %C(blue)%cn%C(reset) :%C(auto)%d%C(reset) %s %C(blue dim)(%cr)%C(reset) %C(dim)[%p]%C(reset)
 
 [push]
     default = simple
