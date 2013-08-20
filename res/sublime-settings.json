@@ -1,0 +1,15 @@
+{
+    "rulers": [80, 120],
+    "translate_tabs_to_spaces": true,
+    "detect_indentation": false,
+    "word_wrap": false,
+    "always_show_minimap_viewport": true,
+    "highlight_line": true,
+    "trim_trailing_white_space_on_save": true,
+    "auto_complete_commit_on_tab": true,
+    "ensure_newline_at_eof_on_save": true,
+    "tree_animation_enabled": false,
+    "highlight_modified_tabs": true,
+    "hot_exit": false,
+    "remember_open_files": false
+}
