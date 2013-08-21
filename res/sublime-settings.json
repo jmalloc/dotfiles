@@ -1,4 +1,6 @@
 {
+    "color_scheme": "Packages/Color Scheme - Default/Sunburst.tmTheme",
+    "font_size": 11.0,
     "rulers": [80, 120],
     "translate_tabs_to_spaces": true,
     "detect_indentation": false,
