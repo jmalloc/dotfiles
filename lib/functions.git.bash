@@ -5,10 +5,7 @@ function git-root {
 }
 
 function git-path {
-    local root=$(git-root)
-    if [[ "$root" ]]; then
-        echo $(pwd -P | cut -c$(expr 1 + ${#root})-)
-    fi
+    $REAL_GIT rev-parse --show-prefix 2> /dev/null
 }
 
 function git-branch {
