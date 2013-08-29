@@ -7,7 +7,7 @@ function git-root {
 function git-path {
     local root=$(git-root)
     if [[ "$root" ]]; then
-        echo $(pwd | cut -c$(expr 1 + ${#root})-)
+        echo $(pwd -P | cut -c$(expr 1 + ${#root})-)
     fi
 }
 
