@@ -38,7 +38,11 @@ function build-prompt {
                 branch=$(color-green $branch)
             fi
 
-            location="$(color-magenta $repo) ${branch}$(color-blue "$path")"
+            location="$(color-magenta $repo) ${branch}"
+
+            if [[ $path != "" ]]; then
+                location="$location $(color-blue "$path")"
+            fi
         fi
     fi
 
