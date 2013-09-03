@@ -1,45 +1,84 @@
-function github-directory {
-    echo ~/Documents/GitHub
+GIT_DIR_BASE="$HOME/Documents"
+GIT_DIR_GITHUB="${GIT_DIR_BASE}/GitHub"
+GIT_DIR_CODEWORX="${GIT_DIR_BASE}/Codeworx"
+
+function git-directories {
+    echo $GIT_DIR_GITHUB
+    echo $GIT_DIR_CODEWORX
 }
 
 # Clone a repo from GitHub into the appropriate directory.
 function rclone {
     local repo=$1
-    local dir="$(github-directory)/${repo}"
+    local dir="${GIT_DIR_GITHUB}/${repo}"
 
     mkdir -p "$(dirname $dir)"
     hub clone -p $repo $dir
     rcd $repo
 }
 
-# Open coverage reports in a browser.
+# Clone a repo from Stash into the appropriate directory.
+function rclone-cwx {
+    local repo=$1
+    local dir="${GIT_DIR_CODEWORX}/${repo}"
+    local url="ssh://git@stash.codeworx.com.au:7999/${repo}.git"
+
+    mkdir -p "$(dirname $dir)"
+    git clone $url
+    rcd $repo
+}
+
+# Open coverage reports in a browser ...
 function rcov {
     open artifacts/tests/coverage/index.html
 }
 
+# Open a repo in the browser ...
 function ropen {
-    hub browse "$@"
+    if ! (hub browse &> /dev/null); then
+        local repo=$(git-repo)
+        local project=$(dirname $repo)
+        local slug=$(basename $repo)
+        open https://stash.codeworx.com.au/projects/${project}/repos/${slug}/browse
+    fi
 }
 
-# Change directory into a GitHub repo clone.
+# Change directory into a git clone ...
 function rcd {
     local name=$1
-    local base=$(github-directory)
-    local matches=
-    local count=
 
     if [ -z $name ]; then
-        cd $base
         return
     fi
 
-    # Explicitly named ...
-    if [ -d "${base}/${name}" ]; then
-        matches="${base}/${name}"
+    local base=
+    local matches=
+    local count=
+
+    if [ -d "${GIT_DIR_BASE}/${name}" ]; then
+        matches="${GIT_DIR_BASE}/${name}"
         count=1
-    else
-        matches=$(find $base -iname $name -depth 2)
-        count=$(echo $matches | wc -w | tr -d ' ')
+    fi
+
+    if [[ $count == "" ]]; then
+        for base in $(git-directories); do
+            if [ -d "${base}/${name}" ]; then
+                matches="${base}/${name}"
+                count=1
+                break
+            fi
+        done
+    fi
+
+    if [[ $count == "" ]]; then
+        for base in $(git-directories); do
+            matches=$(find $base -iname $name -mindepth 2 -maxdepth 2)
+            count=$(echo $matches | wc -w | tr -d ' ')
+
+            if [ $count -gt 0 ]; then
+                break
+            fi
+        done
     fi
 
     if [ $count -eq 1 ]; then

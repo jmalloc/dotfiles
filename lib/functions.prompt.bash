@@ -13,46 +13,45 @@ function build-prompt {
         auth="${auth}$(color-yellow "@\h")"
     fi
 
+    if [[ $auth != "" ]]; then
+        auth=" ${auth}"
+    fi
+
     local location=$(color-blue "\w")
     local title=""
 
-    if [ $(which git 2>/dev/null) ]; then
-        local git=$(git-root)
+    if [ $REAL_GIT ]; then
+        local repo=$(git-repo)
 
-        if [ "$git" ]; then
-            local repo=$(git-repo)
+        if [[ $repo != "" ]]; then
             local branch=$(git-branch)
-            local rev=$(git-rev)
-            local path=$(git-path)
             title="$repo"
 
             if [[ $branch == "develop" ]]; then
                 branch=$(color-white develop)
             elif [[ $branch == "master" ]]; then
                 branch=$(color-red master)
-            elif [[ $rev == "" ]]; then
-                branch=$(color-yellow "<empty>")
-            elif [[ $branch == "" ]]; then
-                branch=$(color-red "<${rev}>")
             else
-                branch=$(color-green $branch)
+                local rev=$(git-rev)
+                if [[ $rev == "" ]]; then
+                    branch=$(color-yellow "<empty>")
+                elif [[ $branch == "" ]]; then
+                    branch=$(color-red "<${rev}>")
+                else
+                    branch=$(color-green $branch)
+                fi
             fi
 
             location="$(color-magenta $repo) ${branch}"
 
+            local path=$(git-path)
             if [[ $path != "" ]]; then
                 location="$location $(color-blue "$path")"
             fi
         fi
     fi
 
-    local prompt="\[\033]0;${title}\007\]$(color-dark-grey "\A") $auth $location$(color-dark-grey :) $(color-reset)"
-
-    if [[ $(uname) == "Darwin" ]]; then
-        PS1=$(echo "$prompt" | sed -E "s/[ ]+/ /g")
-    else
-        PS1=$(echo "$prompt" | sed -r "s/[ ]+/ /g")
-    fi
+    PS1="\[\033]0;${title}\007\]$(color-dark-grey "\A")$auth $location$(color-dark-grey :) $(color-reset)"
 
     ESCAPE_COLOR_CODES=false
 }

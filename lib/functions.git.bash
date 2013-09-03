@@ -12,9 +12,12 @@ function git-branch {
     $REAL_GIT branch --no-color 2> /dev/null | egrep '^\* [^\(]' | cut -c3-
 }
 
+function git-url {
+    $REAL_GIT config --get remote.origin.url
+}
+
 function git-repo {
-    $REAL_GIT config --list | grep remote.origin.url | egrep -o "[^/:]+/[^/]+.git$" | sed "s/.git$//" 2>/dev/null \
-    || basename $(git-root)
+    git-url | egrep -o "[^/:]+/[^/]+.git$" | sed "s/.git$//" 2>/dev/null || basename $(git-root)
 }
 
 function git-rev-hash {
