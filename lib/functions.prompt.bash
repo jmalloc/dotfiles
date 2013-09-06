@@ -8,13 +8,17 @@ function title {
 function build-prompt {
     ESCAPE_COLOR_CODES=true
 
-    local auth=''
+    local auth=""
+    local title_auth=""
+
     if [[ "$USER" != "$DEFAULT_USERNAME" ]]; then
         auth=$(color-yellow $USER)
+        title_auth=$USER
     fi
 
     if [ "$SSH_TTY" ]; then
         auth="${auth}$(color-yellow "@\h")"
+        title_auth="${title_auth}@$(hostname)"
     fi
 
     if [[ "$auth" != "" ]]; then
@@ -22,7 +26,7 @@ function build-prompt {
     fi
 
     local location=$(color-blue "\w")
-    local title=""
+    local title="$(basename $(pwd))"
 
     if [ "$REAL_GIT" ]; then
         local repo=$(git-repo)
@@ -57,6 +61,8 @@ function build-prompt {
 
     if [ "$WINDOW_TITLE" ]; then
         title="$WINDOW_TITLE"
+    elif [ "$title_auth" ]; then
+        title="${title} - ${title_auth}"
     fi
 
     PS1="\[\033]0;${title}\007\]$(color-dark-grey "\A")$auth $location$(color-dark-grey :) $(color-reset)"
