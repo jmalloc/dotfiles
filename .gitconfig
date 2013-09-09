@@ -5,6 +5,10 @@
 [core]
     autocrlf = input
     excludesfile = ~/.gitignore.global
+    whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=4
+
+[diff]
+    renames = true
 
 [help]
     autocorrect = 20
