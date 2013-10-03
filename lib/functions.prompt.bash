@@ -50,10 +50,28 @@ function build-prompt {
                 fi
             fi
 
-            location="$(color-magenta $repo) ${branch}"
+            location="$(color-magenta $repo) $branch"
+
+            local ahead=$(git-commits-ahead)
+            local behind=$(git-commits-behind)
+            local commits=""
+            local commitsSeperator=""
+
+            if [[ "$ahead" > 0 ]]; then
+                commits="+$ahead"
+                commitsSeperator="/"
+            fi
+
+            if [[ "$behind" > 0 ]]; then
+                commits="$commits$commitsSeperator-$behind"
+            fi
+
+            if [ "$commits" ]; then
+                location="$location $(color-grey "[$commits]")"
+            fi
 
             local path=$(git-path)
-            if [[ "$path" != "" ]]; then
+            if [[ "$path" ]]; then
                 location="$location $(color-blue "$path")"
             fi
         fi

@@ -35,3 +35,15 @@ function git-rev-branch {
 function git-rev {
     git-rev-tag || git-rev-branch || git-rev-hash
 }
+
+function git-commits-ahead {
+    local branch=$(git-branch)
+    local count=$($REAL_GIT log --oneline "$branch" "^origin/$branch" | wc -l)
+    echo $count
+}
+
+function git-commits-behind {
+    local branch=$(git-branch)
+    local count=$($REAL_GIT log --oneline "origin/$branch" "^$branch" | wc -l)
+    echo $count
+}

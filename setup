@@ -21,6 +21,7 @@ port install \
     php54-apc \
     php54-curl \
     php54-http \
+    php54-iconv \
     php54-intl \
     php54-mbstring \
     php54-mcrypt \
@@ -34,6 +35,7 @@ port install \
     php55 \
     php55-curl \
     php55-http \
+    php55-iconv \
     php55-intl \
     php55-mbstring \
     php55-mcrypt \
