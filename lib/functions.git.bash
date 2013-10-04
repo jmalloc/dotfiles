@@ -47,3 +47,8 @@ function git-commits-behind {
     local count=$($REAL_GIT log --oneline "origin/$branch" "^$branch" | wc -l)
     echo $count
 }
+
+function git-clean {
+    $REAL_GIT status 2>/dev/null | grep "working directory clean" > /dev/null
+    return $?
+}
