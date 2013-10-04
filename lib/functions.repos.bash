@@ -1,6 +1,7 @@
 GIT_DIR_BASE="$HOME/Documents"
 GIT_DIR_GITHUB="${GIT_DIR_BASE}/GitHub"
 GIT_DIR_CODEWORX="${GIT_DIR_BASE}/Codeworx"
+GIT_DIR_CACHE=""
 
 function git-directories {
     echo $GIT_DIR_GITHUB
@@ -14,6 +15,8 @@ function rclone {
 
     mkdir -p "$(dirname $dir)"
     hub clone -p $repo $dir
+
+    rcd-reindex
     rcd $repo
 }
 
@@ -25,6 +28,8 @@ function rclone-cwx {
 
     mkdir -p "$(dirname $dir)"
     git clone $url
+
+    rcd-reindex
     rcd $repo
 }
 
@@ -98,3 +103,23 @@ function rcd {
 
     color-reset
 }
+
+function rcd-reindex {
+    GIT_DIR_CACHE=""
+    for base in $(git-directories); do
+        for dir in $(find $base -type d -mindepth 2 -maxdepth 2); do
+            repo=$(echo $dir | rev | cut -d/ -f1-2 | rev)
+            GIT_DIR_CACHE="$repo $(basename "$repo") $GIT_DIR_CACHE"
+        done
+    done
+}
+
+function __rcd-completion {
+    if [[ "$GIT_DIR_CACHE" == "" ]]; then
+        rcd-reindex
+    fi
+
+    COMPREPLY=( $(compgen -W "$GIT_DIR_CACHE" -- ${COMP_WORDS[COMP_CWORD]}) )
+}
+
+complete -F __rcd-completion rcd
