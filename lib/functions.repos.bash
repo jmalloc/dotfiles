@@ -77,13 +77,19 @@ function rcd {
 
     if [[ $count == "" ]]; then
         for base in $(git-directories); do
-            matches=$(find $base -iname $name -mindepth 2 -maxdepth 2)
-            count=$(echo $matches | wc -w | tr -d ' ')
+            if [ -d $base ]; then
+                matches=$(find $base -mindepth 2 -maxdepth 2 -type d -iname $name)
+                count=$(echo $matches | wc -w | tr -d ' ')
 
-            if [ $count -gt 0 ]; then
-                break
+                if [ $count -gt 0 ]; then
+                    break
+                fi
             fi
         done
+    fi
+
+    if [[ $count == "" ]]; then
+        count=0
     fi
 
     if [ $count -eq 1 ]; then
@@ -107,10 +113,12 @@ function rcd {
 function rcd-reindex {
     GIT_DIR_CACHE=""
     for base in $(git-directories); do
-        for dir in $(find $base -type d -mindepth 2 -maxdepth 2); do
-            repo=$(echo $dir | rev | cut -d/ -f1-2 | rev)
-            GIT_DIR_CACHE="$repo $(basename "$repo") $GIT_DIR_CACHE"
-        done
+        if [ -d $base ]; then
+            for dir in $(find $base -mindepth 2 -maxdepth 2 -type d); do
+                repo=$(echo $dir | rev | cut -d/ -f1-2 | rev)
+                GIT_DIR_CACHE="$repo $(basename "$repo") $GIT_DIR_CACHE"
+            done
+        fi
     done
 }
 
