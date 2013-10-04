@@ -33,6 +33,9 @@ function build-prompt {
 
         if [[ "$repo" != "" ]]; then
             local branch=$(git-branch)
+            local ahead=$(echo $($REAL_GIT log --oneline "$branch" "^origin/$branch" 2>/dev/null | wc -l))
+            local behind=$(echo $($REAL_GIT log --oneline "origin/$branch" "^$branch" 2>/dev/null | wc -l))
+
             title="$repo"
 
             if [[ "$branch" == "develop" ]]; then
@@ -52,27 +55,25 @@ function build-prompt {
 
             location="$(color-magenta $repo)"
 
-            local ahead=$(git-commits-ahead)
-            local behind=$(git-commits-behind)
-            local commits=""
-            local commitsSeperator=""
+            local status=""
+            local statusSeperator=""
 
             if [[ "$behind" > 0 ]]; then
-                commits="${commits}${commitsSeperator}-${behind}"
-                commitsSeperator="/"
+                status="${status}${statusSeperator}-${behind}"
+                statusSeperator="/"
             fi
 
             if [[ "$ahead" > 0 ]]; then
-                commits="${commits}${commitsSeperator}+${ahead}"
-                commitsSeperator="/"
+                status="${status}${statusSeperator}+${ahead}"
+                statusSeperator="/"
             fi
 
             if ! git-clean; then
-                commits="${commits}${commitsSeperator}*"
+                status="${status}${statusSeperator}*"
             fi
 
-            if [ "$commits" ]; then
-                location="$location $(color-yellow "$commits")"
+            if [ "$status" ]; then
+                location="$location $(color-yellow "$status")"
             fi
 
             location="$location $branch"
