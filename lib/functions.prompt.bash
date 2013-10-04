@@ -57,18 +57,18 @@ function build-prompt {
             local commits=""
             local commitsSeperator=""
 
-            if [[ "$ahead" > 0 ]]; then
-                commits="+$ahead"
-                commitsSeperator="/"
-            fi
-
             if [[ "$behind" > 0 ]]; then
                 commits="${commits}${commitsSeperator}-${behind}"
                 commitsSeperator="/"
             fi
 
+            if [[ "$ahead" > 0 ]]; then
+                commits="${commits}${commitsSeperator}+${ahead}"
+                commitsSeperator="/"
+            fi
+
             if ! git-clean; then
-                commits="${commits}${commitsSeparator}*"
+                commits="${commits}${commitsSeperator}*"
             fi
 
             if [ "$commits" ]; then
