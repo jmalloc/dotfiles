@@ -115,7 +115,7 @@ function rcd-reindex {
     for base in $(git-directories); do
         if [ -d $base ]; then
             for dir in $(find $base -mindepth 2 -maxdepth 2 -type d); do
-                repo=$(echo $dir | rev | cut -d/ -f1-2 | rev)
+                local repo=$(echo $dir | rev | cut -d/ -f1-2 | rev)
                 GIT_DIR_CACHE="$repo $(basename "$repo") $GIT_DIR_CACHE"
             done
         fi
