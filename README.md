@@ -1,11 +1,15 @@
-# Intallation
+# dotfiles
+
+This is my personal dotfiles repository.
+
+## Installation
 
     cd ~
     git clone git://github.com/jmalloc/dotfiles.git
     cp dotfiles/.bash_profile ~
     source ~/.bash_profile
 
-# Git Prompt
+## Git Prompt
 
 The current revision is colored to indicate whether or not it's safe to work on this branch according to the rules of git-flow.
 
