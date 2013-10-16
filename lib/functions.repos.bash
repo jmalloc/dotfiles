@@ -101,9 +101,9 @@ function rcd {
     elif [ $count -eq 0 ]; then
         echo "  $(color-red)!!! $(color-dark-grey)Repository $(color-grey)${name} $(color-dark-grey)does not exist."
     else
-        echo "  $(color-yellow)??? $(color-dark-grey)Found $(color-grey)${count} $(color-dark-grey)repositories matching $(color-grey)${name}$(color-dark-grey):"
+        echo "  $(color-orange)??? $(color-dark-grey)Found $(color-grey)${count} $(color-dark-grey)repositories matching $(color-grey)${name}$(color-dark-grey):"
         for repo in $matches; do
-            echo "    $(color-yellow)- $(color-magenta)$(echo $repo | cut -c$(expr 2 + ${#base})-)"
+            echo "    $(color-orange)- $(color-magenta)$(echo $repo | cut -c$(expr 2 + ${#base})-)"
         done
     fi
 

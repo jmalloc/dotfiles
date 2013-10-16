@@ -6,8 +6,8 @@ elif [ -d "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin" ]; then
 	PATH="$PATH:/Applications/Sublime Text 2.app/Contents/SharedSupport/bin"
 fi
 
-SUBLIME=$(which subl 2>/dev/null)
-TEXTMATE=$(which mate 2>/dev/null)
+SUBLIME=$(which subl 2> /dev/null)
+TEXTMATE=$(which mate 2> /dev/null)
 
 if [[ $SUBLIME ]]; then
 	VISUAL="subl -w"

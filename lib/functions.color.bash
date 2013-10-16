@@ -18,8 +18,16 @@ function color-green {
     colorize 70 "$@"
 }
 
+function color-gold {
+    colorize 136 "$@"
+}
+
 function color-yellow {
-    colorize 94 "$@"
+    colorize 220 "$@"
+}
+
+function color-orange {
+    colorize 202 "$@"
 }
 
 function color-blue {
