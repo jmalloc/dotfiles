@@ -1,5 +1,4 @@
 PROMPT_COMMAND=build-prompt
-DEFAULT_USERNAME=james
 
 function title {
     WINDOW_TITLE="$1"
@@ -11,7 +10,7 @@ function build-prompt {
     local auth=""
     local title_auth=""
 
-    if [[ "$USER" != "$DEFAULT_USERNAME" ]]; then
+    if [[ ! "$DEFAULT_USERNAMES" =~ (^| )$USER($| ) ]]; then
         auth=$(color-gold $USER)
         title_auth=$USER
     fi
@@ -41,16 +40,6 @@ function build-prompt {
 
             title="$repo"
 
-            # git-flow hint colors
-            #
-            # green  = personal branch
-            # white  = develop branch
-            # orange = master branch
-            # gold   = detached (tag)
-            # red    = detached (other)
-            # grey   = detached (empty / no commits)
-            #
-
             # Current revision is a branch ...
             if [[ "branch" == "$rev_type" ]]; then
                 ahead=$(echo $($REAL_GIT log --oneline "$rev_name" "^origin/$rev_name" 2> /dev/null | wc -l))
@@ -66,7 +55,7 @@ function build-prompt {
 
             # Current revision is a tag ...
             elif [[ "tag" == "$rev_type" ]]; then
-                rev=$(color-gold "<$rev_name>")
+                rev=$(color-orange "<$rev_name>")
 
             # Current revision is relative to a tag or branch ...
             elif [[ "relative" == "$rev_type" ]]; then

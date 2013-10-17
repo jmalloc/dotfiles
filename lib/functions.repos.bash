@@ -1,12 +1,4 @@
-GIT_DIR_BASE="$HOME/Documents"
-GIT_DIR_GITHUB="${GIT_DIR_BASE}/GitHub"
-GIT_DIR_CODEWORX="${GIT_DIR_BASE}/Codeworx"
 GIT_DIR_CACHE=""
-
-function git-directories {
-    echo $GIT_DIR_GITHUB
-    echo $GIT_DIR_CODEWORX
-}
 
 # Clone a repo from GitHub into the appropriate directory.
 function rclone {
@@ -23,7 +15,7 @@ function rclone {
 # Clone a repo from Stash into the appropriate directory.
 function rclone-cwx {
     local repo=$1
-    local dir="${GIT_DIR_CODEWORX}/${repo}"
+    local dir="${GIT_DIR_CWX}/${repo}"
     local url="ssh://git@stash.codeworx.com.au:7999/${repo}.git"
 
     mkdir -p "$(dirname $dir)"
@@ -60,13 +52,8 @@ function rcd {
     local matches=
     local count=
 
-    if [ -d "${GIT_DIR_BASE}/${name}" ]; then
-        matches="${GIT_DIR_BASE}/${name}"
-        count=1
-    fi
-
     if [[ $count == "" ]]; then
-        for base in $(git-directories); do
+        for base in $GIT_DIR_LIST; do
             if [ -d "${base}/${name}" ]; then
                 matches="${base}/${name}"
                 count=1
@@ -76,7 +63,7 @@ function rcd {
     fi
 
     if [[ $count == "" ]]; then
-        for base in $(git-directories); do
+        for base in $GIT_DIR_LIST; do
             if [ -d $base ]; then
                 matches=$(find $base -mindepth 2 -maxdepth 2 -type d -iname $name)
                 count=$(echo $matches | wc -w | tr -d ' ')
@@ -112,7 +99,7 @@ function rcd {
 
 function rcd-reindex {
     GIT_DIR_CACHE=""
-    for base in $(git-directories); do
+    for base in $GIT_DIR_LIST; do
         if [ -d $base ]; then
             for dir in $(find $base -mindepth 2 -maxdepth 2 -type d); do
                 local repo=$(echo $dir | rev | cut -d/ -f1-2 | rev)
