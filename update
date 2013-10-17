@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+echo 'Installing dotfiles ...'
+for filename in $DOTFILES_REPO/dotfiles/.*; do
+    if [ -f $filename ]; then
+        cp -f $filename ~
+        echo " * $filename"
+    fi
+done
+
+unset filename

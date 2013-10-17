@@ -66,8 +66,8 @@ ln -s /opt/local/libexec/ruby1.8/gem /opt/local/bin/gem
 
 port select gcc mp-gcc47
 
-# Make PHP 5.4 the default ...
-port select php php54
+# Make PHP 5.5 the default ...
+port select php php55
 cp res/php.ini /opt/local/etc/php54
 
 mkdir -p /usr/local/bin
