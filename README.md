@@ -24,3 +24,6 @@ The current revision is colored to indicate whether or not it's safe to work on 
  * red: any other commit
 
 When HEAD is detached, the current revision is shown surrounded in angle brackets.
+
+---
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jmalloc/dotfiles/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
