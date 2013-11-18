@@ -64,3 +64,10 @@ function git-clean {
     $REAL_GIT status 2> /dev/null | grep "working directory clean" > /dev/null
     return $?
 }
+
+function git-merged-branches {
+    local branches=$(git branch -r --merged | egrep -o "origin/(feature|release|hotfix|support)/[^ ]+")
+    for branch in $branches; do
+        echo $(git log -n1 $branch);
+    done
+}
