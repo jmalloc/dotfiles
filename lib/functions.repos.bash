@@ -19,7 +19,7 @@ function rclone-cwx {
     local url="ssh://git@stash.codeworx.com.au:7999/${repo}.git"
 
     mkdir -p "$(dirname $dir)"
-    git clone $url
+    git clone $url $dir
 
     rcd-reindex
     rcd $repo
