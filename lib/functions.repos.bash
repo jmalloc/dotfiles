@@ -40,6 +40,11 @@ function ropen {
     fi
 }
 
+# Open a repo in Travis CI web interface ...
+function rtravis {
+    open https://travis-ci.org/$(git-repo)
+}
+
 # Change directory into a git clone ...
 function rcd {
     local name=$1
