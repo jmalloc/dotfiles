@@ -4,10 +4,14 @@
     "color_scheme": "Packages/Color Scheme - Default/Sunburst.tmTheme",
     "detect_indentation": false,
     "ensure_newline_at_eof_on_save": true,
-    "font_size": 13.0,
+    "font_size": 15,
     "highlight_line": true,
     "highlight_modified_tabs": true,
     "hot_exit": false,
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
     "remember_open_files": false,
     "rulers":
     [
