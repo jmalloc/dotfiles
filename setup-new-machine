@@ -7,31 +7,11 @@ if [[ $UID != 0 ]]; then
     exit $?
 fi
 
-# Install xcodebuild shim ...
-# http://randomfoo.net/2012/08/03/macports-without-xcode
-mv /usr/bin/xcodebuild /usr/bin/xcodebuild.orig
-cp res/xcodebuild /usr/bin
-chmod +x /usr/bin/xcodebuild
-xcode-select -switch /usr/bin
-
 # Install all the things ...
 port install \
-    php53 \
-    php54 \
-    php54-apc \
-    php54-curl \
-    php54-http \
-    php54-iconv \
-    php54-intl \
-    php54-mbstring \
-    php54-mcrypt \
-    php54-mysql \
-    php54-openssl \
-    php54-pcntl \
-    php54-posix \
-    php54-soap \
-    php54-xdebug \
-    php54-zip \
+    git-core \
+    git-flow \
+    hub \
     php55 \
     php55-curl \
     php55-http \
@@ -46,29 +26,11 @@ port install \
     php55-soap \
     php55-xdebug \
     php55-zip \
-    gcc47 \
-    autoconf \
-    autoconf-archive \
-    boost \
-    boost-build \
     subversion \
-    git-core \
-    git-flow \
-    hub \
     nodejs \
-    npm \
-    rb-rubygems
+    npm
 
-
-# Loops like rb-rubygems package does not symlink the gem executable correctly.
-port select ruby ruby18
-ln -s /opt/local/libexec/ruby1.8/gem /opt/local/bin/gem
-
-port select gcc mp-gcc47
-
-# Make PHP 5.5 the default ...
-port select php php55
-cp res/php.ini /opt/local/etc/php54
+cp res/php.ini /opt/local/etc/php55
 
 mkdir -p /usr/local/bin
 
@@ -77,9 +39,8 @@ curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 mv /usr/local/bin/composer.phar /usr/local/bin/composer
 
 # Install phpunit ...
-curl -s http://pear.phpunit.de/get/phpunit.phar -o /usr/local/bin/phpunit
+curl -s https://phar.phpunit.de/phpunit.phar -o /usr/local/bin/phpunit
 chmod +x /usr/local/bin/phpunit
 
 # Install node stuff ...
 npm install -g coffee-script
-npm install -g bower
