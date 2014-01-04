@@ -24,6 +24,7 @@ port install \
     php55-pcntl \
     php55-posix \
     php55-soap \
+    php55-sqlite \
     php55-xdebug \
     php55-zip \
     subversion \
