@@ -42,7 +42,7 @@ function ropen {
 
 # Open a repo in Travis CI web interface ...
 function rtravis {
-    open https://travis-ci.org/$(git-repo)
+    open https://travis-ci.org/$(git-repo)/builds
 }
 
 # Change directory into a git clone ...
