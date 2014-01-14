@@ -59,16 +59,6 @@ function rcd {
 
     if [[ $count == "" ]]; then
         for base in $GIT_DIR_LIST; do
-            if [ -d "${base}/${name}" ]; then
-                matches="${base}/${name}"
-                count=1
-                break
-            fi
-        done
-    fi
-
-    if [[ $count == "" ]]; then
-        for base in $GIT_DIR_LIST; do
             if [ -d $base ]; then
                 matches=$(find $base -mindepth 2 -maxdepth 2 -type d -iname $name)
                 count=$(echo $matches | wc -w | tr -d ' ')
@@ -76,6 +66,16 @@ function rcd {
                 if [ $count -gt 0 ]; then
                     break
                 fi
+            fi
+        done
+    fi
+
+    if [[ $count -eq 0 ]]; then
+        for base in $GIT_DIR_LIST; do
+            if [ -d "${base}/${name}" ]; then
+                matches="${base}/${name}"
+                count=1
+                break
             fi
         done
     fi
