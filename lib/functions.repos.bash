@@ -94,8 +94,19 @@ function rcd {
         echo "  $(color-red)!!! $(color-dark-grey)Repository $(color-grey)${name} $(color-dark-grey)does not exist."
     else
         echo "  $(color-orange)??? $(color-dark-grey)Found $(color-grey)${count} $(color-dark-grey)repositories matching $(color-grey)${name}$(color-dark-grey):"
+        local options=""
         for repo in $matches; do
-            echo "    $(color-orange)- $(color-magenta)$(echo $repo | cut -c$(expr 2 + ${#base})-)"
+            options="$options $(echo $repo | cut -c$(expr 2 + ${#base})-)"
+        done
+
+        color-magenta
+
+        local PS3="$(color-reset): "
+        select repo in $options; do
+            if [ ! -z $repo ]; then
+                cd "${base}/${repo}"
+                break
+            fi
         done
     fi
 
