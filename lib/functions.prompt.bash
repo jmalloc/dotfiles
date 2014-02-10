@@ -40,6 +40,8 @@ function build-prompt {
 
             title="$repo"
 
+            local stashes=$(echo $($REAL_GIT stash list | wc -l))
+
             # Current revision is a branch ...
             if [[ "branch" == "$rev_type" ]]; then
                 ahead=$(echo $($REAL_GIT log --oneline "$rev_name" "^origin/$rev_name" 2> /dev/null | wc -l))
@@ -69,20 +71,25 @@ function build-prompt {
             location="$(color-magenta $repo)"
 
             local status=""
-            local statusSeperator=""
+            local statusSeparator=""
 
             if [[ "$behind" > 0 ]]; then
-                status="${status}${statusSeperator}-${behind}"
-                statusSeperator="/"
+                status="${status}${statusSeparator}-${behind}"
+                statusSeparator="/"
             fi
 
             if [[ "$ahead" > 0 ]]; then
-                status="${status}${statusSeperator}+${ahead}"
-                statusSeperator="/"
+                status="${status}${statusSeparator}+${ahead}"
+                statusSeparator="/"
             fi
 
             if ! git-clean; then
-                status="${status}${statusSeperator}*"
+                status="${status}${statusSeparator}*"
+                statusSeparator="/"
+            fi
+
+            if [[ "$stashes" > 0 ]]; then
+                status="${status}${statusSeparator}#${stashes}"
             fi
 
             if [ "$status" ]; then
