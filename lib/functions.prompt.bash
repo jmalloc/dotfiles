@@ -25,7 +25,7 @@ function build-prompt {
     fi
 
     local location=$(color-blue "\w")
-    local title="$(basename $(pwd))"
+    local title="$(basename "$(pwd)")"
 
     if [ "$REAL_GIT" ]; then
         local repo=$(git-repo)
