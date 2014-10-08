@@ -14,6 +14,7 @@ DEFAULT_USERNAMES="james"
 export DOTFILES_REPO="$HOME/dotfiles"
 
 export PATH="$HOME/bin:/opt/local/bin:/opt/local/sbin:/usr/local/heroku/bin:$PATH"
+export HISTCONTROL="ignoreboth"
 
 # Source the library files ...
 for filename in $DOTFILES_REPO/lib/*.bash; do
