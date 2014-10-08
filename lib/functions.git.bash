@@ -60,6 +60,44 @@ function git-current {
     git-current-branch || git-current-tag || git-current-relative-to-tag || git-current-relative-to-branch
 }
 
+function git-current-color {
+    local rev_type=
+    local rev_name=
+    local rev=
+    read rev_type rev_name <<< $(git-current)
+
+    if [[ "branch" == "$rev_type" ]]; then
+        if [[ "develop" == "$rev_name" ]]; then
+            rev=$(color-white develop)
+        elif [[ "master" == "$rev_name" ]]; then
+            rev=$(color-orange master)
+        else
+            rev=$(color-green $rev_name)
+        fi
+    # Current revision is a tag ...
+    elif [[ "tag" == "$rev_type" ]]; then
+        rev=$(color-orange "<$rev_name>")
+
+    # Current revision is relative to a tag or branch ...
+    elif [[ "relative" == "$rev_type" ]]; then
+        rev=$(color-red "<$rev_name>")
+
+    # No commits ...
+    else
+        rev=$(color-red "<empty>")
+    fi
+
+    if [ -z "$rev_type" ]; then
+        rev_type="-"
+    fi
+
+    if [ -z "$rev_name" ]; then
+        rev_name="-"
+    fi
+
+    echo "$rev_type" "$rev_name" "$rev"
+}
+
 function git-clean {
     $REAL_GIT status 2> /dev/null | grep "working directory clean" > /dev/null
     return $?

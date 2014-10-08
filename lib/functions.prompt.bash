@@ -36,7 +36,7 @@ function build-prompt {
             local rev_type;
             local rev_name;
             local rev;
-            read rev_type rev_name <<< $(git-current)
+            read -r rev_type rev_name rev <<< $(git-current-color)
 
             title="$repo"
 
@@ -46,26 +46,6 @@ function build-prompt {
             if [[ "branch" == "$rev_type" ]]; then
                 ahead=$(echo $($REAL_GIT log --oneline "$rev_name" "^origin/$rev_name" 2> /dev/null | wc -l))
                 behind=$(echo $($REAL_GIT log --oneline "origin/$rev_name" "^$rev_name" 2> /dev/null | wc -l))
-
-                if [[ "develop" == "$rev_name" ]]; then
-                    rev=$(color-white develop)
-                elif [[ "master" == "$rev_name" ]]; then
-                    rev=$(color-orange master)
-                else
-                    rev=$(color-green $rev_name)
-                fi
-
-            # Current revision is a tag ...
-            elif [[ "tag" == "$rev_type" ]]; then
-                rev=$(color-orange "<$rev_name>")
-
-            # Current revision is relative to a tag or branch ...
-            elif [[ "relative" == "$rev_type" ]]; then
-                rev=$(color-red "<$rev_name>")
-
-            # No commits ...
-            else
-                rev=$(color-red "<empty>")
             fi
 
             location="$(color-magenta $repo)"

@@ -125,6 +125,40 @@ function rcd-reindex {
     done
 }
 
+function rbranches {
+    local user=$1
+
+    if [ -z $user ]; then
+        local depth=3
+        local dir="${GIT_DIR_GITHUB}"
+    else
+        local depth=2
+        local dir="${GIT_DIR_GITHUB}/${user}"
+    fi
+
+    local rev_type=
+    local rev_name=
+    local rev=
+
+    local rev_name=
+    local rev=
+    local repo_dir=
+    local repo=
+
+    for repo_dir in $(find $dir -name ".git" -depth $depth); do
+        pushd $repo_dir > /dev/null
+        local repo=$(git-repo)
+
+        if [ -z "$repo" ]; then
+            repo=$(dirname $repo_dir)
+        fi
+
+        read rev_type rev_name rev <<< $(git-current-color)
+        echo "$(color-magenta)$repo$(color-dark-grey): $rev"
+        popd > /dev/null
+    done
+}
+
 function __rcd-completion {
     if [[ "$GIT_DIR_CACHE" == "" ]]; then
         rcd-reindex
@@ -134,3 +168,4 @@ function __rcd-completion {
 }
 
 complete -F __rcd-completion rcd
+complete -F __rcd-completion rbranches
