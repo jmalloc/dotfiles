@@ -1,0 +1,73 @@
+#!/usr/bin/env php
+<?php
+error_reporting(-1);
+
+if (!isset($_SERVER['argv'][1])) {
+    die('OAuth token required.' . PHP_EOL);
+}
+
+$token = $_SERVER['argv'][1];
+
+$orgs = [
+    'IcecaveStudios',
+    'IcecaveLabs',
+    'recoilphp',
+    'masonphp',
+    'icecave',
+    'dialekt',
+];
+
+$headers =  [
+    'Authorization: token ' . $token,
+    'User-Agent: PHP v' . phpversion(),
+];
+
+$payload = [
+    "name" => "irc",
+    "active" => true,
+    "events" => [
+        "commit_comment",
+        "issue_comment",
+        "issues",
+        "pull_request",
+        "pull_request_review_comment",
+        "push",
+    ],
+    "config" => [
+        "server" => "irc.freenode.net",
+        "port" => "6667",
+        "room" => "icecave-dev",
+        "branches" => "^(?!gh-pages).+$",
+        "nickserv_password" => "",
+        "password" => "",
+        "message_without_join" => "1",
+    ]
+];
+
+foreach ($orgs as $org) {
+    echo $org . PHP_EOL;
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/orgs/' . $org . '/repos');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $repos = curl_exec($ch);
+    curl_close($ch);
+
+    $repos = json_decode($repos);
+
+    foreach ($repos as $repo) {
+        echo ' - ' . $repo->name . PHP_EOL;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/' . $repo->full_name . '/hooks');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($ch);
+        curl_close($ch);
+    }
+
+    echo PHP_EOL;
+}
+
