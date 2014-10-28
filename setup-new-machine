@@ -48,3 +48,6 @@ chmod +x /usr/local/bin/php-cs-fixer
 
 # Install node stuff ...
 npm install -g coffee-script
+
+# Authorise hub (will ask for user/pass once) ...
+hub browse
