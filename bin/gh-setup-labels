@@ -21,6 +21,7 @@ $expected = [
     'easy pick' => 'd7e102',
     'documentation' => '006b75',
     'performance' => '5319e7',
+    'question' => 'bfdadc',
 ];
 
 // Labels that should be renamed to match above (instead of deleting and creating a new one) ...
