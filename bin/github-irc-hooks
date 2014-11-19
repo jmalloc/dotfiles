@@ -7,15 +7,7 @@ if (!isset($_SERVER['argv'][1])) {
 }
 
 $token = $_SERVER['argv'][1];
-
-$orgs = [
-    'IcecaveStudios',
-    'IcecaveLabs',
-    'recoilphp',
-    'masonphp',
-    'icecave',
-    'dialekt',
-];
+$orgs = require __DIR__ . '/github-organizations.php';
 
 $headers =  [
     'Authorization: token ' . $token,
@@ -49,7 +41,7 @@ foreach ($orgs as $org) {
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/orgs/' . $org . '/repos');
+    curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/orgs/' . $org . '/repos?per_page=100');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $repos = curl_exec($ch);
     curl_close($ch);

@@ -2,13 +2,12 @@
 <?php
 error_reporting(-1);
 
-if ($_SERVER['argc'] != 3) {
-    echo 'Usage: ' . basename($_SERVER['argv'][0]) . ' <organisation> <token>' . PHP_EOL;
-    exit(1);
+if (!isset($_SERVER['argv'][1])) {
+    die('OAuth token required.' . PHP_EOL);
 }
 
-$owner = $_SERVER['argv'][1];
-$token = $_SERVER['argv'][2];
+$token = $_SERVER['argv'][1];
+$orgs = require __DIR__ . '/github-organizations.php';
 
 // The desired labels and their colours ...
 $expected = [
@@ -61,64 +60,65 @@ function api($uri, $method = 'GET', $body = null)
 
 function create($owner, $repo, $name, $color)
 {
-    echo ' * create ' . $name . ' with color ' . $color . PHP_EOL;
+    echo '   * create ' . $name . ' with color ' . $color . PHP_EOL;
     api('/repos/' . urlencode($owner) . '/' . urlencode($repo) . '/labels', 'POST', ['name' => $name, 'color' => $color]);
 }
 
 function update($owner, $repo, $name, $color = null, $newName = null)
 {
     if ($color !== null && $newName !== null) {
-        echo ' * rename ' . $name . ' to ' . $newName . ' and set color to ' . $color . PHP_EOL;
+        echo '   * rename ' . $name . ' to ' . $newName . ' and set color to ' . $color . PHP_EOL;
         api('/repos/' . urlencode($owner) . '/' . urlencode($repo) . '/labels/' . urlencode($name), 'PATCH', ['name' => $newName, 'color' => $color]);
     } elseif ($color !== null) {
-        echo ' * set ' . $name . ' color to ' . $color . PHP_EOL;
+        echo '   * set ' . $name . ' color to ' . $color . PHP_EOL;
         api('/repos/' . urlencode($owner) . '/' . urlencode($repo) . '/labels/' . urlencode($name), 'PATCH', ['color' => $color]);
     } elseif ($newName !== null) {
-        echo ' * rename ' . $name . ' to ' . $newName . PHP_EOL;
+        echo '   * rename ' . $name . ' to ' . $newName . PHP_EOL;
         api('/repos/' . urlencode($owner) . '/' . urlencode($repo) . '/labels/' . urlencode($name), 'PATCH', ['name' => $newName]);
     }
 }
 
 function delete($owner, $repo, $name)
 {
-    echo ' * delete ' . $name . PHP_EOL;
+    echo '   * delete ' . $name . PHP_EOL;
     api('/repos/' . urlencode($owner) . '/' . urlencode($repo) . '/labels/' . urlencode($name), 'DELETE');
 }
 
-$repos = api('/orgs/' . urlencode($owner) . '/repos');
+foreach ($orgs as $owner) {
+    echo $owner . PHP_EOL;
 
+    $repos = api('/orgs/' . urlencode($owner) . '/repos?per_page=100');
 
-foreach ($repos as $repo) {
-    echo $owner . '/' . $repo->name . PHP_EOL;
+    foreach ($repos as $repo) {
+        echo ' - ' . $repo->name . PHP_EOL;
 
-    $labels = api('/repos/' . urlencode($repo->owner->login) . '/' . urlencode($repo->name) . '/labels');
-    $solved = [];
+        $labels = api('/repos/' . urlencode($repo->owner->login) . '/' . urlencode($repo->name) . '/labels');
+        $solved = [];
 
-    foreach ($labels as $label) {
-        if (array_key_exists($label->name, $expected)) {
-            $solved[$label->name] = true;
-            $color = $expected[$label->name];
-            if ($color !== $label->color) {
-                update($owner, $repo->name, $label->name, $color);
-            }
-        } elseif (array_key_exists($label->name, $rename)) {
-            $solved[$rename[$label->name]] = true;
-            $color = $expected[$rename[$label->name]];
-            if ($color !== $label->color) {
-                update($owner, $repo->name, $label->name, $color, $rename[$label->name]);
+        foreach ($labels as $label) {
+            if (array_key_exists($label->name, $expected)) {
+                $solved[$label->name] = true;
+                $color = $expected[$label->name];
+                if ($color !== $label->color) {
+                    update($owner, $repo->name, $label->name, $color);
+                }
+            } elseif (array_key_exists($label->name, $rename)) {
+                $solved[$rename[$label->name]] = true;
+                $color = $expected[$rename[$label->name]];
+                if ($color !== $label->color) {
+                    update($owner, $repo->name, $label->name, $color, $rename[$label->name]);
+                } else {
+                    update($owner, $repo->name, $label->name, null, $rename[$label->name]);
+                }
             } else {
-                update($owner, $repo->name, $label->name, null, $rename[$label->name]);
+                delete($owner, $repo->name, $label->name);
             }
-        } else {
-            delete($owner, $repo->name, $label->name);
+        }
+
+        foreach ($expected as $name => $color) {
+            if (!array_key_exists($name, $solved)) {
+                create($owner, $repo->name, $name, $color);
+            }
         }
     }
-
-    foreach ($expected as $name => $color) {
-        if (!array_key_exists($name, $solved)) {
-            create($owner, $repo->name, $name, $color);
-        }
-    }
-
-    echo PHP_EOL;
 }
