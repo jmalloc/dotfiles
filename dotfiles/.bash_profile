@@ -13,7 +13,7 @@ DEFAULT_USERNAMES="james"
 
 export DOTFILES_REPO="$HOME/dotfiles"
 
-export PATH="$HOME/bin:$DOTFILES_REPO/bin:/opt/local/bin:/opt/local/sbin:/usr/local/heroku/bin:$PATH"
+export PATH="$HOME/bin:$DOTFILES_REPO/bin:/opt/local/bin:/opt/local/sbin:/usr/local/heroku/bin:/opt/local/lib/mariadb-10.0/bin:$PATH"
 export HISTCONTROL="ignoreboth"
 
 # Source the library files ...
