@@ -1,6 +1,7 @@
 alias less='less -R'
 alias grep='grep --color'
 alias heroky='heroku'
+alias e='subl .'
 
 if [[ $(uname) == "Darwin" ]]; then
     alias ls='ls -lhG'
