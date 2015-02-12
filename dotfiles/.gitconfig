@@ -6,6 +6,7 @@
     autocrlf = input
     excludesfile = ~/.gitignore.global
     whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=4
+	editor = subl -w
 
 [diff]
     renames = true
@@ -21,3 +22,6 @@
 
 [push]
     default = simple
+
+[tag]
+    sort = version:refname
