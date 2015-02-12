@@ -14,12 +14,7 @@ if [ $(which hub 2> /dev/null) ]; then
 fi
 
 if [ $(which git-flow 2> /dev/null) ]; then
-    alias gf='git flow'
     alias gfi='git checkout master && git flow init -d && git checkout develop'
-    alias gff='git flow feature'
-    alias gfr='git flow release'
-    alias gfh='git flow hotfix'
-    alias gfs='git flow support'
 fi
 
 if [ -f ~/.aliases ]; then
