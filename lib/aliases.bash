@@ -2,6 +2,7 @@ alias less='less -R'
 alias grep='grep --color'
 alias heroky='heroku'
 alias e='subl .'
+alias d='git checkout develop'
 
 if [[ $(uname) == "Darwin" ]]; then
     alias ls='ls -lhG'
