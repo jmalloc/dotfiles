@@ -13,9 +13,7 @@ alias P='git push --all --follow-tags'
 alias u='git pull'
 
 function C {
-    git add -A
-    git commit -m "$1"
-    git push
+    git add -A && git commit -m "$1" && git push
 }
 
 alias t='./vendor/bin/archer test --stop-on-failure'
