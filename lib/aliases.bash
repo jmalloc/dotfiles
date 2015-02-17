@@ -4,12 +4,19 @@ alias heroky='heroku'
 
 alias e='subl .'
 
-alias d='git checkout develop'
+alias d='git diff'
 alias s='git status'
 alias c='git commit -m'
 alias a='git add -A'
 alias p='git push'
+alias P='git push --all --follow-tags'
 alias u='git pull'
+
+function C {
+    git add -A
+    git commit -m "$1"
+    git push
+}
 
 alias t='./vendor/bin/archer test --stop-on-failure'
 alias o='./vendor/bin/archer cov --stop-on-failure'
