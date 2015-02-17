@@ -1,8 +1,18 @@
 alias less='less -R'
 alias grep='grep --color'
 alias heroky='heroku'
+
 alias e='subl .'
+
 alias d='git checkout develop'
+alias s='git status'
+alias c='git commit -m'
+alias a='git add -A'
+alias p='git push'
+alias u='git pull'
+
+alias t='./vendor/bin/archer test --stop-on-failure'
+alias o='./vendor/bin/archer cov --stop-on-failure'
 
 if [[ $(uname) == "Darwin" ]]; then
     alias ls='ls -lhG'
