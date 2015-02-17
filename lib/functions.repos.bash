@@ -111,6 +111,12 @@ function rcd {
     fi
 
     color-reset
+
+    if [ $count -eq 0 ]; then
+        return 1
+    fi
+
+    return 0
 }
 
 function rcd-reindex {
