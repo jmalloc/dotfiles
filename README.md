@@ -24,3 +24,11 @@ The current revision is colored to indicate whether or not it's safe to work on 
  * red: any other commit
 
 When HEAD is detached, the current revision is shown surrounded in angle brackets.
+
+## Link Sublime Settings to Dropbox
+
+```bash
+DIR="/Users/james/Library/Application Support/Sublime Text 3/Packages/User"
+rmdir "$DIR"
+ln -s "/Users/james/Dropbox/Sublime User Package/" "$DIR"
+```
