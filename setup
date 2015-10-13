@@ -83,7 +83,7 @@ chown "$USERNAME" "$HOME_DIR/bin/phpunit"
 echo
 
 echo "Installing php-cs-fixer:"
-curl http://cs.sensiolabs.org/get/php-cs-fixer.phar -o "$HOME_DIR/bin/php-cs-fixer"
+curl http://get.sensiolabs.org/php-cs-fixer.phar -o "$HOME_DIR/bin/php-cs-fixer"
 chmod +x "$HOME_DIR/bin/php-cs-fixer"
 chown "$USERNAME" "$HOME_DIR/bin/php-cs-fixer"
 echo
