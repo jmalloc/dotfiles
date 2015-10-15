@@ -91,7 +91,13 @@ function build-prompt {
         title="${title} - ${title_auth}"
     fi
 
-    PS1="\[\033]0;${title}\007\]$(color-dark-grey "\A")$auth $location$(color-dark-grey :) $(color-reset)"
+    local newline=""
+
+    if [ $(stty size | cut -d " " -f2) -lt 80 ]; then
+        newline="\n"
+    fi
+
+    PS1="\n\[\033]0;${title}\007\]$(color-dark-grey "\A")$auth $location$newline$(color-dark-grey :) $(color-reset)"
 
     ESCAPE_COLOR_CODES=false
 }
