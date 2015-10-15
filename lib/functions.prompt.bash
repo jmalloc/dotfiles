@@ -93,7 +93,7 @@ function build-prompt {
 
     local newline=""
 
-    if [ $(stty size | cut -d " " -f2) -lt 80 ]; then
+    if [ $(stty size | cut -d " " -f2) -lt 100 ]; then
         newline="\n"
     fi
 
