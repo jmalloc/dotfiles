@@ -8,6 +8,8 @@ This is my personal dotfiles repository.
 cd ~
 git clone git@github.com:jmalloc/dotfiles.git
 ln -s dotfiles/dotfiles/.bash_profile
+mkdir -p .ssh
+ln -s dotfiles/res/ssh-config .ssh/config
 # update configuration options in .bash_profile
 source ~/.bash_profile
 dotfiles/setup
