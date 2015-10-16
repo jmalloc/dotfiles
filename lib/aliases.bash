@@ -13,6 +13,7 @@ alias p='git push'
 alias P='git push --all --follow-tags'
 alias u='git pull'
 alias v='git checkout develop'
+alias req='composer require --sort-packages'
 
 function C {
     git add -A && git commit -m "$1" && git push
