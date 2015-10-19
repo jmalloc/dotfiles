@@ -1,4 +1,8 @@
-PROMPT_COMMAND=build-prompt
+if ( type -t update_terminal_cwd > /dev/null ); then
+    PROMPT_COMMAND="update_terminal_cwd;build-prompt"
+else
+    PROMPT_COMMAND="build-prompt"
+fi
 
 function title {
     WINDOW_TITLE="$1"
