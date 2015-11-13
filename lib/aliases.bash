@@ -13,6 +13,7 @@ alias p='git push'
 alias P='git push --all --follow-tags'
 alias u='git pull'
 alias v='git checkout develop'
+alias l='git log develop~1...'
 alias req='composer require --sort-packages'
 
 function C {

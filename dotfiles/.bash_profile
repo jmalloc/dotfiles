@@ -13,7 +13,7 @@ DEFAULT_USERNAMES="james"
 
 export DOTFILES_REPO="$HOME/dotfiles"
 
-export PATH="$HOME/bin:$DOTFILES_REPO/bin:/opt/local/bin:/opt/local/sbin:$PATH"
+export PATH="$HOME/bin:$DOTFILES_REPO/bin:/opt/local/bin:/opt/local/sbin:$PATH:/opt/local/lib/mariadb-10.0/bin"
 export HISTCONTROL="ignoreboth"
 
 # Source the library files ...
