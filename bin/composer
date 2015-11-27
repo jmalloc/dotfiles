@@ -1,0 +1,4 @@
+tmp="$(mktemp -t php-no-debug)"
+trap 'rm "$tmp"' EXIT
+cat $(php --ini | egrep -o "(^|\s)\/.+?.ini") | egrep -v "^zend_extension=.+xdebug.so" > $tmp
+php -n -c "$tmp" ~/bin/composer "$@"
