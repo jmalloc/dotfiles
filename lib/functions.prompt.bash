@@ -48,8 +48,8 @@ function build-prompt {
 
             # Current revision is a branch ...
             if [[ "branch" == "$rev_type" ]]; then
-                ahead=$(echo $($REAL_GIT log --oneline "$rev_name" "^origin/$rev_name" 2> /dev/null | wc -l))
-                behind=$(echo $($REAL_GIT log --oneline "origin/$rev_name" "^$rev_name" 2> /dev/null | wc -l))
+                ahead=$(echo $($REAL_GIT log --oneline "$rev_name" "^origin/$rev_name" -- 2> /dev/null | wc -l))
+                behind=$(echo $($REAL_GIT log --oneline "origin/$rev_name" "^$rev_name" -- 2> /dev/null | wc -l))
             fi
 
             location="$(color-magenta $repo)"
