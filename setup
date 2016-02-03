@@ -3,7 +3,6 @@ set -e
 
 update-dotfiles
 
-PACKAGES="git-core git-flow-avh hub nodejs npm"
 PHP_VERSIONS="55 56 70"
 PHP_EXTENSIONS="curl http iconv intl mbstring mysql openssl pcntl posix sqlite xdebug zip"
 
