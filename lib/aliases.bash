@@ -22,7 +22,7 @@ function C {
 
 alias t='./vendor/bin/archer test --stop-on-failure'
 alias o='./vendor/bin/archer cov --stop-on-failure'
-alias o7='ulimit -n 8192; phpdbg70 -qrr $(which phpunit) -c ./vendor/icecave/archer/res/phpunit/phpunit.coverage.xml --stop-on-failure'
+alias o7='phpdbg70 -qrr ./vendor/bin/phpunit -c phpunit.xml.coverage --stop-on-failure'
 
 if [[ $(uname) == "Darwin" ]]; then
     alias ls='ls -lhG'
