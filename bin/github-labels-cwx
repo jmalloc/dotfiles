@@ -13,12 +13,14 @@ $orgs = ['codeworx'];
 $expected = [
     'defect'  => 'fc2929',
     'easy pick' => 'd7e102',
+    'needs discussion' => '006b75',
     'priority' => '5319e7',
     'status: in progress' => '009800',
-    'status: testing' => 'eb6420'
+    'status: needs review' => 'eb6420'
 ];
 
 $rename = [
+    'status: testing' => 'status: needs review',
     'bug' => 'defect',
 ];
 
