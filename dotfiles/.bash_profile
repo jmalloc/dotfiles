@@ -23,6 +23,8 @@ done
 
 unset filename
 
+ulimit -n 8192
+
 # Source bashrc file if it exists ...
 if [ -f ~/.bashrc ]; then
     source ~/.bashrc

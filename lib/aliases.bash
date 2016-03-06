@@ -12,17 +12,15 @@ alias A='git add -A'
 alias p='git push'
 alias P='git push --all --follow-tags'
 alias u='git pull'
-alias v='git checkout develop'
-alias l='git log develop~1...'
 alias req='composer require --sort-packages'
+alias cov='open artifacts/tests/coverage/index.html'
 
 function C {
     git add -A && git commit -m "$1" && git push
 }
 
-alias t='./vendor/bin/archer test --stop-on-failure'
-alias o='./vendor/bin/archer cov --stop-on-failure'
-alias o7='phpdbg70 -qrr ./vendor/bin/phpunit -c phpunit.xml.coverage --stop-on-failure'
+alias t='./vendor/bin/phpunit --stop-on-failure'
+alias o='phpdbg70 -qrr ./vendor/bin/phpunit -c phpunit.xml.coverage --stop-on-failure'
 
 if [[ $(uname) == "Darwin" ]]; then
     alias ls='ls -lhG'
