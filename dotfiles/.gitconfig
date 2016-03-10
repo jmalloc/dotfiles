@@ -25,3 +25,13 @@
 
 [tag]
     sort = version:refname
+[github]
+    user = jmalloc
+
+[ghi]
+    token = !security find-internet-password -a jmalloc -s github.com -l 'ghi token' -w
+
+[filter "lfs"]
+    smudge = git-lfs smudge %f
+    required = true
+    clean = git-lfs clean %f
