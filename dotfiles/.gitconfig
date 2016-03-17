@@ -46,16 +46,16 @@
     clean = git-lfs clean %f
 
 [format]
-;   pretty = %C(dim)%ci%C(reset) %C(dim)%p%C(reset) %C(cyan dim)%h%C(reset)%C(cyan)%d%C(reset) %C(yellow)|%C(reset) %s %C(dim)by %an %ar.%C(reset)
-    pretty = %C(dim)%h%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar
+   pretty = %C(dim)%ci %C(dim)%p %C(cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar.%C(reset)
 
 [alias]
+    ;log = log --topo-order
+    ;show = show -m
     d = diff
     s = status -bs
     c = commit -m
-    l = log --first-parent -20
-    g = log --graph --pretty='%C(dim)%h%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar'
-    log = log --topo-order
+    l = log --pretty='%C(dim cyan)%h%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent -20
+    g = log --pretty='%C(dim cyan)%h%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --graph
     a = add
     aa = add -A
     p = push
@@ -63,5 +63,4 @@
     u = pull --rebase
     b = branch
     ch = checkout
-    ;show = show -m
     unstage = reset HEAD --
