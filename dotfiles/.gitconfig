@@ -12,19 +12,28 @@
     renames = true
 
 [help]
-    autocorrect = 20
+    autocorrect = 10
 
 [color]
     ui = auto
 
-[format]
-    pretty = %C(dim)%ci%C(reset) %C(dim)%p%C(reset) %C(cyan dim)%h%C(reset)%C(cyan)%d%C(reset) %C(yellow)|%C(reset) %s %C(dim)by %an %ar.%C(reset)
+[color "diff"]
+  meta = dim bold
+  frag = dim
+  old = red
+  new = green
+
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
 
 [push]
     default = simple
 
 [tag]
     sort = version:refname
+
 [github]
     user = jmalloc
 
@@ -35,3 +44,24 @@
     smudge = git-lfs smudge %f
     required = true
     clean = git-lfs clean %f
+
+[format]
+;   pretty = %C(dim)%ci%C(reset) %C(dim)%p%C(reset) %C(cyan dim)%h%C(reset)%C(cyan)%d%C(reset) %C(yellow)|%C(reset) %s %C(dim)by %an %ar.%C(reset)
+    pretty = %C(dim)%h%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar
+
+[alias]
+    d = diff
+    s = status -bs
+    c = commit -m
+    l = log --first-parent -20
+    g = log --graph --pretty='%C(dim)%h%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar'
+    log = log --topo-order
+    a = add
+    aa = add -A
+    p = push
+    pt = push --all --follow-tags
+    u = pull --rebase
+    b = branch
+    ch = checkout
+    ;show = show -m
+    unstage = reset HEAD --

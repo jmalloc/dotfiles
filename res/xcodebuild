@@ -1,8 +1,0 @@
-#!/bin/bash
-if [[ $1 == '-version' ]]; then
-    echo "Xcode 4.4"
-    echo "Build version 4F250"
-else
-    # Pass Through
-    /usr/bin/xcodebuild.orig "$@"
-fi
