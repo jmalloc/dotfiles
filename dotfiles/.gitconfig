@@ -63,5 +63,7 @@
     pt = push --all --follow-tags
     u = pull --rebase
     b = branch
+    m = merge --no-ff
+    ff = merge --ff-only
     ch = checkout
     unstage = reset HEAD --
