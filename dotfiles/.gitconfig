@@ -52,6 +52,7 @@
     ;log = log --topo-order
     ;show = show -m
     d = diff
+    dc = diff --cached
     s = status -bs
     c = commit -m
     l = log --pretty='%C(dim cyan)%h%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent -20
