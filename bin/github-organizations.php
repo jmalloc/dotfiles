@@ -1,10 +1,9 @@
 <?php
 
 return [
+    'recoilphp',
     'IcecaveStudios',
     'IcecaveLabs',
-    'recoilphp',
-    'masonphp',
     'icecave',
-    'dialekt',
+    'skewd'
 ];

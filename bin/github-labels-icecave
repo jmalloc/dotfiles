@@ -11,14 +11,15 @@ $orgs = require __DIR__ . '/github-organizations.php';
 
 // The desired labels and their colours ...
 $expected = [
+    'blocked' => 'fbca04',
     'defect'  => 'fc2929',
     'easy pick' => 'd7e102',
+    'needs discussion' => '006b75',
     'priority' => '5319e7',
     'semver:major' => 'fff0f0',
     'semver:minor' => 'fff8f0',
     'semver:patch' => 'f0f8ff',
     'status: in progress' => '009800',
-    'status: ready' => 'bfe5bf',
 ];
 
 // Labels that should be renamed to match above (instead of deleting and creating a new one) ...
@@ -26,7 +27,6 @@ $rename = [
     'bc break' => 'semver:major',
     'bug' => 'defect',
     'in progress' => 'status: in progress',
-    'ready' => 'status: ready',
     'semver:major' => 'semver: major',
     'semver:minor' => 'semver: minor',
     'semver:patch' => 'semver: patch',
