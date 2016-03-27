@@ -91,10 +91,12 @@ function build-prompt {
 
     local docker=""
 
-    if [[ "$HIVE_CLUSTER" == "local" ]]; then
-        docker="$docker$(color-grey "$HIVE_CLUSTER") "
-    elif [ "$HIVE_CLUSTER" ]; then
-        docker="$docker$(color-orange "$HIVE_CLUSTER") "
+    if [ "$HIVE_SWARM" ]; then
+        if [[ "$HIVE_CLUSTER" == "local" ]]; then
+            docker="$docker$(color-green)$HIVE_SWARM "
+        else
+            docker="$docker$(color-orange)$HIVE_SWARM "
+        fi
     fi
 
     if [ "$DOCKER_MACHINE_NAME" ]; then
