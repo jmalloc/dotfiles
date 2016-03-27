@@ -89,6 +89,18 @@ function build-prompt {
         fi
     fi
 
+    local docker=""
+
+    if [[ "$HIVE_CLUSTER" == "local" ]]; then
+        docker="$docker$(color-grey "$HIVE_CLUSTER") "
+    elif [ "$HIVE_CLUSTER" ]; then
+        docker="$docker$(color-orange "$HIVE_CLUSTER") "
+    fi
+
+    if [ "$DOCKER_MACHINE_NAME" ]; then
+        docker="$docker$(color-yellow "$DOCKER_MACHINE_NAME") "
+    fi
+
     if [ "$WINDOW_TITLE" ]; then
         title="$WINDOW_TITLE"
     elif [ "$title_auth" ]; then
@@ -101,7 +113,7 @@ function build-prompt {
         newline="\n"
     fi
 
-    PS1="\n\[\033]0;${title}\007\]$(color-dark-grey "\A")$auth $location$newline$(color-dark-grey :) $(color-reset)"
+    PS1="\n\[\033]0;${title}\007\]$(color-dark-grey "\A")$auth $docker$location$newline$(color-dark-grey :) $(color-reset)"
 
     ESCAPE_COLOR_CODES=false
 }
