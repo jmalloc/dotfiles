@@ -96,3 +96,5 @@ echo
 # Authorise hub (will ask for user/pass once) ...
 echo "Authorizing hub: "
 hub browse
+
+mkdir -p "$HOME/.go/src"

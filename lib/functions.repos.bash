@@ -27,7 +27,7 @@ function rcd {
     if [[ $count == "" ]]; then
         for base in $GIT_DIR_LIST; do
             if [ -d $base ]; then
-                matches=$(find $base -mindepth 2 -maxdepth 2 -type d -iname $name)
+                matches=$(find $base -mindepth 2 -maxdepth 2 -iname $name)
                 count=$(echo $matches | wc -w | tr -d ' ')
 
                 if [ $count -gt 0 ]; then
@@ -90,7 +90,7 @@ function rcd-reindex {
     GIT_DIR_CACHE=""
     for base in $GIT_DIR_LIST; do
         if [ -d $base ]; then
-            for dir in $(find $base -mindepth 2 -maxdepth 2 -type d); do
+            for dir in $(find $base -mindepth 2 -maxdepth 2); do
                 local repo=$(echo $dir | rev | cut -d/ -f1-2 | rev)
                 GIT_DIR_CACHE="$repo $(basename "$repo") $GIT_DIR_CACHE"
             done
