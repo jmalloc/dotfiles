@@ -17,6 +17,7 @@ $expected = [
     'needs discussion' => '006b75',
     'parent issue' => 'f0f0f0',
     'priority' => '5319e7',
+    'postponed' => 'bfdadc',
     'status: in progress' => '009800',
     'status: needs review' => 'eb6420'
 ];
