@@ -18,10 +18,10 @@
     ui = auto
 
 [color "diff"]
-  meta = dim bold
-  frag = dim
-  old = red
-  new = green
+    meta = dim bold
+    frag = dim
+    old = red
+    new = green
 
 [color "status"]
     added = green
@@ -45,26 +45,33 @@
     required = true
     clean = git-lfs clean %f
 
-[format]
-   pretty = %C(dim)%ci %C(dim)%p %C(cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar.%C(reset)
-
 [alias]
-    ;log = log --topo-order
-    ;show = show -m
+    ; diff ...
     d = diff
     dc = diff --cached
+
+    ; log ...
+    l = log --pretty='%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent -20
+    lp = log --pretty='%C(dim)%<|(15)%p %C(cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' -20
+    lg = log --pretty='%C(dim cyan)%H%C(reset)%C(cyan)%d%C(reset) %C(dim)by %an %ar%n%s%+b%n' --graph
+
+    ; staging + committing ...
     s = status -bs
     c = commit -m
-    l = log --pretty='%C(dim cyan)%h%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent -20
-    g = log --pretty='%C(dim cyan)%h%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --graph
+    ca = commit --amend
     a = add
     aa = add -A
+    unstage = reset HEAD --
+
+    ; push + pull ...
     p = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
     pt = push --all --follow-tags
     u = pull --rebase
+
+    ; branching ...
     b = branch
     m = merge --no-ff
     ff = merge --ff-only
     co = checkout
+    cb = checkout -b
     cm = "!git checkout $(basename $(git symbolic-ref refs/remotes/origin/HEAD))"
-    unstage = reset HEAD --
