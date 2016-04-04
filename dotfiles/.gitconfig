@@ -54,6 +54,7 @@
     l = log --pretty='%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent -20
     lp = log --pretty='%C(dim)%<|(15)%p %C(cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' -20
     lg = log --pretty='%C(dim cyan)%H%C(reset)%C(cyan)%d%C(reset) %C(dim)by %an %ar%n%s%+b%n' --graph
+    cl = "!git log --merges $(git describe --abbrev=0 --tags)..HEAD | egrep -o '\\- \\*\\*\\[.+'"
 
     ; staging + committing ...
     s = status -bs
