@@ -33,7 +33,7 @@ type -t brew > /dev/null && source $(brew --prefix)/etc/bash_completion
 ##
 if type -t atom > /dev/null; then
     alias e='atom .'
-    export VISUAL='atom -w'
+    export VISUAL='atom -fw'
 elif [ -d "/Applications/Sublime Text.app/Contents/SharedSupport/bin" ]; then
 	export PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
     alias e='subl .'
@@ -64,7 +64,8 @@ done
 [ -f ~/.bashrc ] && source ~/.bashrc
 
 ##
-## .bashrc SHOULD set the GITHUB_TOKEN environment variable st
+## .bashrc SHOULD set the GITHUB_TOKEN environment variable to make it available
+## to homebrew and composer without comitting it to the repo.
 ##
 if [ -z "$GITHUB_TOKEN" ]; then
     echo "Warning: GITHUB_TOKEN is not set."

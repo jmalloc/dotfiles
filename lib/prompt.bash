@@ -46,9 +46,9 @@ build-prompt-git() {
     [[ "$status" =~ behind.([0-9]+) ]] && behind=${BASH_REMATCH[1]}
     #
     local status_string=""
-    [ $ahead -gt 0 ] && status_string="$status_string $(color-gold "+")$(color-yellow $ahead)"
-    [ $behind -gt 0 ] && status_string="$status_string $(color-gold "-")$(color-yellow $behind)"
-    [ $stash -gt 0 ] && status_string="$status_string $(color-gold "#")$(color-yellow $stash)"
+    [ $ahead -gt 0 ] && status_string="$status_string $(color-green "+")$(color-lime $ahead)"
+    [ $behind -gt 0 ] && status_string="$status_string $(color-maroon "-")$(color-red $behind)"
+    [ $stash -gt 0 ] && status_string="$status_string $(color-dark-blue "#")$(color-blue $stash)"
     [ $files -gt 1 ] && status_string="$status_string $(color-gold "*")$(color-yellow $(($files - 1)))"
 
     local subdir="$(git rev-parse --show-prefix)"
@@ -66,11 +66,11 @@ build-prompt-git() {
         rev="$(git name-rev --name-only HEAD)"
 
         if [[ "$rev" =~ ^tags/(.+)\^0$ ]]; then
-            rev="$(color-red "@${BASH_REMATCH[1]}")"
+            rev="$(color-maroon "@${BASH_REMATCH[1]}")"
         elif [[ "$rev" =~ ^tags/(.+\~[0-9]+)$ ]]; then
-            rev="$(color-red "<@${BASH_REMATCH[1]}>")"
+            rev="$(color-maroon "<@${BASH_REMATCH[1]}>")"
         else
-            rev="$(color-red "<$rev>")"
+            rev="$(color-maroon "<$rev>")"
         fi
     fi
 

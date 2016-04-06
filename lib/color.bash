@@ -18,16 +18,24 @@ color-reset() {
     fi
 }
 
-color-red() {
+color-maroon() {
     colorize 1 "$@"
 }
 
+color-red() {
+    colorize 9 "$@"
+}
+
 color-green() {
-    colorize 70 "$@"
+    colorize 22 "$@"
+}
+
+color-lime() {
+    colorize 10 "$@"
 }
 
 color-gold() {
-    colorize 136 "$@"
+    colorize 94 "$@"
 }
 
 color-yellow() {
@@ -42,12 +50,12 @@ color-blue() {
     colorize 26 "$@"
 }
 
-color-magenta() {
-    colorize 56 "$@"
+color-dark-blue() {
+    colorize 18 "$@"
 }
 
-color-cyan() {
-    colorize 45 "$@"
+color-magenta() {
+    colorize 56 "$@"
 }
 
 color-white() {

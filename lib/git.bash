@@ -59,11 +59,13 @@ repo-chdir() {
         done
 
         if [ ${#matches[@]} -eq 0 ]; then
-            echo "  $(color-red)!!! $(color-dark-grey)Repository $(color-grey)$1 $(color-dark-grey)does not exist."
+            echo "  $(color-maroon)!!! $(color-dark-grey)Repository $(color-grey)$1 $(color-dark-grey)does not exist.$(color-reset)"
             return 1
         elif [ ${#matches[@]} -eq 1 ]; then
             cd ${matches[0]}
         else
+            echo "  $(color-orange)??? $(color-dark-grey)Found $(color-grey)${#matches[@]} $(color-dark-grey)repositories matching $(color-grey)$1$(color-dark-grey):$(color-grey)"
+            echo
             local PS3="$(color-reset): "
             local path=
             select path in ${matches[@]}; do

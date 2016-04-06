@@ -15,7 +15,7 @@ for FILE in "$DOTFILES_PATH/dotfiles/".*; do
         ln -s $FILE "$HOME/$NAME"
         echo "  $(color-green)>>> $(color-dark-grey)Updated symlink $(color-grey)$NAME$(color-dark-grey) to $(color-grey)$FILE"
     elif [ -e "$HOME/$NAME" ]; then
-        echo "  $(color-red)!!! $(color-dark-grey)Not updating $(color-grey)$NAME$(color-dark-grey), it is not a symlink."
+        echo "  $(color-maroon)!!! $(color-dark-grey)Not updating $(color-grey)$NAME$(color-dark-grey), it is not a symlink."
     else
         ln -s $FILE "$HOME/$NAME"
         echo "  $(color-green)>>> $(color-dark-grey)Created symlink $(color-grey)$NAME$(color-dark-grey) to $(color-grey)$FILE"
