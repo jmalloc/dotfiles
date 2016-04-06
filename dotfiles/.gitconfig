@@ -6,7 +6,41 @@
     autocrlf = input
     excludesfile = ~/.gitignore.global
     whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=4
-	editor = subl -w
+	editor = atom -w
+
+[alias]
+    cd = "!echo 'cd must be invoked via the dotfiles git() function' && false"
+
+    ; diff ...
+    d = diff
+    dc = diff --cached
+
+    ; log ...
+    l = log --pretty='%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent -20
+    lp = log --pretty='%C(dim)%<|(15)%p %C(cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' -20
+    lg = log --pretty='%C(dim cyan)%H%C(reset)%C(cyan)%d%C(reset) %C(dim)by %an %ar%n%s%+b%n' --graph
+    cl = changelog
+
+    ; staging + committing ...
+    s = status -bs
+    c = commit -m
+    ca = commit --amend
+    a = add
+    aa = add -A
+    unstage = reset HEAD --
+
+    ; push + pull ...
+    p = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
+    pt = push --all --follow-tags
+    u = pull --rebase
+
+    ; branching ...
+    b = branch
+    m = merge --no-ff
+    ff = merge --ff-only
+    co = checkout
+    cb = checkout -b
+    cm = "!git checkout $(basename $(git symbolic-ref refs/remotes/origin/HEAD))"
 
 [diff]
     renames = true
@@ -34,45 +68,7 @@
 [tag]
     sort = version:refname
 
-[github]
-    user = jmalloc
-
-[ghi]
-    token = !security find-internet-password -a jmalloc -s github.com -l 'ghi token' -w
-
 [filter "lfs"]
     smudge = git-lfs smudge %f
     required = true
     clean = git-lfs clean %f
-
-[alias]
-    ; diff ...
-    d = diff
-    dc = diff --cached
-
-    ; log ...
-    l = log --pretty='%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent -20
-    lp = log --pretty='%C(dim)%<|(15)%p %C(cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' -20
-    lg = log --pretty='%C(dim cyan)%H%C(reset)%C(cyan)%d%C(reset) %C(dim)by %an %ar%n%s%+b%n' --graph
-    cl = "!git log --merges $(git describe --abbrev=0 --tags)..HEAD | egrep -o '\\- \\*\\*\\[.+'"
-
-    ; staging + committing ...
-    s = status -bs
-    c = commit -m
-    ca = commit --amend
-    a = add
-    aa = add -A
-    unstage = reset HEAD --
-
-    ; push + pull ...
-    p = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
-    pt = push --all --follow-tags
-    u = pull --rebase
-
-    ; branching ...
-    b = branch
-    m = merge --no-ff
-    ff = merge --ff-only
-    co = checkout
-    cb = checkout -b
-    cm = "!git checkout $(basename $(git symbolic-ref refs/remotes/origin/HEAD))"

@@ -7,29 +7,14 @@ This is my personal dotfiles repository.
 ```bash
 cd ~
 git clone git@github.com:jmalloc/dotfiles.git
-ln -s dotfiles/dotfiles/.bash_profile
-mkdir -p .ssh
-# update configuration options in .bash_profile
+dotfiles/setup/setup-dotfiles
 source ~/.bash_profile
-dotfiles/setup
+# set GITHUB_TOKEN=xxx in ~/.bashrc
+dotfiles/setup/setup-machine
 ```
 
-## Git Prompt
+## Git Commands
 
-The current revision is colored to indicate whether or not it's safe to work on this branch according to the rules of git-flow.
-
- * green: personal branch
- * white: develop branch
- * orange: master branch or tag
- * grey: empty / no commits
- * red: any other commit
-
-When HEAD is detached, the current revision is shown surrounded in angle brackets.
-
-## Link Sublime Settings to Dropbox
-
-```bash
-DIR="/Users/james/Library/Application Support/Sublime Text 3/Packages/User"
-rmdir "$DIR"
-ln -s "/Users/james/Dropbox/Sublime User Package/" "$DIR"
-```
+- `git clone <user>/<repo>` - Clone a repository from GitHub into `$GIT_PATH/<user>/<repo>`.
+- `git cd <repo>` - Change current directory to `$GIT_PATH/<user>/<repo>`, with bash completion.
+- `git changelog` - Generate a repository changelog by treating merge commits in between tags as the changelog entries.

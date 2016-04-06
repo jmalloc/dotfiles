@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -e
+
+if [ -z "$DOTFILES_PATH" ]; then
+    echo "DOTFILES_PATH must be set! (run setup-dotfiles and source ~/.bash_profile)"
+    exit 1
+fi
+
+if [ -z "$HOMEBREW_GITHUB_API_TOKEN" ]; then
+    echo "HOMEBREW_GITHUB_API_TOKEN must be set! (set GITHUB_TOKEN in ~/.bashrc)"
+    exit 1
+fi
+
+echo "Please note: The setup process opens a new terminal window which may be safely closed."
+for FILE in "$DOTFILES_PATH/setup/"*-*.bash; do
+  source "$FILE"
+done
