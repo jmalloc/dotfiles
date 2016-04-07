@@ -106,7 +106,7 @@ export HUB_BINARY="$(which hub)"
 git() {
     if [ "$1" == "cd" ]; then
         repo-chdir "${@:2}"
-    elif [[ "$1" == "clone" && $# -eq 2 && "$2" =~ ^[^/]+/[^/]+$ ]]; then
+    elif [[ "$1" == "clone" && $# -eq 2 && "$2" =~ ^[^/:@]+/[^/]+$ ]]; then
         repo-clone "$2"
     else
         "${HUB_BINARY:-$GIT_BINARY}" "$@"
