@@ -44,7 +44,7 @@ elif [ -d "/Applications/Sublime Text.app/Contents/SharedSupport/bin" ]; then
         mv "$SUBLIME_USER_DIR" "$SUBLIME_USER_DIR.local"
     fi
 
-    if [ ! -e "$SUBLIME_USER_DIR" ]; then
+    if [ ! -L "$SUBLIME_USER_DIR" ]; then
         ln -s "~/Library/Mobile\ Documents/com~apple~CloudDocs/sublime" "$SUBLIME_USER_DIR"
     fi
 else
