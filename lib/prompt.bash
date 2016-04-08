@@ -60,7 +60,7 @@ build-prompt-git() {
         if [[ "$rev" == "master" ]]; then
             rev="$(color-orange master)"
         else
-            rev="$(color-green "$rev")"
+            rev="$(color-lime "$rev")"
         fi
     else
         rev="$(git name-rev --name-only HEAD)"

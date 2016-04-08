@@ -13,12 +13,12 @@ for FILE in "$DOTFILES_PATH/dotfiles/".*; do
     elif [ -L "$HOME/$NAME" ]; then
         rm -f "$HOME/$NAME"
         ln -s $FILE "$HOME/$NAME"
-        echo "  $(color-green)>>> $(color-dark-grey)Updated symlink $(color-grey)$NAME$(color-dark-grey) to $(color-grey)$FILE"
+        echo "  $(color-lime)>>> $(color-dark-grey)Updated symlink $(color-grey)$NAME$(color-dark-grey) to $(color-grey)$FILE"
     elif [ -e "$HOME/$NAME" ]; then
         echo "  $(color-maroon)!!! $(color-dark-grey)Not updating $(color-grey)$NAME$(color-dark-grey), it is not a symlink."
     else
         ln -s $FILE "$HOME/$NAME"
-        echo "  $(color-green)>>> $(color-dark-grey)Created symlink $(color-grey)$NAME$(color-dark-grey) to $(color-grey)$FILE"
+        echo "  $(color-lime)>>> $(color-dark-grey)Created symlink $(color-grey)$NAME$(color-dark-grey) to $(color-grey)$FILE"
     fi
 done
 

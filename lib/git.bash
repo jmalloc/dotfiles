@@ -76,7 +76,7 @@ repo-chdir() {
             done
         fi
 
-        echo "  $(color-green)>>> $(color-magenta)$(repo-name) $(color-dark-grey)found in $(color-blue)$(pwd)"
+        echo "  $(color-lime)>>> $(color-magenta)$(repo-name) $(color-dark-grey)found in $(color-blue)$(pwd)"
     fi
 }
 

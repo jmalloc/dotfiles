@@ -31,7 +31,7 @@ color-green() {
 }
 
 color-lime() {
-    colorize 10 "$@"
+    colorize 118 "$@"
 }
 
 color-gold() {
