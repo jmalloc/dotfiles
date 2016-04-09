@@ -1,12 +1,10 @@
-if type -t git > /dev/null; then
+if [ $HAS_GIT ]; then
     PROMPT_COMMAND="build-prompt-git"
 else
     PROMPT_COMMAND="build-prompt"
 fi
 
-if type -t update_terminal_cwd > /dev/null; then
-    PROMPT_COMMAND="update_terminal_cwd;$PROMPT_COMMAND"
-fi
+type -t update_terminal_cwd > /dev/null && PROMPT_COMMAND="update_terminal_cwd;$PROMPT_COMMAND"
 
 if [[ ! "$USERNAMES" =~ (^| )"$USER"($| ) ]]; then
     PROMPT_AUTH=$(color-gold $USER)

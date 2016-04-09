@@ -6,8 +6,17 @@ export DOTFILES_PATH="$HOME/dotfiles"                # The path to the clone of 
 export GIT_PATH="$HOME/dev/git"                      # The target for 'git cl' clones.
 export GOPATH="$HOME/dev/go"
 export GIT_SEARCH="$GOPATH/src/github.com $GIT_PATH" # Search paths for 'git cd'.
-export PATH="$DOTFILES_PATH/bin:$HOME/bin:$HOME/.gem/ruby/2.0.0/bin:$GOPATH/bin:$PATH"
+export PATH="$DOTFILES_PATH/bin:$HOME/bin:$HOME/.gem/ruby/2.0.0/bin:$GOPATH/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
 export HISTCONTROL="ignoreboth"
+export ICLOUD_DRIVE_PATH="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
+
+[ -d "$ICLOUD_DRIVE_PATH" ] && export HAS_ICLOUD=true
+type -t git-upload-pack > /dev/null && export HAS_GIT=true # git() function might already be defined, so check for git-upload-pack
+type -t hub  > /dev/null && export HAS_HUB=true
+type -t brew > /dev/null && export HAS_BREW=true
+type -t atom > /dev/null && export HAS_ATOM=true
+type -t subl > /dev/null && export HAS_SUBL=true
+type -t composer > /dev/null && export HAS_COMPOSER=true
 
 ulimit -n 8192
 
@@ -20,46 +29,42 @@ alias less='less -R'
 alias grep='grep --color'
 alias cov='open artifacts/tests/coverage/index.html'
 
-if [[ $(uname) == "Darwin" ]]; then
+if [[ "$(uname)" == "Darwin" ]]; then
     alias ls='ls -lhG'
 else
     alias ls='ls -lh --color --group-directories-first'
 fi
 
-type -t brew > /dev/null && source $(brew --prefix)/etc/bash_completion
+[ $HAS_BREW ] && source $(brew --prefix)/etc/bash_completion
 
 ##
 ## TEXT EDITOR
 ##
-ICLOUD_DRIVE_PATH="$ICLOUD_DRIVE_PATH"
-if type -t atom > /dev/null; then
+if [ $HAS_ATOM ]; then
     alias e='atom .'
-    export VISUAL='atom -fw'
-
-    if [ -d "$HOME/.atom" ]; then
-        mv "$HOME/.atom" "$HOME/.atom.old"
-    fi
-
-    ln -s "$ICLOUD_DRIVE_PATH/atom" "$HOME/.atom"
-elif [ -d "/Applications/Sublime Text.app/Contents/SharedSupport/bin" ]; then
-	export PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
+    export EDITOR='atom --wait --new-window'
+elif [ $HAS_SUBL ]; then
     alias e='subl .'
-    export VISUAL='subl -w'
-
-    SUBLIME_USER_DIR="$HOME/Library/Application Support/Sublime Text 3/Packages/User"
-    if [ -d "$SUBLIME_USER_DIR" ]; then
-        mv "$SUBLIME_USER_DIR" "$SUBLIME_USER_DIR.old"
-    fi
-
-    if [ ! -L "$SUBLIME_USER_DIR" ]; then
-        ln -s "$ICLOUD_DRIVE_PATH/sublime" "$SUBLIME_USER_DIR"
-    fi
+    export EDITOR='subl -w'
 else
-    export VISUAL="vim"
+    export EDITOR="vim"
 fi
 
-export EDITOR="$VISUAL"
-git config --global core.editor "$VISUAL"
+export VISUAL="$EDITOR"
+git config --global core.editor "$EDITOR"
+
+if [ $HAS_ICLOUD ]; then
+    if [[ $HAS_ATOM && ! -L "$HOME/.atom" ]]; then
+        [ -e "$HOME/.atom" ] && mv "$HOME/.atom" "$HOME/.Trash/dotfiles.atom.$(date +%s)"
+        ln -s "$ICLOUD_DRIVE_PATH/atom" "$HOME/.atom"
+    fi
+
+    P="$HOME/Library/Application Support/Sublime Text 3/Packages/User"
+    if [[ $HAS_SUBL && ! -L "$P" ]]; then
+        [ -e "$P" ] && mv "$P" "$HOME/.Trash/dotfiles.sublime.$(date +%s)"
+        ln -s "$ICLOUD_DRIVE_PATH/sublime" "$P"
+    fi
+fi
 
 ##
 ## Source other bash scripts ...
@@ -68,7 +73,8 @@ for FILE in "$DOTFILES_PATH/lib/"*.bash; do
     source $FILE
 done
 
-[ -f ~/.bashrc ] && source ~/.bashrc
+touch "$HOME/.hushlogin" # hide the "last login" banner
+[ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
 
 ##
 ## .bashrc SHOULD set the GITHUB_TOKEN environment variable to make it available
@@ -78,6 +84,9 @@ if [ -z "$GITHUB_TOKEN" ]; then
     echo "Warning: GITHUB_TOKEN is not set."
 else
     export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
-    type -t composer > /dev/null && \
-        composer config --global -- github-oauth.github.com "$GITHUB_TOKEN"
+    [ $HAS_COMPOSER ] && composer config --global -- github-oauth.github.com "$GITHUB_TOKEN"
+fi
+
+if LS=$(ls -ld "$HOME"/.Trash/dotfiles.* 2> /dev/null); then
+    echo "$(color-orange)$LS$(color-reset)"
 fi
