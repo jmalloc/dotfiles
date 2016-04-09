@@ -3,6 +3,9 @@
 ##
 xcode-select --install || true
 
+# Disable Resume system-wide
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
@@ -19,6 +22,23 @@ defaults write com.apple.systemuiserver menuExtras -array \
     "/System/Library/CoreServices/Menu Extras/Volume.menu" \
     "/System/Library/CoreServices/Menu Extras/Battery.menu" \
     "/System/Library/CoreServices/Menu Extras/Clock.menu"
+
+# Use Graphite Appearance
+defaults write NSGlobalDomain AppleAquaColorVariant -int 6
+
+# Use Graphite Highlight Color
+defaults write NSGlobalDomain AppleHighlightColor -string "0.780400 0.815700 0.858800"
+
+# Ctrl + Alt + Cmd + W = Close all Files in both Sublime and Atom
+# @ = command
+# $ = shift
+# ~ = alt/option
+# ^ = control
+defaults write com.github.atom NSUserKeyEquivalents -dict-add "Close All Tabs" -string "@~^w"
+defaults write com.sublimetext.3 NSUserKeyEquivalents -dict-add "Close All Files" -string "@~^w"
+
+# Use Cmd + ; to switch windows (not sure if this command actually works)
+defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move focus to active or next window" -string '@;'
 
 ##
 ## TRACKPAD AND KEYBOARD
@@ -44,11 +64,45 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-# Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 0
+# Set a key delay (initial) and repeat to the fastest settings available
+# from the UI ...
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
+defaults write NSGlobalDomain KeyRepeat -int 2
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+defaults write com.apple.systemuiserver menuExtras -array \
+    "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+    "/System/Library/CoreServices/Menu Extras/Displays.menu" \
+    "/System/Library/CoreServices/Menu Extras/Volume.menu" \
+    "/System/Library/CoreServices/Menu Extras/Battery.menu" \
+    "/System/Library/CoreServices/Menu Extras/Clock.menu"
+
+##
+## NOTIFICATION CENTER
+##
+
+# I haven't yet worked out how to actually enable/disable the desired widgets.
+# Normally I have: Today, Weather, World Clock, Calendar, Social
+
+# Set the order of the notification widgets
+defaults write com.apple.notificationcenterui order -array \
+    "com.apple.ncplugin.weather" \
+    "com.apple.ncplugin.WorldClock" \
+    "com.apple.iCal.CalendarNC" \
+    "com.apple.RemindersNC" \
+    "com.apple.share.SocialWidget" \
+    "com.apple.ncplugin.stocks" \
+    "com.apple.iTunes.today.TodayExtension" \
+    "com.apple.ncplugin.calculator" \
+    "com.apple.ncplugin.FindMyFriends"
+
+# Set the WorldClock cities (Vancouver, Kingston, San Juan)
+defaults write com.apple.ncplugin.WorldClock order -array \
+    "148639633555590430" \
+    "148639633558736588" \
+    "3621819"
 
 ##
 ## SCREEN
@@ -112,8 +166,10 @@ chflags nohidden $HOME/Library
 ##
 ## DOCK AND DASHBOARD
 ##
-# Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 36
+# Set the icon size of Dock items to 28->64 pixels with magnification
+defaults write com.apple.dock tilesize -int 28
+defaults write com.apple.dock largesize -int 64
+defaults write com.apple.dock magnification -bool true
 
 # Show only open applications in the Dock
 defaults write com.apple.dock static-only -bool true
