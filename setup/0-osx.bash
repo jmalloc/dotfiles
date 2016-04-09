@@ -29,6 +29,9 @@ defaults write NSGlobalDomain AppleAquaColorVariant -int 6
 # Use Graphite Highlight Color
 defaults write NSGlobalDomain AppleHighlightColor -string "0.780400 0.815700 0.858800"
 
+##
+## TRACKPAD AND KEYBOARD
+##
 # Ctrl + Alt + Cmd + W = Close all Files in both Sublime and Atom
 # @ = command
 # $ = shift
@@ -37,16 +40,19 @@ defaults write NSGlobalDomain AppleHighlightColor -string "0.780400 0.815700 0.8
 defaults write com.github.atom NSUserKeyEquivalents -dict-add "Close All Tabs" -string "@~^w"
 defaults write com.sublimetext.3 NSUserKeyEquivalents -dict-add "Close All Files" -string "@~^w"
 
-# Use Cmd + ; to switch windows (not sure if this command actually works)
-defaults write NSGlobalDomain NSUserKeyEquivalents -dict-add "Move focus to active or next window" -string '@;'
+# I haven't worked out how to map these actions programatically yet, so I just
+# import the "com.apple.symbolichotkeys.plist" file exported from a mac with the
+# desired key config. This will probably break in future OSX versions.
+# "Move focus to active or next window" = "@;" (Command + ;)
+# "Missing Control" = "^~@(up?)"
+# "Application Windows" = "^~@(down?)"
+# "Move left a space" = "^~@(left?)"
+# "Move right a space" = "^~@(right?)"
+defaults import com.apple.symbolichotkeys "$DOTFILES_PATH/setup/com.apple.symbolichotkeys.plist"
 
-##
-## TRACKPAD AND KEYBOARD
-##
 # Trackpad: enable tap to click for this user and for the login screen
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -bool true
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
