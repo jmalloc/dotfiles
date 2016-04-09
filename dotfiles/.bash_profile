@@ -31,21 +31,28 @@ type -t brew > /dev/null && source $(brew --prefix)/etc/bash_completion
 ##
 ## TEXT EDITOR
 ##
+ICLOUD_DRIVE_PATH="$ICLOUD_DRIVE_PATH"
 if type -t atom > /dev/null; then
     alias e='atom .'
     export VISUAL='atom -fw'
+
+    if [ -d "$HOME/.atom" ]; then
+        mv "$HOME/.atom" "$HOME/.atom.old"
+    fi
+
+    ln -s "$ICLOUD_DRIVE_PATH/atom" "$HOME/.atom"
 elif [ -d "/Applications/Sublime Text.app/Contents/SharedSupport/bin" ]; then
 	export PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
     alias e='subl .'
     export VISUAL='subl -w'
 
-    SUBLIME_USER_DIR="/Users/james/Library/Application Support/Sublime Text 3/Packages/User"
+    SUBLIME_USER_DIR="$HOME/Library/Application Support/Sublime Text 3/Packages/User"
     if [ -d "$SUBLIME_USER_DIR" ]; then
-        mv "$SUBLIME_USER_DIR" "$SUBLIME_USER_DIR.local"
+        mv "$SUBLIME_USER_DIR" "$SUBLIME_USER_DIR.old"
     fi
 
     if [ ! -L "$SUBLIME_USER_DIR" ]; then
-        ln -s "~/Library/Mobile\ Documents/com~apple~CloudDocs/sublime" "$SUBLIME_USER_DIR"
+        ln -s "$ICLOUD_DRIVE_PATH/sublime" "$SUBLIME_USER_DIR"
     fi
 else
     export VISUAL="vim"
