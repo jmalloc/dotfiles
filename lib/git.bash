@@ -158,4 +158,4 @@ _git_cd() {
     COMPREPLY=( $(compgen -W "$GIT_SEARCH_COMPLETION" -- ${COMP_WORDS[COMP_CWORD]}) )
 }
 
-__git_complete g __git_main
+type -t __git_complete > /dev/null __git_complete g __git_main
