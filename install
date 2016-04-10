@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -e
+
+if [ -z "$1" ]; then
+    echo "usage: setup <lastpass username>" >&2
+    exit 1
+fi
+
+type -t brew > /dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+type -t lpass > /dev/null || brew install lastpass-cli --with-pinentry
+lpass login "$1"
+
+if [ -z "$GITHUB_TOKEN" ]; then
+    echo "Fetching GitHub Token from LastPass"
+    export GITHUB_TOKEN="$(lpass show "Personal/GitHub Token" --notes)"
+    export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
+    echo 'export GITHUB_TOKEN="'$GITHUB_TOKEN'"' >> "$HOME/.bashrc"
+fi
+
+if [ ! -d "$HOME/.ssh" ]; then
+    echo "Fetching SSH key from LastPass"
+    mkdir "$HOME/.ssh"
+    lpass show "Personal/SSH" --field "Private Key" \
+        | awk '/^[A-Za-z-]+:$/ { printf("%s ", $0); next } 1' \
+        > "$HOME/.ssh/id_rsa"
+    chmod 600 "$HOME/.ssh/id_rsa"
+    openssl rsa -in "$HOME/.ssh/id_rsa" -pubout > "$HOME/.ssh/id_rsa.pub"
+fi
+
+[ "$DOTFILES_PATH" ] || DOTFILES_PATH="$(cd $(dirname "$0"); pwd)"
+
+"$DOTFILES_PATH/bin/symlink-dotfiles"
+
+echo "Please note: The setup process opens a new terminal window which may be safely closed."
+for FILE in "$DOTFILES_PATH/setup/"*-*.bash; do
+  source "$FILE"
+done

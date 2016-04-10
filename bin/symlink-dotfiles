@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-[ -z "$DOTFILES_PATH" ] && DOTFILES_PATH="$(cd $(dirname "$(dirname "$0")"); pwd)"
-
+set -e
 source "$DOTFILES_PATH/lib/color.bash"
 
 echo 'Installing dotfiles ...'

@@ -6,11 +6,10 @@ This is my personal dotfiles repository.
 
 ```bash
 cd ~
-git clone git@github.com:jmalloc/dotfiles.git
-dotfiles/setup/setup-dotfiles
+git clone https://github.com/jmalloc/dotfiles.git # Needed before SSH cert is available.
+git remote set-url origin git@github.com:jmalloc/dotfiles.git
+./dotfiles/install
 source ~/.bash_profile
-# set GITHUB_TOKEN=xxx in ~/.bashrc
-dotfiles/setup/setup-machine
 ```
 
 ## Git Commands
