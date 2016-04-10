@@ -29,6 +29,10 @@ fi
 
 [ "$DOTFILES_PATH" ] || DOTFILES_PATH="$(cd $(dirname "$0"); pwd)"
 
+pushd $DOTFILES_PATH > /dev/null
+git remote get-url origin | sed 's/git@github.com:/https:\/\/github.com\//'
+popd > /dev/null
+
 "$DOTFILES_PATH/bin/symlink-dotfiles"
 
 echo "Please note: The setup process opens a new terminal window which may be safely closed."

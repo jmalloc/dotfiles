@@ -6,9 +6,8 @@ This is my personal dotfiles repository.
 
 ```bash
 cd ~
-git clone https://github.com/jmalloc/dotfiles.git # Needed before SSH cert is available.
+git clone https://github.com/jmalloc/dotfiles.git
 cd dotfiles
-git remote set-url origin git@github.com:jmalloc/dotfiles.git
 ./install
 source ~/.bash_profile
 ```
