@@ -30,6 +30,15 @@ defaults write NSGlobalDomain AppleAquaColorVariant -int 6
 defaults write NSGlobalDomain AppleHighlightColor -string "0.780400 0.815700 0.858800"
 
 ##
+## SOUND
+##
+# Disable UI sound effects
+defaults write com.apple.systemsound com.apple.sound.uiaudio.enabled -int 0
+
+# Enable volume change feedback
+defaults write NSGlobalDomain com.apple.sound.beep.feedback -int 1
+
+##
 ## TRACKPAD AND KEYBOARD
 ##
 # Ctrl + Alt + Cmd + W = Close all Files in both Sublime and Atom
