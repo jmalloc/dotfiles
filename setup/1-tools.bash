@@ -1,5 +1,5 @@
 [ -e "$HOME/bin" ] || mkdir -p "$HOME/bin"
-[ -e "$HOME/dev/github" ] || mkdir -p "$HOME/dev/github"
+[ -e "$HOME/dev/git" ] || mkdir -p "$HOME/dev/git"
 
 brew install \
     bash-completion \
