@@ -1,8 +1,6 @@
 ##
 ## GENERAL
 ##
-xcode-select --install || true
-
 # Disable Resume system-wide
 defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 
