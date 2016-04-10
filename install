@@ -27,7 +27,7 @@ if [ ! -e "$HOME/.ssh/id_rsa" ]; then
     openssl rsa -in "$HOME/.ssh/id_rsa" -pubout > "$HOME/.ssh/id_rsa.pub"
 fi
 
-[ "$DOTFILES_PATH" ] || DOTFILES_PATH="$(cd $(dirname "$0"); pwd)"
+[ "$DOTFILES_PATH" ] || export DOTFILES_PATH="$(cd $(dirname "$0"); pwd)"
 
 pushd "$DOTFILES_PATH" > /dev/null
 git remote set-url origin "$(git config --get remote.origin.url | sed 's/https:\/\/github.com\//git@github.com:/')"
