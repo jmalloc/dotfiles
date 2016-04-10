@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+cd "$ICLOUD_DRIVE_PATH"
+find -s . -type f -not -name ".DS_Store" -exec md5 {} \; | md5
