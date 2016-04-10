@@ -169,7 +169,7 @@ plist-set-or-add() {
     local type="$2"
     local value="$3"
     local file="$4"
-    if /usr/libexec/PlistBuddy -c "Print $name" "$file" 2> /dev/null; then
+    if /usr/libexec/PlistBuddy -c "Print $name" "$file" 2>&1 > /dev/null; then
         /usr/libexec/PlistBuddy -c "Set $name $value" "$file"
     else
         /usr/libexec/PlistBuddy -c "Add $name $type $value" "$file"
