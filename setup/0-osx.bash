@@ -285,3 +285,15 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 open "$DOTFILES_PATH/setup/custom-theme.terminal"
 defaults write com.apple.terminal "Default Window Settings" -string "custom-theme"
 defaults write com.apple.terminal "Startup Window Settings" -string "custom-theme"
+
+killall \
+    "Address Book" \
+    "Calendar" \
+    "Contacts" \
+    "Dock" \
+    "Finder" \
+    "iCal" \
+    "iTunes" \
+    "Mail" \
+    "Safari" \
+    "SystemUIServer"
