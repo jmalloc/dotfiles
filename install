@@ -10,6 +10,8 @@ type -t brew > /dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubuse
 type -t lpass > /dev/null || brew install lastpass-cli --with-pinentry
 lpass login "$1"
 
+[ -e "$HOME/.bashrc" ] && source "$HOME/.bashrc"
+
 if [ -z "$GITHUB_TOKEN" ]; then
     echo "Fetching GitHub Token from LastPass"
     export GITHUB_TOKEN="$(lpass show "Personal/GitHub Token" --notes)"
