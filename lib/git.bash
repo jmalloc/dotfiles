@@ -14,8 +14,8 @@ go-link() {
     mkdir -p "$(dirname "$link")"
     ln -s "$path" "$link"
 
-    git cd --reindex
-    git cd "$name"
+    repo-chdir --reindex
+    repo-chdir "$name"
 }
 
 go-unlink() {
@@ -28,8 +28,8 @@ go-unlink() {
     local link="$GOPATH/src/github.com/$name"
     if [ -L "$link" ]; then
         rm "$link"
-        git cd --reindex
-        git cd "$name"
+        repo-chdir --reindex
+        repo-chdir "$name"
     else
         echo "go-unlink: no link to this repository" >&2
         return 1
@@ -158,4 +158,4 @@ _git_cd() {
     COMPREPLY=( $(compgen -W "$GIT_SEARCH_COMPLETION" -- ${COMP_WORDS[COMP_CWORD]}) )
 }
 
-type -t __git_complete > /dev/null __git_complete g __git_main
+type -t __git_complete > /dev/null && __git_complete g __git_main
