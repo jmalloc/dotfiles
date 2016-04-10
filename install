@@ -29,8 +29,8 @@ fi
 
 [ "$DOTFILES_PATH" ] || DOTFILES_PATH="$(cd $(dirname "$0"); pwd)"
 
-pushd $DOTFILES_PATH > /dev/null
-git remote get-url origin | sed 's/git@github.com:/https:\/\/github.com\//'
+pushd "$DOTFILES_PATH" > /dev/null
+git remote set-url origin "$(git config --get remote.origin.url | sed 's/https:\/\/github.com\//git@github.com:/')"
 popd > /dev/null
 
 "$DOTFILES_PATH/bin/symlink-dotfiles"
