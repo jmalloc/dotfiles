@@ -26,7 +26,10 @@ if [ ! -e "$HOME/.ssh/id_rsa" ]; then
         | awk '/^[A-Za-z-]+:$/ { printf("%s ", $0); next } 1' \
         > "$HOME/.ssh/id_rsa"
     chmod 600 "$HOME/.ssh/id_rsa"
-    openssl rsa -in "$HOME/.ssh/id_rsa" -pubout > "$HOME/.ssh/id_rsa.pub"
+fi
+
+if [ ! -e "$HOME/.ssh/id_rsa.pub" ]; then
+    ssh-keygen -yf "$HOME/.ssh/id_rsa" > "$HOME/.ssh/id_rsa.pub"
 fi
 
 [ "$DOTFILES_PATH" ] || export DOTFILES_PATH="$(cd $(dirname "$0"); pwd)"
