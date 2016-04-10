@@ -41,7 +41,7 @@ repo-name() {
         return 1
     fi
 
-    if [[ "$url" =~ :(.+/.+)\.git$ ]]; then
+    if [[ "$url" =~ [:/]([^/:]+/[^/]+)\.git$ ]]; then
         echo "${BASH_REMATCH[1]}"
     elif [ "$2" !== '--strict' ]; then
         echo "???/$(basename "$(pwd)")"
