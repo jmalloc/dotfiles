@@ -17,9 +17,9 @@ if [ -z "$GITHUB_TOKEN" ]; then
     echo 'export GITHUB_TOKEN="'$GITHUB_TOKEN'"' >> "$HOME/.bashrc"
 fi
 
-if [ ! -d "$HOME/.ssh" ]; then
+if [ ! -e "$HOME/.ssh/id_rsa" ]; then
     echo "Fetching SSH key from LastPass"
-    mkdir "$HOME/.ssh"
+    mkdir -p "$HOME/.ssh"
     lpass show "Personal/SSH" --field "Private Key" \
         | awk '/^[A-Za-z-]+:$/ { printf("%s ", $0); next } 1' \
         > "$HOME/.ssh/id_rsa"
