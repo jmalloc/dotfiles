@@ -44,3 +44,5 @@ echo "Please note: The setup process opens a new terminal window which may be sa
 for FILE in "$DOTFILES_PATH/setup/"*-*.bash; do
   source "$FILE"
 done
+
+echo "Done. System must be restarted for some changes to take effect."

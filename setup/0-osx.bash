@@ -296,6 +296,7 @@ defaults write com.apple.terminal "Startup Window Settings" -string "custom-them
 killall \
     "Address Book" \
     "Calendar" \
+    "cfprefsd" \
     "Contacts" \
     "Dock" \
     "Finder" \
