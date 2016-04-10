@@ -1,6 +1,41 @@
 GIT_SEARCH_COMPLETION=""
 GIT_SEARCH_INDEX=()
 
+go-link() {
+    local path="${1:-$(pwd)}"
+    if ! name=$(repo-name "$path" --strict); then
+        echo "go-link: not an identifiable git repository" >&2
+        return 1
+    fi
+
+    path="$(cd $path; pwd)"
+
+    local link="$GOPATH/src/github.com/$name"
+    mkdir -p "$(dirname "$link")"
+    ln -s "$path" "$link"
+
+    git cd --reindex
+    git cd "$name"
+}
+
+go-unlink() {
+    local path="${1:-$(pwd)}"
+    if ! name=$(repo-name "$path" --strict); then
+        echo "go-unlink: not an identifiable git repository" >&2
+        return 1
+    fi
+
+    local link="$GOPATH/src/github.com/$name"
+    if [ -L "$link" ]; then
+        rm "$link"
+        git cd --reindex
+        git cd "$name"
+    else
+        echo "go-unlink: no link to this repository" >&2
+        return 1
+    fi
+}
+
 repo-name() {
     if ! url="$(cd "${1:-.}"; git config --get remote.origin.url)"; then
         return 1
@@ -8,8 +43,10 @@ repo-name() {
 
     if [[ "$url" =~ :(.+/.+)\.git$ ]]; then
         echo "${BASH_REMATCH[1]}"
-    else
+    elif [ "$2" !== '--strict' ]; then
         echo "???/$(basename "$(pwd)")"
+    else
+        return 1
     fi
 }
 
