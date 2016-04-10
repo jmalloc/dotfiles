@@ -7,8 +7,7 @@ This is my personal dotfiles repository.
 ```bash
 cd ~
 git clone https://github.com/jmalloc/dotfiles.git
-cd dotfiles
-./install
+./dotfiles/install '<lastpass username>'
 source ~/.bash_profile
 ```
 
