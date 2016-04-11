@@ -35,7 +35,10 @@ else
     alias ls='ls -lh --color --group-directories-first'
 fi
 
-[ $HAS_BREW ] && source $(brew --prefix)/etc/bash_completion
+if [ -e "$(brew --prefix)/etc/bash_completion" ]; then
+    source $(brew --prefix)/etc/bash_completion
+    type -t __git_complete > /dev/null && __git_complete g __git_main
+fi
 
 ##
 ## TEXT EDITOR

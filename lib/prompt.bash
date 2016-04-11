@@ -33,7 +33,7 @@ build-prompt-git() {
 
     ESCAPE_COLOR_CODES=true
 
-    local repo=$(repo-name)
+    local repo=$(git slug --fuzzy)
     local ahead=0
     local behind=0
     local stash=$(echo $(git stash list | wc -l))

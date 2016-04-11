@@ -6,11 +6,8 @@
     autocrlf = input
     excludesfile = ~/.gitignore.global
     whitespace = trailing-space,space-before-tab,tab-in-indent,tabwidth=4
-	editor = atom --wait --new-window
 
 [alias]
-    cd = "!echo 'cd must be invoked via the dotfiles git() function' && false"
-
     ; diff ...
     d = diff
     dc = diff --cached

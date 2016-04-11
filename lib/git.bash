@@ -1,53 +1,97 @@
+GIT_BINARY="$(which git)"
+HUB_BINARY="$(which hub)"
 GIT_SEARCH_COMPLETION=""
 GIT_SEARCH_INDEX=()
 
-go-link() {
-    local path="${1:-$(pwd)}"
-    if ! name=$(repo-name "$path" --strict); then
-        echo "go-link: not an identifiable git repository" >&2
+git() {
+    if [ "$1" == "cd" ]; then
+        repo-chdir "${@:2}"
+    elif [[ "$1" == "clone" && $# -eq 2 && "$2" =~ ^[^/:@]+/[^/]+$ ]]; then
+        repo-clone "$2"
+    elif [[ "$1" == "go" ]]; then
+        repo-go-link "${@:2}"
+    else
+        "${HUB_BINARY:-$GIT_BINARY}" "$@"
+    fi
+
+    return $?
+}
+
+_git_cd() {
+    [ -z "$GIT_SEARCH_COMPLETION" ] && repo-chdir --reindex
+    COMPREPLY=( $(compgen -W "$GIT_SEARCH_COMPLETION" -- ${COMP_WORDS[COMP_CWORD]}) )
+}
+
+_git_clone() {
+    [ -z "$GIT_SEARCH_COMPLETION" ] && repo-chdir --reindex
+    COMPREPLY=( $(compgen -W "$GIT_SEARCH_COMPLETION" -- ${COMP_WORDS[COMP_CWORD]}) )
+}
+
+repo-go-link() {
+    local slug=
+    if ! slug=$(git slug); then
+        echo "git-go: not an identifiable git repository" >&2
         return 1
     fi
 
-    path="$(cd $path; pwd)"
+    local link="$GOPATH/src/github.com/$slug"
 
-    local link="$GOPATH/src/github.com/$name"
-    mkdir -p "$(dirname "$link")"
-    ln -s "$path" "$link"
+    if [[ "$1" == "link" ]]; then
+        if [ -e "$link" ]; then
+            echo "git-go: $link already exists" >&2
+            return 1
+        fi
+
+        mkdir -p "$(dirname "$link")"
+        ln -s "$(pwd)" "$link"
+    elif [[ "$1" == "unlink" ]]; then
+        if [ ! -L "$link" ]; then
+            echo "git-go: $link does not exist" >&2
+            return 1
+        fi
+
+        unlink "$link"
+    else
+        echo "git-go: unknown subcommand" >&2
+        return 255
+    fi
 
     repo-chdir --reindex
-    repo-chdir "$name"
+    repo-chdir "$slug"
 }
 
-go-unlink() {
-    local path="${1:-$(pwd)}"
-    if ! name=$(repo-name "$path" --strict); then
-        echo "go-unlink: not an identifiable git repository" >&2
-        return 1
-    fi
-
-    local link="$GOPATH/src/github.com/$name"
-    if [ -L "$link" ]; then
-        rm "$link"
-        repo-chdir --reindex
-        repo-chdir "$name"
-    else
-        echo "go-unlink: no link to this repository" >&2
-        return 1
-    fi
+_git_go() {
+    COMPREPLY=( $(compgen -W "link unlink" -- ${COMP_WORDS[COMP_CWORD]}) )
 }
 
-repo-name() {
-    if ! url="$(cd "${1:-.}"; git config --get remote.origin.url)"; then
-        return 1
-    fi
+repo-chdir-index-has-path() {
+    local index=0
+    local count=${#GIT_SEARCH_INDEX[@]}
 
-    if [[ "$url" =~ [:/]([^/:]+/[^/]+)\.git$ ]]; then
-        echo "${BASH_REMATCH[1]}"
-    elif [ "$2" !== '--strict' ]; then
-        echo "???/$(basename "$(pwd)")"
-    else
-        return 1
-    fi
+    while [ $index -lt $count ]; do
+        local slug=${GIT_SEARCH_INDEX[$index]}; index=$((index + 1))
+        local path=${GIT_SEARCH_INDEX[$index]}; index=$((index + 1))
+        [[ "$(realpath "$path")" == "$(realpath "$1")" ]] && return 0
+    done
+
+    return 1
+}
+
+repo-chdir-index-add() {
+    repo-chdir-index-has-path "$2" && return
+    GIT_SEARCH_INDEX+=("$1")
+    GIT_SEARCH_INDEX+=("$2")
+}
+
+repo-chdir-index-match() {
+    local index=0
+    local count=${#GIT_SEARCH_INDEX[@]}
+
+    while [ $index -lt $count ]; do
+        local slug=${GIT_SEARCH_INDEX[$index]}; index=$((index + 1))
+        local path=${GIT_SEARCH_INDEX[$index]}; index=$((index + 1))
+        [[ "$slug" == "$1" || "$(basename "$slug")" == "$1" ]] && echo "$path"
+    done
 }
 
 repo-chdir() {
@@ -55,45 +99,21 @@ repo-chdir() {
         GIT_SEARCH_COMPLETION=""
         GIT_SEARCH_INDEX=()
 
-        local dir=
-        local subdir=
-        local name=
-        local shortname=
-
-        for dir in $GIT_SEARCH; do
-            if [ -d "$dir" ]; then
-                for subdir in $(find -L "$dir" -mindepth 2 -maxdepth 2); do
-                    if name="$(repo-name "$subdir")"; then
-                        shortname="$(basename "$name")"
-                        GIT_SEARCH_COMPLETION="$name $shortname $GIT_SEARCH_COMPLETION"
-                        GIT_SEARCH_INDEX+=("$name")
-                        GIT_SEARCH_INDEX+=("$shortname")
-                        GIT_SEARCH_INDEX+=("$subdir")
-                    fi
-                done
+        local path=
+        local slug=
+        for path in $(find $GIT_SEARCH -mindepth 2 -maxdepth 2); do
+            if slug="$(cd "$path"; git slug)"; then
+                GIT_SEARCH_COMPLETION="$slug $(basename "$slug") $GIT_SEARCH_COMPLETION"
+                repo-chdir-index-add "$slug" "$path"
             fi
         done
+
+        GIT_SEARCH_COMPLETION=$(printf '%s\n' $GIT_SEARCH_COMPLETION | sort -u)
     elif [ -z "$1" ]; then
-        cd "$GIT_DIR"
+        cd "$GIT_PATH"
     else
         [ -z "$GIT_SEARCH_INDEX" ] && repo-chdir --reindex
-
-        local index=0
-        local count=${#GIT_SEARCH_INDEX[@]}
-        local matches=()
-
-        while [ $index -lt $count ]; do
-            local name=${GIT_SEARCH_INDEX[$index]}
-            index=$((index + 1))
-            local shortname=${GIT_SEARCH_INDEX[$index]}
-            index=$((index + 1))
-            local path=${GIT_SEARCH_INDEX[$index]}
-            index=$((index + 1))
-
-            if [[ "$name" == "$1" || "$shortname" == "$1" ]]; then
-                matches+=($path)
-            fi
-        done
+        local matches=($(repo-chdir-index-match "$1"))
 
         if [ ${#matches[@]} -eq 0 ]; then
             echo "  $(color-maroon)!!! $(color-dark-grey)Repository $(color-grey)$1 $(color-dark-grey)does not exist.$(color-reset)"
@@ -113,7 +133,7 @@ repo-chdir() {
             done
         fi
 
-        echo "  $(color-lime)>>> $(color-magenta)$(repo-name) $(color-dark-grey)found in $(color-blue)$(pwd)"
+        echo "  $(color-lime)>>> $(color-magenta)$(git slug --fuzzy) $(color-dark-grey)found in $(color-blue)$(pwd)"
     fi
 }
 
@@ -122,11 +142,15 @@ repo-clone() {
     local dir="$GIT_PATH/$1"
 
     if [ $# -ne 1 ]; then
-        echo 'usage: git cl <organisation/repo>'
+        echo 'usage: git clone <github slug>'
         return 1
     fi
 
-    if git clone "git@github.com:$1.git" "$tmp"; then
+    local matches="$(repo-chdir-index-match "$1")"
+
+    if [ ! -z "$matches" ]; then
+        repo-chdir "$1"
+    elif git clone "git@github.com:$1.git" "$tmp"; then
         mkdir -p "$(dirname "$dir")"
         mv "$tmp" "$dir"
         repo-chdir --reindex
@@ -136,26 +160,3 @@ repo-clone() {
         return 1
     fi
 }
-
-export GIT_BINARY="$(which git)"
-export HUB_BINARY="$(which hub)"
-
-git() {
-    if [ "$1" == "cd" ]; then
-        repo-chdir "${@:2}"
-    elif [[ "$1" == "clone" && $# -eq 2 && "$2" =~ ^[^/:@]+/[^/]+$ ]]; then
-        repo-clone "$2"
-    else
-        "${HUB_BINARY:-$GIT_BINARY}" "$@"
-    fi
-
-    return $?
-}
-
-# This function is called by the standard git completion installed with brew ...
-_git_cd() {
-    [ -z "$GIT_SEARCH_COMPLETION" ] && repo-chdir --reindex
-    COMPREPLY=( $(compgen -W "$GIT_SEARCH_COMPLETION" -- ${COMP_WORDS[COMP_CWORD]}) )
-}
-
-type -t __git_complete > /dev/null && __git_complete g __git_main
