@@ -277,6 +277,9 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 ##
 ## MESSAGES
 ##
+# Disable sound effects
+defaults write com.apple.messageshelper.AlertsController PlaySoundsKey -int 0
+
 # Disable automatic emoji substitution (i.e. use plain text smileys)
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
 
