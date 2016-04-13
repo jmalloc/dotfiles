@@ -43,18 +43,16 @@ fi
 ##
 ## TEXT EDITOR
 ##
+export EDITOR="vim"
+
 if [ $HAS_ATOM ]; then
     alias e='atom .'
-    export EDITOR='atom --wait --new-window'
 elif [ $HAS_SUBL ]; then
     alias e='subl .'
     export EDITOR='subl -w'
-else
-    export EDITOR="vim"
 fi
 
 export VISUAL="$EDITOR"
-git config --global core.editor "$EDITOR"
 
 if [ $HAS_ICLOUD ]; then
     if [[ $HAS_ATOM && ! -L "$HOME/.atom" ]]; then
