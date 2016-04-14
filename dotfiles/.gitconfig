@@ -25,6 +25,8 @@
     a = add
     aa = add -A
     unstage = reset HEAD --
+    scrub = clean --force -d
+    destroy = "!git unstage && git scrub"
 
     ; push + pull ...
     p = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
