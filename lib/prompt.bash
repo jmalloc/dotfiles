@@ -52,7 +52,7 @@ build-prompt-git() {
 
     # It's a branch ...
     local rev=
-    if rev="$(git symbolic-ref --short HEAD)"; then
+    if rev="$(git symbolic-ref --short HEAD 2> /dev/null)"; then
         if [[ "$rev" == "master" ]]; then
             rev="$(color-orange master)"
         else

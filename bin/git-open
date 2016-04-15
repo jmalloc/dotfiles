@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+if ! SLUG=$(git-slug); then
+    echo "git-open: not an identifiable git repository" >&2
+    exit 1
+fi
+
+if [[ "-i" == "$1" || "--issue" == "$1" ]]; then
+    if [ ! -z "$2" ]; then
+        open "https://github.com/${SLUG}/issues/$2"
+    elif [[ "$(git symbolic-ref --short HEAD 2> /dev/null)" =~ ^([0-9]+)- ]]; then
+        open "https://github.com/${SLUG}/issues/${BASH_REMATCH[1]}"
+    else
+        open "https://github.com/${SLUG}/issues"
+    fi
+elif TAG=$(git describe --exact-match 2> /dev/null); then
+    open "https://github.com/$SLUG/tree/$TAG"
+elif BRANCH="$(git symbolic-ref --short HEAD 2> /dev/null)"; then
+    open "https://github.com/${SLUG}/tree/$BRANCH"
+elif COMMIT="$(git rev-parse HEAD 2> /dev/null)"; then
+    open "https://github.com/${SLUG}/commit/$(git rev-parse HEAD)"
+else
+    open "https://github.com/${SLUG}"
+fi

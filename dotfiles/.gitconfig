@@ -41,6 +41,10 @@
     cb = checkout -b
     cm = "!git checkout $(basename $(git symbolic-ref refs/remotes/origin/HEAD))"
 
+    ; other ...
+    o = open
+    i = open --issue
+
 [diff]
     renames = true
 
