@@ -101,7 +101,7 @@ repo-chdir() {
 
         local path=
         local slug=
-        for path in $(find $GIT_SEARCH -mindepth 2 -maxdepth 2 -type d); do
+        for path in $(find -L $GIT_SEARCH -mindepth 2 -maxdepth 2 -type d); do
             if slug="$(cd "$path"; git slug)"; then
                 GIT_SEARCH_COMPLETION="$slug $(basename "$slug") $GIT_SEARCH_COMPLETION"
                 repo-chdir-index-add "$slug" "$path"
