@@ -13,10 +13,10 @@
     dc = diff --cached
 
     ; log ...
-    l = log --pretty='%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent -20 ; log
+    l  = log --pretty='%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent -20 ; log
     lp = log --pretty='%C(dim)%<|(15)%p %C(cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' -20 ; log showing parent commits
     lg = log --pretty='%C(dim cyan)%H%C(reset)%C(cyan)%d%C(reset) %C(dim)by %an %ar%n%s%+b%n' --graph ; log graph
-    lb = !git log --pretty='%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent $(git merge-base $(basename $(git symbolic-ref refs/remotes/origin/HEAD)) HEAD)..HEAD ; log this branch
+    lb = !git l $(git merge-base $(basename $(git symbolic-ref refs/remotes/origin/HEAD)) HEAD)..HEAD ; log this branch
     cl = changelog
 
     ; staging + committing ...
