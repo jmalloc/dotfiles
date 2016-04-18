@@ -26,7 +26,7 @@
     a = add
     aa = add -A
     unstage = reset HEAD --
-    scrub = clean --force -d
+    scrub = "!git checkout . && git clean --force -d"
     destroy = "!git unstage && git scrub"
 
     ; push + pull ...
