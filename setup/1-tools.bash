@@ -4,6 +4,7 @@
 brew install \
     bash-completion \
     git \
+    git-flow-avh \
     go \
     hub
 
