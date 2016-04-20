@@ -55,6 +55,9 @@
 [diff]
     renames = true
 
+[fetch]
+    prune = true
+
 [help]
     autocorrect = 10
 
