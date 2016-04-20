@@ -3,11 +3,11 @@
 
 brew install \
     bash-completion \
+    ghi \
     git \
     git-flow-avh \
     go \
     hub
 
 gem install --user-install \
-    ghi \
     travis

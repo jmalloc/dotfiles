@@ -2,6 +2,12 @@
     name = James Harris
     email = james.harris@icecave.com.au
 
+[github]
+    user = jmalloc
+
+[ghi]
+    token = !security find-internet-password -a jmalloc -s github.com -l 'ghi token' -w
+
 [core]
     autocrlf = input
     excludesfile = ~/.gitignore.global
