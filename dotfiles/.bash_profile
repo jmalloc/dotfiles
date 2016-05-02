@@ -13,10 +13,15 @@ export ICLOUD_DRIVE_PATH="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 [ -d "$ICLOUD_DRIVE_PATH" ] && export HAS_ICLOUD=true
 type -t git-upload-pack > /dev/null && export HAS_GIT=true # git() function might already be defined, so check for git-upload-pack
 type -t hub  > /dev/null && export HAS_HUB=true
-type -t brew > /dev/null && export HAS_BREW=true
 type -t atom > /dev/null && export HAS_ATOM=true
 type -t subl > /dev/null && export HAS_SUBL=true
 type -t composer > /dev/null && export HAS_COMPOSER=true
+type -t docker > /dev/null && export HAS_DOCKER=true
+
+if BREW_PREFIX=$(brew --prefix 2> /dev/null); then
+    export HAS_BREW=true
+    export BREW_PREFIX="$BREW_PREFIX"
+fi
 
 ulimit -n 8192
 
@@ -35,9 +40,15 @@ else
     alias ls='ls -lh --color --group-directories-first'
 fi
 
-if [ -e "$(brew --prefix)/etc/bash_completion" ]; then
-    source $(brew --prefix)/etc/bash_completion
+if [ -e "$BREW_PREFIX/etc/bash_completion" ]; then
+    source "$BREW_PREFIX/etc/bash_completion"
     type -t __git_complete > /dev/null && __git_complete g __git_main
+fi
+
+if [ $HAS_DOCKER ]; then
+    function dme() {
+        eval "$(docker-machine env "${1:-default}")"
+    }
 fi
 
 ##
@@ -74,7 +85,6 @@ for FILE in "$DOTFILES_PATH/lib/"*.bash; do
     source $FILE
 done
 
-touch "$HOME/.hushlogin" # hide the "last login" banner
 [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
 
 ##
