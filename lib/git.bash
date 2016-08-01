@@ -43,14 +43,14 @@ repo-go-link() {
         fi
 
         mkdir -p "$(dirname "$link")"
-        ln -s "$(pwd)" "$link"
+        hln "$(pwd)" "$link"
     elif [[ "$1" == "unlink" ]]; then
         if [ ! -L "$link" ]; then
             echo "git-go: $link does not exist" >&2
             return 1
         fi
 
-        unlink "$link"
+        hln -u "$link"
     else
         echo "git-go: unknown subcommand" >&2
         return 255
@@ -71,7 +71,7 @@ repo-chdir-index-has-path() {
     while [ $index -lt $count ]; do
         local slug=${GIT_SEARCH_INDEX[$index]}; index=$((index + 1))
         local path=${GIT_SEARCH_INDEX[$index]}; index=$((index + 1))
-        [[ "$(realpath "$path")" == "$(realpath "$1")" ]] && return 0
+        [ "$path" -ef "$1" ] && return 0
     done
 
     return 1

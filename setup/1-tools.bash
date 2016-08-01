@@ -7,7 +7,8 @@ brew install \
     git \
     git-flow-avh \
     go \
-    hub
+    hub \
+    hardlink-osx
 
 gem install --user-install \
     travis
