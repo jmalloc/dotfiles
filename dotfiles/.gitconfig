@@ -17,6 +17,10 @@
     ; diff ...
     d = diff
     dc = diff --cached
+    wd = diff --word-diff
+    wdc = diff --cached --word-diff
+    sd = diff --ignore-all-space
+    sdc = diff --cached --ignore-all-space
 
     ; log ...
     l  = log --pretty='%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent -20 ; log
