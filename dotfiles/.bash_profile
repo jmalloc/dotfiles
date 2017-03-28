@@ -17,11 +17,14 @@ type -t atom > /dev/null && export HAS_ATOM=true
 type -t subl > /dev/null && export HAS_SUBL=true
 type -t composer > /dev/null && export HAS_COMPOSER=true
 type -t docker > /dev/null && export HAS_DOCKER=true
+type -t grit > /dev/null && export HAS_GRIT=true
 
 if BREW_PREFIX=$(brew --prefix 2> /dev/null); then
     export HAS_BREW=true
     export BREW_PREFIX="$BREW_PREFIX"
 fi
+
+[ $HAS_GRIT ] && eval "$(grit shell-integration)"
 
 ulimit -n 8192
 
