@@ -2,19 +2,15 @@
 ## ENVIRONMENT
 ##
 export USERNAMES="james jmalloc"
-export DOTFILES_PATH="$HOME/dotfiles"                # The path to the clone of this repo.
-export GIT_PATH="$HOME/dev/git"                      # The target for 'git cl' clones.
+export DOTFILES_PATH="$HOME/dotfiles" # The path to the clone of this repo.
 export GOPATH="$HOME/dev/go"
-export GIT_SEARCH="$GOPATH/src/github.com $GIT_PATH" # Search paths for 'git cd'.
-export PATH="$DOTFILES_PATH/bin:$HOME/bin:$HOME/.gem/ruby/2.0.0/bin:$GOPATH/bin:/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+export PATH="$DOTFILES_PATH/bin:$HOME/bin:$HOME/.gem/ruby/2.0.0/bin:$PATH"
 export HISTCONTROL="ignoreboth"
 export ICLOUD_DRIVE_PATH="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 
 [ -d "$ICLOUD_DRIVE_PATH" ] && export HAS_ICLOUD=true
-type -t git-upload-pack > /dev/null && export HAS_GIT=true # git() function might already be defined, so check for git-upload-pack
-type -t hub  > /dev/null && export HAS_HUB=true
-type -t atom > /dev/null && export HAS_ATOM=true
-type -t subl > /dev/null && export HAS_SUBL=true
+type -t git > /dev/null && export HAS_GIT=true
+type -t hub > /dev/null && export HAS_HUB=true
 type -t composer > /dev/null && export HAS_COMPOSER=true
 type -t docker > /dev/null && export HAS_DOCKER=true
 type -t grit > /dev/null && export HAS_GRIT=true
@@ -31,11 +27,13 @@ ulimit -n 8192
 ##
 ## ALIASES
 ##
+alias e='atom .'
 alias g='git'
 alias m='make'
 alias less='less -R'
 alias grep='grep --color'
 alias cov='open artifacts/tests/coverage/index.html'
+[ $HAS_HUB ] && alias git=hub
 
 if [[ "$(uname)" == "Darwin" ]]; then
     alias ls='ls -lhG'
@@ -48,37 +46,12 @@ if [ -e "$BREW_PREFIX/etc/bash_completion" ]; then
     type -t __git_complete > /dev/null && __git_complete g __git_main
 fi
 
-if [ $HAS_DOCKER ]; then
-    function dme() {
-        eval "$(docker-machine env "${1:-default}")"
-    }
-fi
-
-##
-## TEXT EDITOR
-##
 export EDITOR="vim"
-
-if [ $HAS_ATOM ]; then
-    alias e='atom .'
-elif [ $HAS_SUBL ]; then
-    alias e='subl .'
-    export EDITOR='subl -w'
-fi
-
 export VISUAL="$EDITOR"
 
-if [ $HAS_ICLOUD ]; then
-    if [[ $HAS_ATOM && ! -L "$HOME/.atom" ]]; then
-        [ -e "$HOME/.atom" ] && mv "$HOME/.atom" "$HOME/.Trash/dotfiles.atom.$(date +%s)"
-        ln -s "$ICLOUD_DRIVE_PATH/atom" "$HOME/.atom"
-    fi
-
-    P="$HOME/Library/Application Support/Sublime Text 3/Packages/User"
-    if [[ $HAS_SUBL && ! -L "$P" ]]; then
-        [ -e "$P" ] && mv "$P" "$HOME/.Trash/dotfiles.sublime.$(date +%s)"
-        ln -s "$ICLOUD_DRIVE_PATH/sublime" "$P"
-    fi
+if [[ $HAS_ICLOUD && $HAS_ATOM && ! -L "$HOME/.atom" ]]; then
+    [ -e "$HOME/.atom" ] && mv "$HOME/.atom" "$HOME/.Trash/dotfiles.atom.$(date +%s)"
+    ln -s "$ICLOUD_DRIVE_PATH/atom" "$HOME/.atom"
 fi
 
 ##

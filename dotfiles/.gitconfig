@@ -43,6 +43,7 @@
     p = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
     pt = push --all --follow-tags
     u = pull --rebase
+    pr = pull-request
 
     ; branching ...
     b = branch
@@ -50,7 +51,7 @@
     ff = merge --ff-only
     co = checkout
     cb = checkout -b
-    cc = "!git checkout $(basename $(git symbolic-ref refs/remotes/origin/HEAD))" ; checkout default branch
+    cc = "!git checkout $(git remote show origin | grep 'HEAD branch:' | cut -d: -f2)" ; checkout default branch
 
     ; other ...
     o = open

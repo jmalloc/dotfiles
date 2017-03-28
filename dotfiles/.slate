@@ -1,9 +1,0 @@
-{
-    "defaults": {
-        "author-name": "James Harris",
-        "author-homepage": "https://github.com/jmalloc",
-        "author-email": "james.harris@icecave.com.au",
-        "github-account": "IcecaveStudios",
-        "vendor": "Icecave"
-    }
-}
