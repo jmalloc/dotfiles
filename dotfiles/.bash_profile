@@ -64,14 +64,23 @@ done
 [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
 
 ##
-## .bashrc SHOULD set the GITHUB_TOKEN environment variable to make it available
+## .bashrc SHOULD set the GITHUB_COM_TOKEN environment variable to make it available
 ## to homebrew and composer without comitting it to the repo.
 ##
-if [ -z "$GITHUB_TOKEN" ]; then
-    echo "Warning: GITHUB_TOKEN is not set."
+if [ -z "$GITHUB_COM_TOKEN" ]; then
+    echo "Warning: GITHUB_COM_TOKEN is not set."
 else
-    export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
-    [ $HAS_COMPOSER ] && composer config --global -- github-oauth.github.com "$GITHUB_TOKEN"
+    export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_COM_TOKEN"
+    [ $HAS_COMPOSER ] && composer config --global -- github-oauth.github.com "$GITHUB_COM_TOKEN"
+fi
+
+if [ ! -z "$GITHUB_CWX_DOMAIN" ]; then
+    [ $HAS_GIT ] && git config --global --replace-all hub.host "$GITHUB_CWX_DOMAIN"
+
+    if [ $HAS_COMPOSER ]; then
+        composer config --global github-domains github.com "$GITHUB_CWX_DOMAIN"
+        composer config --global -- "github-oauth.${GITHUB_CWX_DOMAIN}" "$GITHUB_COM_TOKEN"
+    fi
 fi
 
 if LS=$(ls -ld "$HOME"/.Trash/dotfiles.* 2> /dev/null); then
