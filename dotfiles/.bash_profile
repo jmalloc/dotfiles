@@ -3,7 +3,6 @@
 ##
 export USERNAMES="james jmalloc"
 export DOTFILES_PATH="$HOME/dotfiles" # The path to the clone of this repo.
-export GOPATH="$HOME/dev/go"
 export PATH="$DOTFILES_PATH/bin:$HOME/bin:$HOME/.gem/ruby/2.0.0/bin:$PATH"
 export HISTCONTROL="ignoreboth"
 export ICLOUD_DRIVE_PATH="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
