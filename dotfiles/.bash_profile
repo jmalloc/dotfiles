@@ -79,7 +79,7 @@ if [ ! -z "$GITHUB_CWX_DOMAIN" ]; then
 
     if [ $HAS_COMPOSER ]; then
         composer config --global github-domains github.com "$GITHUB_CWX_DOMAIN"
-        composer config --global -- "github-oauth.${GITHUB_CWX_DOMAIN}" "$GITHUB_COM_TOKEN"
+        composer config --global -- "github-oauth.${GITHUB_CWX_DOMAIN}" "$GITHUB_CWX_TOKEN"
     fi
 fi
 
