@@ -25,7 +25,7 @@ if ! mas account > /dev/null; then
 fi
 
 # If there is no existing 1Password session, prompt for details to signin.
-if [ -z "OP_SESSION_my" ]; then
+if [ -z "$OP_SESSION_my" ]; then
     while [ -z "$OP_EMAIL" ]; do
         echo -n "1Password email address: "
         read OP_EMAIL
