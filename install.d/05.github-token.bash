@@ -1,9 +1,9 @@
 # Extract the GitHub token from 1Password. The token I use from my workstation
 # is stored in an item named  "GitHub", under a section titled "API Tokens",
-# with the key "OSX".
+# with the key "macOS".
 if [ -z "$GITHUB_COM_TOKEN" ]; then
     echo "--- fetching GitHub API token from 1Password"
-    export GITHUB_COM_TOKEN=$(op get item --account=my GitHub | jq --raw-output '.details.sections[] | select(.title == "API Tokens") | .fields[] | select(.t == "OSX") | .v')
+    export GITHUB_COM_TOKEN=$(op get item --account=my GitHub | jq --raw-output '.details.sections[] | select(.title == "API Tokens") | .fields[] | select(.t == "macOS") | .v')
 fi
 
 # Write GitHub.com Personal Access Token to a file included by .bash_profile.
