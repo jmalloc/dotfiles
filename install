@@ -16,11 +16,6 @@ type -t op > /dev/null || brew cask install 1password-cli
 type -t jq > /dev/null || brew install jq
 
 if ! mas account > /dev/null; then
-    # while [ -z "$MAS_EMAIL" ]; do
-    #     echo -n "App Store email address: "
-    #     read MAS_EMAIL
-    # done
-
     mas signin --dialog "$MAS_EMAIL"
 fi
 
@@ -48,7 +43,7 @@ fi
 
 if [ ! -e "$HOME/.ssh/id_rsa.pub" ]; then
     echo "--- fetching SSH passphrase from 1Password"
-    phrase=$(op get item "SSH Private Key" | jq --raw-output '.details.sections[].fields[]? | select(.t == "Passphrase") | .v')
+    phrase=$(op get item --account=my "SSH Private Key" | jq --raw-output '.details.sections[].fields[]? | select(.t == "Passphrase") | .v')
     echo "--- generating public key from private key"
     ssh-keygen -P "$phrase" -yf "$HOME/.ssh/id_rsa" > "$HOME/.ssh/id_rsa.pub"
     unset phrase

@@ -3,7 +3,7 @@
 # with the key "OSX".
 if [ -z "$GITHUB_COM_TOKEN" ]; then
     echo "--- fetching GitHub API token from 1Password"
-    export GITHUB_COM_TOKEN=$(op get item GitHub | jq --raw-output '.details.sections[] | select(.title == "API Tokens") | .fields[] | select(.t == "OSX") | .v')
+    export GITHUB_COM_TOKEN=$(op get item --account=my GitHub | jq --raw-output '.details.sections[] | select(.title == "API Tokens") | .fields[] | select(.t == "OSX") | .v')
 fi
 
 # Write GitHub.com Personal Access Token to a file included by .bash_profile.
