@@ -1,4 +1,4 @@
-if [ $HAS_GIT ]; then
+if type -t git > /dev/null; then
     PROMPT_COMMAND="$PROMPT_COMMAND;build-prompt-git"
 else
     PROMPT_COMMAND="$PROMPT_COMMAND;build-prompt"
@@ -17,6 +17,20 @@ fi
 [ ! -z "$PROMPT_AUTH" ] && PROMPT_AUTH=" $PROMPT_AUTH"
 [ ! -z "$TITLE_AUTH" ] && TITLE_AUTH=" - $TITLE_AUTH"
 
+_git-slug() {
+    if ! URL="$(git config --get remote.origin.url)"; then
+        return 1
+    fi
+
+    if [[ "$URL" =~ [:/]([^/:]+/[^/]+)\.git$ ]]; then
+        echo "${BASH_REMATCH[1]}"
+    elif [[ "$1" == '--fuzzy' ]]; then
+        echo "???/$(basename "$(pwd)")"
+    else
+        return 1
+    fi
+}
+
 build-prompt() {
     ESCAPE_COLOR_CODES=true
     PS1="\n\[\033]0;$(basename "$(pwd)")$TITLE_AUTH\007\]$(color-dark-grey "\A")$PROMPT_AUTH $(color-blue "\w")$(build-prompt-newline)$(color-dark-grey :) $(color-reset)"
@@ -33,7 +47,7 @@ build-prompt-git() {
 
     ESCAPE_COLOR_CODES=true
 
-    local repo=$(git slug --fuzzy)
+    local repo=$(_git-slug --fuzzy)
     local ahead=0
     local behind=0
     local stash=$(echo $(git stash list | wc -l))
