@@ -3,8 +3,7 @@
 ##
 export USERNAMES="james jmalloc"
 export DOTFILES_PATH="$HOME/dotfiles" # The path to the clone of this repo.
-export GOPATH="$(go env GOPATH)" # workaround https://github.com/Masterminds/glide/issues/771
-export PATH="$DOTFILES_PATH/bin:$HOME/bin:$HOME/go/bin:$HOME/.gem/ruby/2.0.0/bin:$PATH"
+export PATH="$DOTFILES_PATH/bin:$HOME/bin:$HOME/go/bin:$HOME/.gem/ruby/2.4.0/bin:$PATH"
 export HISTCONTROL="ignoreboth"
 export ICLOUD_DRIVE_PATH="$HOME/Library/Mobile Documents/com~apple~CloudDocs"
 
@@ -32,7 +31,6 @@ alias g='git'
 alias m='make'
 alias less='less -R'
 alias grep='grep --color'
-alias cov='open artifacts/tests/coverage/index.html'
 [ $HAS_HUB ] && alias git=hub
 
 if [[ "$(uname)" == "Darwin" ]]; then
@@ -54,23 +52,19 @@ if [[ $HAS_ICLOUD && $HAS_ATOM && ! -L "$HOME/.atom" ]]; then
     ln -s "$ICLOUD_DRIVE_PATH/atom" "$HOME/.atom"
 fi
 
-##
-## Source other bash scripts ...
-##
-for FILE in "$DOTFILES_PATH/lib/"*.bash; do
-    source $FILE
+for FILE in "$DOTFILES_PATH/bash_profile.d/"*; do
+    source "$FILE"
+done
+
+for FILE in "$HOME/.bash_profile.d/"*; do
+    source "$FILE"
 done
 
 [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
 
-##
-## .bashrc SHOULD set the GITHUB_COM_TOKEN environment variable to make it available
-## to homebrew and composer without comitting it to the repo.
-##
 if [ -z "$GITHUB_COM_TOKEN" ]; then
     echo "Warning: GITHUB_COM_TOKEN is not set."
 else
-    export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_COM_TOKEN"
     [ $HAS_COMPOSER ] && composer config --global -- github-oauth.github.com "$GITHUB_COM_TOKEN"
 fi
 
@@ -81,8 +75,4 @@ if [ ! -z "$GITHUB_CWX_DOMAIN" ]; then
         composer config --global github-domains github.com "$GITHUB_CWX_DOMAIN"
         composer config --global -- "github-oauth.${GITHUB_CWX_DOMAIN}" "$GITHUB_CWX_TOKEN"
     fi
-fi
-
-if LS=$(ls -ld "$HOME"/.Trash/dotfiles.* 2> /dev/null); then
-    echo "$(color-orange)$LS$(color-reset)"
 fi

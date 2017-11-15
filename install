@@ -1,48 +1,59 @@
 #!/usr/bin/env bash
-set -e
 
-if [ -z "$1" ]; then
-    echo "usage: setup <lastpass username>" >&2
-    exit 1
+set -e
+set -o pipefail
+
+[ "$DOTFILES_PATH" ] || export DOTFILES_PATH="$(cd $(dirname "$0"); pwd)"
+
+# Install Homebrew.
+type -t brew > /dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Install 'mas' (Mac App Store CLI).
+type -t mas > /dev/null || brew install mas
+
+# Install 'op' (1Password CLI) and jq to parse results.
+type -t op > /dev/null || brew cask install 1password-cli
+type -t jq > /dev/null || brew install jq
+
+if ! mas account > /dev/null; then
+    # while [ -z "$MAS_EMAIL" ]; do
+    #     echo -n "App Store email address: "
+    #     read MAS_EMAIL
+    # done
+
+    mas signin --dialog "$MAS_EMAIL"
 fi
 
-type -t brew > /dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-type -t lpass > /dev/null || brew install lastpass-cli --with-pinentry
-lpass login "$1"
+# If there is no existing 1Password session, prompt for details to signin.
+if [ -z "OP_SESSION_my" ]; then
+    while [ -z "$OP_EMAIL" ]; do
+        echo -n "1Password email address: "
+        read OP_EMAIL
+    done
 
-[ -e "$HOME/.bashrc" ] && source "$HOME/.bashrc"
+    while [ -z "$OP_KEY" ]; do
+        echo -n "1Password secret key (not your master password): "
+        read OP_KEY
+    done
 
-if [ -z "$GITHUB_TOKEN" ]; then
-    echo "Fetching GitHub Token from LastPass"
-    export GITHUB_TOKEN="$(lpass show "Personal/GitHub Token" --notes)"
-    export HOMEBREW_GITHUB_API_TOKEN="$GITHUB_TOKEN"
-    echo 'export GITHUB_TOKEN="'$GITHUB_TOKEN'"' >> "$HOME/.bashrc"
+    eval $(op signin my "$OP_EMAIL" "$OP_KEY")
 fi
 
 if [ ! -e "$HOME/.ssh/id_rsa" ]; then
-    echo "Fetching SSH key from LastPass"
+    echo "--- fetching SSH key from 1Password"
     mkdir -p "$HOME/.ssh"
-    lpass show "Personal/SSH" --field "Private Key" \
-        | awk '/^[A-Za-z-]+:$/ { printf("%s ", $0); next } 1' \
-        > "$HOME/.ssh/id_rsa"
+    op get document "SSH Private Key" > "$HOME/.ssh/id_rsa"
     chmod 600 "$HOME/.ssh/id_rsa"
 fi
 
 if [ ! -e "$HOME/.ssh/id_rsa.pub" ]; then
+    echo "--- generating public key from private key"
     ssh-keygen -yf "$HOME/.ssh/id_rsa" > "$HOME/.ssh/id_rsa.pub"
 fi
 
-[ "$DOTFILES_PATH" ] || export DOTFILES_PATH="$(cd $(dirname "$0"); pwd)"
+### END OF INTERACTIVE USAGE ###################################################
 
-pushd "$DOTFILES_PATH" > /dev/null
-git remote set-url origin "$(git config --get remote.origin.url | sed 's/https:\/\/github.com\//git@github.com:/')"
-popd > /dev/null
-
-"$DOTFILES_PATH/bin/symlink-dotfiles"
-
-echo "Please note: The setup process opens a new terminal window which may be safely closed."
-for FILE in "$DOTFILES_PATH/setup/"*-*.bash; do
-  source "$FILE"
+for FILE in "$DOTFILES_PATH/install.d/"*.bash; do
+    echo ">>> sourcing $FILE"
+    source "$FILE"
 done
-
-echo "Done. System must be restarted for some changes to take effect."
