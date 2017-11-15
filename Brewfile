@@ -1,5 +1,10 @@
 cask_args appdir: "/Applications"
 
+tap "caskroom/cask"
+tap "homebrew/bundle"
+tap "homebrew/core"
+tap "homebrew/php"
+
 # Install Binaries
 brew "awscli"
 brew "bash-completion"
