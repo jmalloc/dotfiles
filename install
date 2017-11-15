@@ -8,9 +8,6 @@ set -o pipefail
 # Install Homebrew.
 type -t brew > /dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Install 'mas' (Mac App Store CLI).
-type -t mas > /dev/null || brew install mas
-
 # Install 'op' (1Password CLI) and jq to parse results.
 type -t op > /dev/null || brew cask install 1password-cli
 type -t jq > /dev/null || brew install jq
@@ -32,22 +29,6 @@ if [ -z "$OP_SESSION_my" ]; then
     done
 
     eval $(op signin my "$OP_EMAIL" "$OP_KEY")
-fi
-
-
-if [ ! -e "$HOME/.ssh/id_rsa" ]; then
-    echo "--- fetching SSH key from 1Password"
-    mkdir -p "$HOME/.ssh"
-    op get document --account=my "SSH Private Key" > "$HOME/.ssh/id_rsa"
-    chmod 600 "$HOME/.ssh/id_rsa"
-
-    echo "--- adding SSH passphrase to keychain"
-    cat "$HOME/.ssh/id_rsa" | DISPLAY= SSH_ASKPASS="$DOTFILES_PATH/bin/passphrase.sh" ssh-add -K
-fi
-
-if [ ! -e "$HOME/.ssh/id_rsa.pub" ]; then
-    echo "--- generating public SSH key from private key"
-    ssh-keygen -P "$($DOTFILES_PATH/bin/passphrase.sh)" -yf "$HOME/.ssh/id_rsa" > "$HOME/.ssh/id_rsa.pub"
 fi
 
 ### END OF INTERACTIVE USAGE ###################################################
