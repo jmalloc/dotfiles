@@ -35,6 +35,7 @@
     c = commit -S
     cm = commit -S -m
     ca = commit -S --amend
+    commit = commit -S
     tag = tag -s
     a = add
     aa = add -A
