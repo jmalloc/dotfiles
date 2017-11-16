@@ -1,6 +1,7 @@
 [user]
     name = James Harris
     email = james.harris@icecave.com.au
+    signingkey = AC537F144FA9388C
 
 [github]
     user = jmalloc
@@ -31,9 +32,10 @@
 
     ; staging + committing ...
     s = status -bs
-    c = commit
-    cm = commit -m
-    ca = commit --amend
+    c = commit -S
+    cm = commit -S -m
+    ca = commit -S --amend
+    tag = tag -s
     a = add
     aa = add -A
     unstage = reset HEAD --
