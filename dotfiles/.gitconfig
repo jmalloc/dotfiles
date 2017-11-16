@@ -31,7 +31,8 @@
 
     ; staging + committing ...
     s = status -bs
-    c = commit -m
+    c = commit
+    cm = commit -m
     ca = commit --amend
     a = add
     aa = add -A
