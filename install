@@ -3,7 +3,7 @@
 set -e
 set -o pipefail
 
-[ "$DOTFILES_PATH" ] || export DOTFILES_PATH="$(cd $(dirname "$0"); pwd)"
+[ "$DOTFILES_PATH" ] || export DOTFILES_PATH="$(cd $(dirname \"$0\"); pwd)"
 
 # Install Homebrew.
 type -t brew > /dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
