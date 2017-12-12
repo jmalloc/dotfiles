@@ -28,7 +28,6 @@
     lp = log --pretty='%C(dim)%<|(15)%p %C(cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' -20 ; log showing parent commits
     lg = log --pretty='%C(dim cyan)%H%C(reset)%C(cyan)%d%C(reset) %C(dim)by %an %ar%n%s%+b%n' --graph ; log graph
     lb = !git l $(git merge-base $(basename $(git remote show origin | grep 'HEAD branch:' | cut -d: -f2)) HEAD)..HEAD ; log this branch
-    cl = changelog
 
     ; staging + committing ...
     s = status -bs
@@ -56,10 +55,6 @@
     co = checkout
     cb = checkout -b
     cc = "!git checkout $(git remote show origin | grep 'HEAD branch:' | cut -d: -f2)" ; checkout default branch
-
-    ; other ...
-    o = open
-    i = open --issue
 
 [diff]
     renames = true
