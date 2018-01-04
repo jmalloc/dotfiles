@@ -54,12 +54,13 @@ build-prompt-git() {
     local files=$(echo $(wc -l <<< "$status"))
     [[ "$status" =~ ahead.([0-9]+) ]] && ahead=${BASH_REMATCH[1]}
     [[ "$status" =~ behind.([0-9]+) ]] && behind=${BASH_REMATCH[1]}
-    #
+
     local status_string=""
     [ $ahead -gt 0 ] && status_string="$status_string $(color-green "+")$(color-lime $ahead)"
     [ $behind -gt 0 ] && status_string="$status_string $(color-maroon "-")$(color-red $behind)"
     [ $stash -gt 0 ] && status_string="$status_string $(color-dark-blue "#")$(color-blue $stash)"
     [ $files -gt 1 ] && status_string="$status_string $(color-gold "*")$(color-yellow $(($files - 1)))"
+    (git log head -1 --format=%B | egrep "^WIP\b") && status_string="$status_string $(color-red "[WIP]")"
 
     local subdir="$(git rev-parse --show-prefix)"
     [ ! -z "$subdir" ] && subdir=" $(color-blue $subdir)"
