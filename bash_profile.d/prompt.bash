@@ -60,7 +60,7 @@ build-prompt-git() {
     [ $behind -gt 0 ] && status_string="$status_string $(color-maroon "-")$(color-red $behind)"
     [ $stash -gt 0 ] && status_string="$status_string $(color-dark-blue "#")$(color-blue $stash)"
     [ $files -gt 1 ] && status_string="$status_string $(color-gold "*")$(color-yellow $(($files - 1)))"
-    (git log -1 --format=%B 2>/dev/null | egrep "^WIP\b") && status_string="$status_string $(color-red "[WIP]")"
+    (git log -1 --format=%B 2>/dev/null | egrep "^WIP\b" > /dev/null) && status_string="$status_string $(color-red "[WIP]")"
 
     local subdir="$(git rev-parse --show-prefix)"
     [ ! -z "$subdir" ] && subdir=" $(color-blue $subdir)"
