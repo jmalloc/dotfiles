@@ -1,4 +1,11 @@
-alias m='make'
+m () {
+    RUN_ARGS="${*:2}" make "$1"
+}
+
+alias e='code .'
+alias h='hive'
+alias d='docker'
+
 alias less='less -R'
 alias grep='grep --color'
 
