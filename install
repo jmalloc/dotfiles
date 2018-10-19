@@ -12,8 +12,8 @@ type -t brew > /dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubuse
 type -t op > /dev/null || brew cask install 1password-cli
 type -t jq > /dev/null || brew install jq
 
-OP_ACCOUNT="$(echo 'dGVhbV9hd2t3YXJkCg==' | base64 --decode)"
-OP_EMAIL="$(echo 'amFtZXMuaGFycmlzQGljZWNhdmUuY29tLmF1Cg==' | base64 --decode)"
+export OP_ACCOUNT="$(echo 'dGVhbV9hd2t3YXJkCg==' | base64 --decode)"
+export OP_EMAIL="$(echo 'amFtZXMuaGFycmlzQGljZWNhdmUuY29tLmF1Cg==' | base64 --decode)"
 
 while ! op list vaults --account=${OP_ACCOUNT} > /dev/null; do
     eval $(op signin "${OP_ACCOUNT//_/-}.1password.com" "$OP_EMAIL")
