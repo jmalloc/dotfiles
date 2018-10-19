@@ -3,7 +3,6 @@ cask_args appdir: "/Applications"
 tap "caskroom/cask"
 tap "homebrew/bundle"
 tap "homebrew/core"
-tap "homebrew/php"
 tap "jmalloc/grit"
 
 # Install Binaries
