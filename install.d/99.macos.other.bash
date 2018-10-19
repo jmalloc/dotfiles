@@ -19,12 +19,6 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-# Use Graphite Appearance
-defaults write NSGlobalDomain AppleAquaColorVariant -int 6
-
-# Use Graphite Highlight Color
-defaults write NSGlobalDomain AppleHighlightColor -string "0.780400 0.815700 0.858800"
-
 # Save screenshots to /tmp
 defaults write com.apple.screencapture location -string "/tmp"
 

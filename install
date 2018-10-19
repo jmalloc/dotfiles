@@ -27,3 +27,18 @@ for FILE in "$DOTFILES_PATH/install.d/"*.bash; do
     echo ">>> sourcing $FILE"
     source "$FILE"
 done
+
+killall \
+    "Address Book" \
+    "Calendar" \
+    "ControlStrip" \
+    "cfprefsd" \
+    "Contacts" \
+    "Dock" \
+    "Finder" \
+    "iCal" \
+    "iTunes" \
+    "Mail" \
+    "Safari" \
+    "Spotlight" \
+    "SystemUIServer"
