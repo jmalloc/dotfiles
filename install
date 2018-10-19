@@ -14,12 +14,10 @@ type -t jq > /dev/null || brew install jq
 
 OP_ACCOUNT="$(echo 'dGVhbS1hd2t3YXJkCg==' | base64 --decode)"
 OP_EMAIL="$(echo 'amFtZXMuaGFycmlzQGljZWNhdmUuY29tLmF1Cg==' | base64 --decode)"
-OP_SESSION_VAR="OP_SESSION_${OP_ACCOUNT}"
 
-# If there is no existing 1Password session, prompt for details to signin.
-if [ -z "${!OP_SESSION_VAR}" ]; then
+while ! op list vaults --account=${OP_ACCOUNT} > /dev/null; do
     eval $(op signin "$OP_ACCOUNT" "$OP_EMAIL")
-fi
+done
 
 ### END OF INTERACTIVE USAGE ###################################################
 
