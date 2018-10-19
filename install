@@ -12,23 +12,13 @@ type -t brew > /dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubuse
 type -t op > /dev/null || brew cask install 1password-cli
 type -t jq > /dev/null || brew install jq
 
-if ! mas account > /dev/null; then
-    mas signin --dialog "$MAS_EMAIL"
-fi
+OP_ACCOUNT="$(echo 'dGVhbS1hd2t3YXJkCg==' | base64 --decode)"
+OP_EMAIL="$(echo 'amFtZXMuaGFycmlzQGljZWNhdmUuY29tLmF1Cg==' | base64 --decode)"
+OP_SESSION_VAR="OP_SESSION_${OP_ACCOUNT}"
 
 # If there is no existing 1Password session, prompt for details to signin.
-if [ -z "$OP_SESSION_my" ]; then
-    while [ -z "$OP_EMAIL" ]; do
-        echo -n "1Password email address: "
-        read OP_EMAIL
-    done
-
-    while [ -z "$OP_KEY" ]; do
-        echo -n "1Password secret key (not your master password): "
-        read OP_KEY
-    done
-
-    eval $(op signin my "$OP_EMAIL" "$OP_KEY")
+if [ -z "${!OP_SESSION_VAR}" ]; then
+    eval $(op signin "$OP_ACCOUNT" "$OP_EMAIL")
 fi
 
 ### END OF INTERACTIVE USAGE ###################################################

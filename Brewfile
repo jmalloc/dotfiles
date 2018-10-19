@@ -11,28 +11,31 @@ brew "awscli"
 brew "bash-completion"
 brew "colordiff"
 brew "composer"
-brew "ghi"
 brew "git"
 brew "go"
 brew "gpg"
+brew "gpg-agent"
 brew "grit"
 brew "hub"
 brew "jq"
-brew "mas"
+brew "protobuf"
 brew "node"
-brew "php71-intl"
-brew "php71"
 brew "watch"
 brew "wget"
 brew "yarn"
+brew "cfssl"
+brew "php@7.0"
 
 # Install Apps
 cask "1password-cli"
 cask "dropbox"
 cask "google-chrome"
-cask "atom"
 cask "docker"
+cask "visual-studio-code"
 
-# Install App Store Apps
-mas "1Password", id: 443987910
-mas "Slack", id: 803453959
+# MAS does not currently work on Mojave, it seems.
+#
+# mas "1Password 7", id: 1333542190
+# mas "Fusion360", id: 868968810
+# mas "Magnet", id: 441258766
+# mas "Slack", id: 803453959

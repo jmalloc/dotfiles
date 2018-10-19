@@ -2,7 +2,7 @@ mkdir -p "$HOME/.ssh"
 
 if [ ! -e "$HOME/.ssh/id_rsa" ]; then
     echo "--- fetching SSH key from 1Password"
-    op get document --account=my "SSH Private Key" > "$HOME/.ssh/id_rsa"
+    op get document --account=${OP_ACCOUNT} "SSH Private Key" > "$HOME/.ssh/id_rsa"
     chmod 600 "$HOME/.ssh/id_rsa"
 
     echo "--- adding SSH passphrase to keychain"

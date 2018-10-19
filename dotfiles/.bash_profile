@@ -1,4 +1,4 @@
-export USERNAMES="james jmalloc" # prompt shows username if not in this list
+export USERNAMES="james" # prompt shows username if not in this list
 export HISTCONTROL="ignoreboth"
 export EDITOR="vim"
 export VISUAL="$EDITOR"
