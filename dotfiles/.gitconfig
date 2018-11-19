@@ -34,10 +34,10 @@
     ; staging + committing ...
     s = status -bs
     c = commit -S
+    t = tag -s -a
+    tl = tag -l
     cm = commit -S -m
     ca = commit -S --amend
-    commit = commit -S
-    tag = tag -s
     a = add
     aa = add -A
     unstage = reset HEAD --
@@ -66,6 +66,9 @@
 
 [help]
     autocorrect = 10
+
+[commit]
+    gpgsign = true
 
 [color]
     ui = auto
