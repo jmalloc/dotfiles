@@ -1,7 +1,7 @@
 [user]
     name = James Harris
-    email = james.harris@icecave.com.au
-    signingkey = AC537F144FA9388C
+    email = mailjamesharris@gmail.com
+	signingkey = AC537F144FA9388C
 
 [github]
     user = jmalloc
