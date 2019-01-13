@@ -15,3 +15,4 @@ if [ ! -e "$HOME/.gnupg/pubkey.pem" ]; then
 fi
 
 echo "default-cache-ttl 28800" >> "$HOME/.gnupg/gpg-agent.conf"
+echo "pinentry-program /usr/local/bin/pinentry-mac" >> "$HOME/.gnupg/gpg-agent.conf"

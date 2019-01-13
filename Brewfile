@@ -16,6 +16,7 @@ brew "gpg"
 brew "grit"
 brew "hub"
 brew "jq"
+brew "pinentry-mac"
 brew "protobuf"
 brew "node"
 brew "watch"
@@ -31,9 +32,7 @@ cask "google-chrome"
 cask "docker"
 cask "visual-studio-code"
 
-# MAS does not currently work on Mojave, it seems.
-#
-# mas "1Password 7", id: 1333542190
-# mas "Fusion360", id: 868968810
-# mas "Magnet", id: 441258766
-# mas "Slack", id: 803453959
+mas "1Password 7", id: 1333542190
+mas "Fusion360", id: 868968810
+mas "Magnet", id: 441258766
+mas "Slack", id: 803453959
