@@ -33,13 +33,13 @@
 
     ; staging + committing ...
     s = status -bs
-    c = commit -S
-    t = tag -s -a
-    tl = tag -l
-    cm = commit -S -m
-    ca = commit -S --amend
+    c = commit
+    t = tag
+    cm = commit -m
+    ca = commit --amend
     a = add
     aa = add -A
+    ap = add -A --patch
     unstage = reset HEAD --
     scrub = "!git checkout . && git clean --force -d"
     destroy = "!git unstage && git scrub"
