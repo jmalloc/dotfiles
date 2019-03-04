@@ -23,7 +23,7 @@ brew "watch"
 brew "wget"
 brew "yarn"
 brew "cfssl"
-brew "php@7.0"
+brew "php@7.2"
 
 # Install Apps
 cask "1password-cli"
