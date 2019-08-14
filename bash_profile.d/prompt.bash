@@ -1,7 +1,11 @@
+if [ -n "$PROMPT_COMMAND" ]; then
+    PROMPT_COMMAND="${PROMPT_COMMAND};"
+fi
+
 if type -t git > /dev/null; then
-    PROMPT_COMMAND="$PROMPT_COMMAND;build-prompt-git"
+    PROMPT_COMMAND="${PROMPT_COMMAND}build-prompt-git"
 else
-    PROMPT_COMMAND="$PROMPT_COMMAND;build-prompt"
+    PROMPT_COMMAND="${PROMPT_COMMAND}build-prompt"
 fi
 
 if [[ ! "$USERNAMES" =~ (^| )"$USER"($| ) ]]; then
