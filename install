@@ -2,8 +2,8 @@
 set -e
 set -o pipefail
 
-DOTFILES_PATH="$HOME/grit/github.com/$GITHUB_USER/dotfiles"
 GITHUB_USER=jmalloc
+DOTFILES_PATH="$HOME/grit/github.com/$GITHUB_USER/dotfiles"
 
 OP_ACCOUNT="$(echo 'dGVhbV9hd2t3YXJkCg==' | base64 --decode)"
 OP_EMAIL="$(echo 'bWFpbGphbWVzaGFycmlzQGdtYWlsLmNvbQo=' | base64 --decode)"
