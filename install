@@ -2,12 +2,11 @@
 set -e
 set -o pipefail
 
-GITHUB_USER=jmalloc
-DOTFILES_PATH="$HOME/grit/github.com/$GITHUB_USER/dotfiles"
+export GITHUB_USER=jmalloc
+export DOTFILES_PATH="$HOME/grit/github.com/$GITHUB_USER/dotfiles"
 
-OP_ACCOUNT="$(echo 'dGVhbV9hd2t3YXJkCg==' | base64 --decode)"
-OP_EMAIL="$(echo 'bWFpbGphbWVzaGFycmlzQGdtYWlsLmNvbQo=' | base64 --decode)"
-OP_ITEM_APPLEID="Apple ID (AU)"
+export OP_ACCOUNT="$(echo 'dGVhbV9hd2t3YXJkCg==' | base64 --decode)"
+export OP_EMAIL="$(echo 'bWFpbGphbWVzaGFycmlzQGdtYWlsLmNvbQo=' | base64 --decode)"
 
 # Trigger installation of Xcode command-line tools.
 if ! pkgutil --pkg-info=com.apple.pkg.CLTools_Executables > /dev/null; then
@@ -59,7 +58,7 @@ fi
 if mas account; then
     echo "App store sign in detected."
 else
-    op get item --account=$OP_ACCOUNT "$OP_ITEM_APPLEID" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
+    op get item --account=$OP_ACCOUNT "Apple ID (AU)" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
     echo "Sign in to the app store first. Password has been copied to the clipboard."
     mas open
     open "x-apple.systempreferences:com.apple.preferences.AppleIDPrefPane"
