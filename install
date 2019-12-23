@@ -49,10 +49,14 @@ else
     brew cask install 1password-cli
 fi
 
-if cat ~/.op/config | jq --exit-status '.accounts | .[] | select(.shorthand == "'"$OP_ACCOUNT"'")' > /dev/null; then
-    eval $(op signin "$OP_ACCOUNT")
+if ! op list vaults --account="$OP_ACCOUNT" > /dev/null 2>&1; then
+    if cat ~/.op/config | jq --exit-status '.accounts | .[] | select(.shorthand == "'"$OP_ACCOUNT"'")' > /dev/null; then
+        eval $(op signin "$OP_ACCOUNT")
+    else
+        eval $(op signin "${OP_ACCOUNT//_/-}.1password.com" "$OP_EMAIL")
+    fi
 else
-    eval $(op signin "${OP_ACCOUNT//_/-}.1password.com" "$OP_EMAIL")
+    echo "Already signed-in to 1Password."
 fi
 
 if mas account; then
