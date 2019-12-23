@@ -1,4 +1,5 @@
-alias g='git'
-alias e='code .'
-alias h='hive'
 alias d='docker'
+alias e='code .'
+alias g='git'
+alias h='hive'
+alias m='make'
