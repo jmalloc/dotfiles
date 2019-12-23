@@ -7,12 +7,12 @@ if [ ! -e "$PRIVKEY" ]; then
     op get document --account=${OP_ACCOUNT} "SSH Private Key" > "$PRIVKEY.tmp"
     chmod 600 "$PRIVKEY.tmp"
     mv "$PRIVKEY.tmp" "$PRIVKEY"
-
-    echo "Adding SSH passphrase to keychain..."
-    cat "$PRIVKEY" | DISPLAY= SSH_ASKPASS="$DOTFILES_PATH/bin/passphrase.bash" ssh-add -K
 else
     echo "Private SSH key already exists."
 fi
+
+echo "Adding SSH passphrase to keychain..."
+cat "$PRIVKEY" | DISPLAY= SSH_ASKPASS="$DOTFILES_PATH/bin/passphrase.bash" ssh-add -K
 
 if [ "$PUBKEY" -ot "$PRIVKEY" ]; then
     echo "Generating public SSH key from private key..."
