@@ -9,8 +9,13 @@ OP_ACCOUNT="$(echo 'dGVhbV9hd2t3YXJkCg==' | base64 --decode)"
 OP_EMAIL="$(echo 'bWFpbGphbWVzaGFycmlzQGdtYWlsLmNvbQo=' | base64 --decode)"
 OP_ITEM_APPLEID="Apple ID (AU)"
 
-# Trigger installation of XCode tools.
-git --version
+# Trigger installation of Xcode command-line tools.
+if ! pkgutil --pkg-info=com.apple.pkg.CLTools_Executables > /dev/null; then
+	echo "Triggering installation of Xcode command-line tools."
+	git --version > /dev/null
+else
+	echo "Xcode command-line tools already installed."
+fi
 
 # Prompt immediately for sudo, and keep it alive while the install script runs
 sudo -v
