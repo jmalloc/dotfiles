@@ -1,0 +1,10 @@
+*.swp
+*~
+.AppleDouble
+.DS_Store
+.LSOverride
+.Spotlight-V100
+.Trashes
+Desktop.ini
+Thumbs.db
+debug.test

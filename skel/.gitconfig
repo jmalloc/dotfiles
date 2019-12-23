@@ -1,0 +1,68 @@
+[user]
+    name = James Harris
+    email = mailjamesharris@gmail.com
+
+[core]
+    autocrlf = input
+    excludesfile = ~/.gitignore.global
+    whitespace = trailing-space,space-before-tab,tabwidth=4
+    pager = /usr/local/opt/git/share/git-core/contrib/diff-highlight/diff-highlight | less
+
+[diff]
+    renames = true
+
+[fetch]
+    prune = true
+
+[help]
+    autocorrect = 10
+
+[tag]
+    sort = version:refname
+
+[color "diff"]
+    meta = dim
+    frag = dim
+    old = red
+    new = green
+
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+
+[alias]
+    ; diff ...
+    d = diff
+    dc = diff --cached
+    wd = diff --word-diff
+    wdc = diff --cached --word-diff
+    sd = diff --ignore-all-space
+    sdc = diff --cached --ignore-all-space
+
+    ; log ...
+    l  = log --pretty='%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent -20 ; log
+    lp = log --pretty='%C(dim)%<|(15)%p %C(cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' -20 ; log showing parent commits
+    lg = log --pretty='%C(dim cyan)%H%C(reset)%C(cyan)%d%C(reset) %C(dim)by %an %ar%n%s%+b%n' --graph ; log graph
+    lb = !git l $(git merge-base $(basename $(git remote show origin | grep 'HEAD branch:' | cut -d: -f2)) HEAD)..HEAD ; log this branch
+    lm = "!f() { git log --pretty='%C(dim)%<|(15)%p %C(cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --stat \"$1^..$1\"; }; f"; log merge
+
+    ; staging + committing ...
+    s = status -bs
+    c = commit
+    t = tag
+    cm = commit -m
+    ca = commit --amend
+    a = add
+    aa = add -A
+    ap = add -A --patch
+    wip = "!git add -A && git commit -m 'WIP [ci skip]'"
+
+    ; push + pull ...
+    p = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
+    pt = push --all --follow-tags
+
+    ; branching ...
+    b = branch
+    m = merge --no-ff
+    ff = merge --ff-only

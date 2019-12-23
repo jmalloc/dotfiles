@@ -60,7 +60,7 @@ else
 fi
 
 if mas account; then
-    echo "App store sign in detected."
+    echo "Already signed-in to the App Store."
 else
     op get item --account=$OP_ACCOUNT "Apple ID (AU)" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
     echo "Sign in to the app store first. Password has been copied to the clipboard."
@@ -69,15 +69,16 @@ else
     exit 1
 fi
 
-if [[ -d "$DOTFILES_PATH" ]]; then
-    echo "Pulling $GITHUB_USER/dotfiles..."
-    pushd "$DOTFILES_PATH" > /dev/null
-    git pull
-    popd > /dev/null
-else
-    echo "Cloning $GITHUB_USER/dotfiles..."
-    git clone "https://github.com/$GITHUB_USER/dotfiles.git" "$DOTFILES_PATH"
-fi
+# TODO: uncomment this once large-scale git changes are complete
+#if [[ -d "$DOTFILES_PATH" ]]; then
+#    echo "Pulling $GITHUB_USER/dotfiles..."
+#    pushd "$DOTFILES_PATH" > /dev/null
+#    git pull
+#    popd > /dev/null
+#else
+#    echo "Cloning $GITHUB_USER/dotfiles..."
+#    git clone "https://github.com/$GITHUB_USER/dotfiles.git" "$DOTFILES_PATH"
+#fi
 
 if [[ -e "$HOME/dotfiles" ]]; then
     echo "Dotfiles shortcut directory already exists."
