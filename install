@@ -1,42 +1,81 @@
 #!/usr/bin/env bash
-
 set -e
 set -o pipefail
 
-[ "$DOTFILES_PATH" ] || export DOTFILES_PATH="$(cd $(dirname "$0"); pwd)"
+DOTFILES_PATH="$HOME/grit/github.com/$GITHUB_USER/dotfiles"
+GITHUB_USER=jmalloc
 
-# Install Homebrew.
-type -t brew > /dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+OP_ACCOUNT="$(echo 'dGVhbV9hd2t3YXJkCg==' | base64 --decode)"
+OP_EMAIL="$(echo 'bWFpbGphbWVzaGFycmlzQGdtYWlsLmNvbQo=' | base64 --decode)"
+OP_ITEM_APPLEID="Apple ID (AU)"
 
-# Install 'op' (1Password CLI) and jq to parse results.
-type -t op > /dev/null || brew cask install 1password-cli
-type -t jq > /dev/null || brew install jq
+# Trigger installation of XCode tools.
+git --version
 
-export OP_ACCOUNT="$(echo 'dGVhbV9hd2t3YXJkCg==' | base64 --decode)"
-export OP_EMAIL="$(echo 'bWFpbGphbWVzaGFycmlzQGdtYWlsLmNvbQo=' | base64 --decode)"
+# Prompt immediately for sudo, and keep it alive while the install script runs
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-while ! op list vaults --account=${OP_ACCOUNT} > /dev/null; do
+if hash brew 2>/dev/null; then
+    echo "Homebrew already installed."
+else
+    echo "Installing Homebrew..."
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+if hash jq 2>/dev/null; then
+    echo "jq already installed."
+else
+    echo "Installing jq..."
+    brew install jq
+fi
+
+if hash mas 2>/dev/null; then
+    echo "mas already installed."
+else
+    echo "Installing mas..."
+    brew install mas
+fi
+
+if hash op 2>/dev/null; then
+    echo "1Password CLI already installed."
+else
+    echo "Installing 1Password CLI..."
+    brew cask install 1password-cli
+fi
+
+while ! op list vaults --account=$OP_ACCOUNT > /dev/null; do
     eval $(op signin "${OP_ACCOUNT//_/-}.1password.com" "$OP_EMAIL")
 done
 
-### END OF INTERACTIVE USAGE ###################################################
+if mas account; then
+    echo "App store sign in detected."
+else
+    op get item --account=$OP_ACCOUNT "$OP_ITEM_APPLEID" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
+    echo "Sign in to the app store first. Password has been copied to the clipboard."
+    mas open
+    open "x-apple.systempreferences:com.apple.preferences.AppleIDPrefPane"
+    exit 1
+fi
 
-for FILE in "$DOTFILES_PATH/install.d/"*.bash; do
-    echo ">>> sourcing $FILE"
-    source "$FILE"
+if [[ -d "$DOTFILES_PATH" ]]; then
+    echo "Pulling $GITHUB_USER/dotfiles..."
+    pushd "$DOTFILES_PATH" > /dev/null
+    git pull
+    popd > /dev/null
+else
+    echo "Cloning $GITHUB_USER/dotfiles..."
+    git clone "https://github.com/$GITHUB_USER/dotfiles.git" "$DOTFILES_PATH"
+fi
+
+if [[ -e "$HOME/dotfiles" ]]; then
+    echo "Dotfiles shortcut directory already exists."
+else
+    ln -s "$DOTFILES_PATH" "$HOME/dotfiles"
+fi
+
+for FILE in "$HOME/dotfiles/install.d/"*-*.bash; do
+  source "$FILE"
 done
 
-killall \
-    "Address Book" \
-    "Calendar" \
-    "ControlStrip" \
-    "cfprefsd" \
-    "Contacts" \
-    "Dock" \
-    "Finder" \
-    "iCal" \
-    "iTunes" \
-    "Mail" \
-    "Safari" \
-    "Spotlight" \
-    "SystemUIServer"
+echo "Done. System must be restarted for some changes to take effect."
