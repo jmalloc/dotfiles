@@ -1,4 +1,5 @@
 mkdir -p "$HOME/.ssh"
+
 PRIVKEY="$HOME/.ssh/id_rsa"
 PUBKEY="$HOME/.ssh/id_rsa.pub"
 

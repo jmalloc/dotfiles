@@ -1,5 +1,3 @@
-echo "Symlinking home directory skeleton..."
-
 SKEL="$DOTFILES_PATH/skel"
 
 for TARGET in $(find "$SKEL" -type f); do
@@ -22,5 +20,6 @@ for TARGET in $(find "$SKEL" -type f); do
     fi
 
     echo "Creating $NAME symlink..."
+    mkdir -p $(dirname "$LINK")
     ln -s "$TARGET" "$LINK"
 done

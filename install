@@ -87,8 +87,6 @@ if ! hash op 2>/dev/null; then
 fi
 
 while ! op list vaults --account="$OP_ACCOUNT" > /dev/null 2>&1; do
-    echo "Signing in to 1Password CLI..."
-
     # Check if the 1Password account is already known to the CLI, and if so use
     # the "short form" sign-in syntax. This prevents the need to re-enter the
     # secret key if it is already known.
