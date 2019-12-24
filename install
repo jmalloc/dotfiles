@@ -109,6 +109,8 @@ else
     # URL after the SSH keys have been successfully retrieved from 1Password.
     echo "Cloning $DOTFILES_REPO..."
     git clone "https://github.com/$DOTFILES_REPO.git" "$DOTFILES_PATH"
+
+    git checkout catalina # TODO: remove this once merged back into master.
 fi
 
 # Source the installation files. These should avoid user interaction.
