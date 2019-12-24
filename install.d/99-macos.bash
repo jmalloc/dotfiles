@@ -1,11 +1,5 @@
 echo "Applying macOS defaults..."
 
-function plist-set-or-add () {
-  /usr/libexec/PlistBuddy -c "Set $1" "${@:2}" ||
-  /usr/libexec/PlistBuddy -c "Add $1" "${@:2}" ||
-  echo "Unable to set or add plist with args:" "$@"
-}
-
 # Set a key delay (initial) and repeat to the fastest settings available from
 # the UI.
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
@@ -33,12 +27,23 @@ defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 # Enable volume change feedback beep
 defaults write NSGlobalDomain com.apple.sound.beep.feedback -int 1
 
+# Disable UI sound effects (e.g. when emptying the bin)
+defaults write com.apple.systemsound com.apple.sound.uiaudio.enabled -int 0
+
 # Disable auto correct and other substitutions
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Disable sound effects in Message.app.
+defaults write com.apple.messageshelper.AlertsController PlaySoundsKey -int 0
+
+# Disable auto correct and other substitutions in Message.app.
+defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
+defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
+defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
 # Set menu bar items
 defaults write com.apple.systemuiserver menuExtras -array \
@@ -58,14 +63,11 @@ defaults write NSGlobalDomain AppleICUDateFormatStrings -dict \
 # Hide Finder recent tags
 defaults write com.apple.finder ShowRecentTags -bool false
 
-# # Open folders in new Finder windows instead of tabs
-# defaults write com.apple.finder FinderSpawnTab -bool false
-
 # Use list view in all Finder windows by default
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
-# # Keep directories at the top when sorting in Finder
-# defaults write com.apple.finder _FXSortFoldersFirst -bool true
+# Keep directories at the top when sorting in Finder
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
 # Use the home directory as the default location for new Finder windows
 defaults write com.apple.finder NewWindowTarget -string "PfHm"
@@ -79,11 +81,6 @@ defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
-
-# # Automatically open a new Finder window when a volume is mounted
-# defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
-# defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
-# defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
@@ -102,15 +99,8 @@ defaults write com.apple.dock magnification -bool true
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
 
-# Top-left hot corner tuns on screen saver (with CMD held)
-defaults write com.apple.dock wvous-tr-corner -int 5 # start screen saver
-defaults write com.apple.dock wvous-tr-modifier -int 1048576 # cmd key
-defaults write com.apple.dock wvous-br-corner -int 6 # disable screen saver
-defaults write com.apple.dock wvous-br-modifier -int 1048576 # cmd key
-
-# Top-right hot corner tuns off screen
-defaults write com.apple.dock wvous-tr-corner -int 10
-defaults write com.apple.dock wvous-tr-modifier -int 0
+# Disable Dashboard
+defaults write com.apple.dashboard mcx-disabled -bool true
 
 # Don’t show Dashboard as a Space
 defaults write com.apple.dock dashboard-in-overlay -bool true
@@ -118,8 +108,17 @@ defaults write com.apple.dock dashboard-in-overlay -bool true
 # Don’t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
 
-# Disable Dashboard
-defaults write com.apple.dashboard mcx-disabled -bool true
+# Top-right hot corner + cmd turns on screen saver
+defaults write com.apple.dock wvous-tr-corner -int 5 # start screen saver
+defaults write com.apple.dock wvous-tr-modifier -int 1048576 # cmd key
+
+# Bottom-right hot corner + cmd disables screen saver
+defaults write com.apple.dock wvous-br-corner -int 6 # disable screen saver
+defaults write com.apple.dock wvous-br-modifier -int 1048576 # cmd key
+
+# Require password immediately after sleep or screen saver begins
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Automatic updates
 sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticallyInstallMacOSUpdates -bool true
@@ -132,6 +131,16 @@ sudo defaults write /Library/Preferences/com.apple.commerce.plist AutoUpdate -bo
 # Don't display first-time Spotlight messages
 defaults write com.apple.spotlight showedFTE 1
 defaults write com.apple.spotlight showedLearnMore 1
+
+# Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
+defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+# # Disable send and reply animations in Mail.app
+defaults write com.apple.mail DisableReplyAnimations -bool true
+defaults write com.apple.mail DisableSendAnimations -bool true
+
+# # Disable inline attachments (just show the icons)
+defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 
 # # Spotlight autocomplete sources
 defaults write com.apple.spotlight orderedItems -array \
@@ -156,9 +165,6 @@ defaults write com.apple.spotlight orderedItems -array \
   '{"enabled" = 0;"name" = "MOVIES";}' \
   '{"enabled" = 0;"name" = "FONTS";}' \
   '{"enabled" = 0;"name" = "MENU_OTHER";}'
-
-# # Touch bar customization
-# defaults write com.apple.controlstrip MiniCustomized "(com.apple.system.brightness, com.apple.system.volume, com.apple.system.mute, com.apple.system.media-play-pause)"
 
 # Save screenshots to /tmp
 defaults write com.apple.screencapture location -string "/tmp"
