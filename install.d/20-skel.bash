@@ -6,7 +6,7 @@ for TARGET in $(find "$SKEL" -type f); do
 
     if [ -L "$LINK" ]; then
         CURRENT_TARGET=$(readlink "$LINK")
-        if [[ "$CURRENT_TARGET" != "$TARGET" ]]; then
+        if [[ "$CURRENT_TARGET" == "$TARGET" ]]; then
             continue
         fi
         echo "Removing existing $NAME symlink to $CURRENT_TARGET..."
