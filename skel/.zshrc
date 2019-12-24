@@ -9,3 +9,12 @@ setopt clobber # allow output redirection to clobber existing files
 for FILE in "$HOME/.dotfiles/zshrc.d/"*; do
     source "$FILE"
 done
+
+function git {
+    if [[ "$1" == "checkout" ]]; then
+        echo 'ERROR: Use "git switch" or "git restore" instead' >&2
+        return 1
+    else
+        command git "$@"
+    fi
+}
