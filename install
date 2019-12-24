@@ -2,92 +2,119 @@
 set -e
 set -o pipefail
 
-export GITHUB_USER=jmalloc
-export DOTFILES_PATH="$HOME/grit/github.com/$GITHUB_USER/dotfiles"
+################################################################################
+## CONFIGURATION
+################################################################################
 
+# DOTFILES_REPO is the name of this repo on GitHub.com.
+export DOTFILES_REPO="jmalloc/dotfiles"
+
+# DOTFILES_PATH is the path into which this repo is cloned.
+#
+# Note that I clone directly into my home directory, not to my standard Grit
+# clone path. This allows me to checkout a separate copy there without affecting
+# my current machine. The clone in the home directory is still index by Grit
+# after running `grit index scan` once manually.
+export DOTFILES_PATH="$HOME/.dotfiles"
+
+################################################################################
+### 1PASSWORD CONFIGURATION
+################################################################################
+
+# Note that some of the values below are base64 encoded as a primitive measure
+# to avoid them being indexed by search engines. They do not have particularly
+# sensitive content.
+
+# OP_ACCOUNT is your 1Password account name. If you have a personal account, use
+# the string "my".
 export OP_ACCOUNT="$(echo 'dGVhbV9hd2t3YXJkCg==' | base64 --decode)"
+
+# OP_EMAIL is the email address you used to sign into 1Password within.
 export OP_EMAIL="$(echo 'bWFpbGphbWVzaGFycmlzQGdtYWlsLmNvbQo=' | base64 --decode)"
 
-# Trigger installation of Xcode command-line tools.
-if ! pkgutil --pkg-info=com.apple.pkg.CLTools_Executables > /dev/null; then
-	echo "Triggering installation of Xcode command-line tools."
-	git --version > /dev/null
-else
-	echo "Xcode command-line tools already installed."
-fi
+# OP_ITEM_APPLEID is the name of the *LOGIN* containing your Apple ID.
+export OP_ITEM_APPLEID="Apple ID (AU)"
 
-# Prompt immediately for sudo, and keep it alive while the install script runs
-echo "Elevating to superuser permissions."
-sudo -v # -v = update credential cache without executing a command
+# OP_ITEM_SSHKEY is the name of the *DOCUMENT* containing your SSH private key.
+# The document must have a "Passphrase" field containing the key's passphrase.
+export OP_ITEM_SSHKEY="SSH Private Key"
+
+################################################################################
+### END OF CONFIGURATION
+################################################################################
+
+# Permissions are elevated first to get all interactivity out of the way as soon
+# as possible. The -v flag causes sudo to update the credential cache without
+# executing a command.
+#
+# The while loop refreshes the credential cache every 60 seconds until this
+# process exits.
+echo "Elevating to superuser."
+sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-if hash brew 2>/dev/null; then
-    echo "Homebrew already installed."
-else
+if ! pkgutil --pkg-info=com.apple.pkg.CLTools_Executables > /dev/null; then
+	echo "Installing Xcode command-line tools. Click 'install' when prompted..."
+	xcode-select > /dev/null
+fi
+
+if ! hash brew 2>/dev/null; then
     echo "Installing Homebrew..."
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-if hash jq 2>/dev/null; then
-    echo "jq already installed."
-else
+if ! hash jq 2>/dev/null; then
     echo "Installing jq..."
     brew install jq
 fi
 
-if hash mas 2>/dev/null; then
-    echo "mas already installed."
-else
-    echo "Installing mas..."
-    brew install mas
-fi
-
-if hash op 2>/dev/null; then
-    echo "1Password CLI already installed."
-else
+if ! hash op 2>/dev/null; then
     echo "Installing 1Password CLI..."
     brew cask install 1password-cli
 fi
 
 if ! op list vaults --account="$OP_ACCOUNT" > /dev/null 2>&1; then
+    echo "Signing in to 1Password CLI..."
+
+    # Check if the 1Password account is already known to the CLI, and if so use
+    # the "short form" sign-in syntax. This prevents the need to re-enter the
+    # secret key if it is already known.
     if cat ~/.op/config | jq --exit-status '.accounts | .[] | select(.shorthand == "'"$OP_ACCOUNT"'")' > /dev/null; then
         eval $(op signin "$OP_ACCOUNT")
     else
         eval $(op signin "${OP_ACCOUNT//_/-}.1password.com" "$OP_EMAIL")
     fi
-else
-    echo "Already signed-in to 1Password."
 fi
 
-if mas account; then
-    echo "Already signed-in to the App Store."
-else
-    op get item --account=$OP_ACCOUNT "Apple ID (AU)" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
-    echo "Sign in to the app store first. Password has been copied to the clipboard."
+if ! hash mas 2>/dev/null; then
+    echo "Installing mas..."
+    brew install mas
+fi
+
+if ! mas account; then
+    op get item --account="$OP_ACCOUNT" "$OP_ITEM_APPLEID" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
+    echo "Sign in to the App Store first. The password has been copied to the clipboard."
     mas open
     open "x-apple.systempreferences:com.apple.preferences.AppleIDPrefPane"
     exit 1
 fi
 
-# TODO: uncomment this once large-scale git changes are complete
-#if [[ -d "$DOTFILES_PATH" ]]; then
-#    echo "Pulling $GITHUB_USER/dotfiles..."
-#    pushd "$DOTFILES_PATH" > /dev/null
-#    git pull
-#    popd > /dev/null
-#else
-#    echo "Cloning $GITHUB_USER/dotfiles..."
-#    git clone "https://github.com/$GITHUB_USER/dotfiles.git" "$DOTFILES_PATH"
-#fi
-
-if [[ -e "$HOME/dotfiles" ]]; then
-    echo "Dotfiles shortcut directory already exists."
+if [[ -d "$DOTFILES_PATH" ]]; then
+    echo "Pulling $DOTFILES_REPO..."
+    pushd "$DOTFILES_PATH" > /dev/null
+    git pull
+    popd > /dev/null
 else
-    ln -s "$DOTFILES_PATH" "$HOME/dotfiles"
+    # Note that the repo is cloned using a https URL. This is swapped to an SSH
+    # URL after the SSH keys have been successfully retrieved from 1Password.
+    echo "Cloning $DOTFILES_REPO..."
+    git clone "https://github.com/$DOTFILES_REPO.git" "$DOTFILES_PATH"
 fi
 
-for FILE in "$HOME/dotfiles/install.d/"*-*.bash; do
+# Source the installation files. These should avoid user interaction.
+for FILE in "$DOTFILES_PATH/install.d/"*-*.bash; do
   source "$FILE"
 done
 
+echo
 echo "Done. System must be restarted for some changes to take effect."

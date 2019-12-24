@@ -1,3 +1,3 @@
-for FILE in "$HOME/.zshrc.d/"*; do
+for FILE in "$HOME/.dotfiles/zshrc.d/"*; do
     source "$FILE"
 done
