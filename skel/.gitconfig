@@ -57,12 +57,18 @@
     aa = add -A
     ap = add -A --patch
     wip = "!git add -A && git commit -m 'WIP [ci skip]'"
+    unstage = restore --staged
+    uncommit = reset HEAD~ --mixed
+    destroy = "!echo 'Destroying all uncomitted changes in 3 seconds...' && sleep 3 && git restore --staged . && git restore --worktree . && git clean --force -d"
+
 
     ; push + pull ...
     p = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
     pt = push --all --follow-tags
 
     ; branching ...
+    sw = switch
     b = branch
+    nb = switch -c
     m = merge --no-ff
     ff = merge --ff-only
