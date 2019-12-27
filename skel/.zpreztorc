@@ -1,0 +1,24 @@
+zstyle ':prezto:*:*' case-sensitive 'yes'
+zstyle ':prezto:*:*' color 'yes'
+zstyle ':prezto:module:git:alias' skip 'yes'
+
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'terminal' \
+  'editor' \
+  'git' \
+  'syntax-highlighting' \
+  'history' \
+  'prompt' \
+  'history-substring-search' \
+  'autosuggestions'
+
+zstyle ':prezto:module:syntax-highlighting' highlighters \
+  'main' \
+  'brackets' \
+  'pattern' \
+  'line' \
+  'cursor' \
+  'root'
+
+zstyle ':prezto:module:prompt' theme 'powerlevel10k'
