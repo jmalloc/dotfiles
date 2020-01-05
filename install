@@ -10,7 +10,7 @@ set -o pipefail
 # repositories, respectively. The names are given as repository "slugs",
 # presumed to be hosted on GitHub.com.
 export DOTFILES_REPO_PUBLIC="jmalloc/dotfiles"
-export DOTFILES_REPO_PRIVATE="jmalloc/dotfiles"
+export DOTFILES_REPO_PRIVATE="jmalloc/dotfiles-private"
 
 # DOTFILES_BRANCH is the name of the branch to be used on both the dotfiles and
 # dotfiles-private repositories.
