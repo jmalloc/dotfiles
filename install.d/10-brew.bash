@@ -1,1 +1,1 @@
-brew bundle --file="$DOTFILES_PATH/Brewfile"
+brew bundle --file="$DOTFILES_PATH_PUBLIC/Brewfile"

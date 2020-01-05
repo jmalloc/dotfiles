@@ -6,7 +6,11 @@ bashcompinit
 
 setopt clobber # allow output redirection to clobber existing files
 
-for FILE in "$HOME/.dotfiles/zshrc.d/"*; do
+for FILE in "$HOME/.dotfiles/public/zshrc.d/"*; do
+    source "$FILE"
+done
+
+for FILE in "$HOME/.dotfiles/private/zshrc.d/"*; do
     source "$FILE"
 done
 

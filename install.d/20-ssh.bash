@@ -11,17 +11,17 @@ if [ ! -e "$PRIVKEY" ]; then
 fi
 
 echo "Adding SSH passphrase to keychain..."
-cat "$PRIVKEY" | DISPLAY= SSH_ASKPASS="$DOTFILES_PATH/bin/passphrase.bash" ssh-add -K
+cat "$PRIVKEY" | DISPLAY= SSH_ASKPASS="$DOTFILES_PATH_PUBLIC/bin/passphrase.bash" ssh-add -K
 
 if [ "$PUBKEY" -ot "$PRIVKEY" ]; then
     echo "Generating public SSH key from private key..."
-    ssh-keygen -P "$($DOTFILES_PATH/bin/passphrase.bash)" -yf "$PRIVKEY" > "$PUBKEY.tmp"
+    ssh-keygen -P "$($DOTFILES_PATH_PUBLIC/bin/passphrase.bash)" -yf "$PRIVKEY" > "$PUBKEY.tmp"
     mv "$PUBKEY.tmp" "$PUBKEY"
 fi
 
-pushd "$DOTFILES_PATH" > /dev/null
+pushd "$DOTFILES_PATH_PUBLIC" > /dev/null
 if git remote get-url origin | grep "https://" > /dev/null; then
     echo "Switching dotfiles repo use SSH..."
-    git remote set-url origin "git@github.com:$DOTFILES_REPO.git"
+    git remote set-url origin "git@github.com:$DOTFILES_REPO_PUBLIC.git"
 fi
 popd > /dev/null

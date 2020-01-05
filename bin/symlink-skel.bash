@@ -1,4 +1,15 @@
-SKEL="$DOTFILES_PATH/skel"
+#!/usr/bin/bash
+set -e
+set -o pipefail
+
+# Creates symlinks in $HOME to files within a skeleton directory.
+
+SKEL="$1"
+
+if [ ! -d "$SKEL" ]; then
+    echo "$SKEL is not a directory"
+    exit 1
+fi
 
 for TARGET in $(find "$SKEL" -type f); do
     NAME="${TARGET#$SKEL/}"
