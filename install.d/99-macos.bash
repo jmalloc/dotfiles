@@ -47,10 +47,10 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 
 # Set menu bar items
 defaults write com.apple.systemuiserver menuExtras -array \
-  "/System/Library/CoreServices/Menu Extras/Clock.menu" \
   "/System/Library/CoreServices/Menu Extras/Battery.menu" \
-  "/System/Library/CoreServices/Menu Extras/Airport.menu" \
-  "/System/Library/CoreServices/Menu Extras/Displays.menu"
+  "/System/Library/CoreServices/Menu Extras/Clock.menu" \
+  "/System/Library/CoreServices/Menu Extras/Displays.menu" \
+  "/System/Library/CoreServices/Menu Extras/Volume.menu"
 
 # Date formats
 defaults write com.apple.menuextra.clock DateFormat -string "EEE MMM d h:mm a"
