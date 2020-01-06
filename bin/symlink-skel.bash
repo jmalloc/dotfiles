@@ -30,7 +30,7 @@ for TARGET in $(find "$SKEL" -type f); do
         rm -f "$LINK"
     fi
 
-    echo "Creating $NAME symlink..."
+    echo "Creating $NAME symlink to $TARGET..."
     mkdir -p $(dirname "$LINK")
     ln -s "$TARGET" "$LINK"
 done
