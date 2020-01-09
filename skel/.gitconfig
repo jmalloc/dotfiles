@@ -68,6 +68,7 @@
 
     ; branching ...
     sw = switch
+    swm = switch master
     b = branch
     nb = switch -c
     m = merge --no-ff
