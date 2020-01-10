@@ -37,6 +37,7 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
       # =========================[ Line #1 ]=========================
       # os_icon               # os identifier
+      docker                  # docker host
       dir                     # current directory
       vcs                     # git status
       # =========================[ Line #2 ]=========================
