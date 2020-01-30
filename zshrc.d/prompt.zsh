@@ -14,3 +14,9 @@ function prompt_docker() {
 
     p10k segment -b 1 -f 7 -t "$host"
 }
+
+function prompt_gitwip() {
+    if git log -n 1 --pretty=%B 2>/dev/null | grep WIP > /dev/null; then
+        p10k segment -b 1 -f 7 -t "WORK IN PROGRESS"
+    fi
+}
