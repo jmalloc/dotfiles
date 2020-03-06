@@ -67,6 +67,11 @@ if ! pkgutil --pkg-info=com.apple.pkg.CLTools_Executables > /dev/null; then
 	xcode-select --install > /dev/null
 fi
 
+while ! pkgutil --pkg-info=com.apple.pkg.CLTools_Executables > /dev/null; do
+    sleep 10
+    echo "Waiting for Xcode command-line tools to finish installing ..."
+done
+
 if ! hash brew 2>/dev/null; then
     echo "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
