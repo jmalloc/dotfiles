@@ -64,7 +64,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 if ! pkgutil --pkg-info=com.apple.pkg.CLTools_Executables > /dev/null; then
 	echo "Installing Xcode command-line tools. Click 'install' when prompted..."
-	xcode-select > /dev/null
+	xcode-select --install > /dev/null
 fi
 
 if ! hash brew 2>/dev/null; then
