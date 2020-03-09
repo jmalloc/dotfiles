@@ -64,7 +64,7 @@
 
     ; push + pull ...
     p = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
-    pt = push --all --follow-tags
+    pt = push --follow-tags
 
     ; branching ...
     sw = switch
