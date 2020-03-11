@@ -2,21 +2,24 @@ cask_args appdir: "/Applications"
 
 tap "homebrew/cask-fonts"
 tap "jmalloc/grit"
+tap "dbcli/tap"
 
 # Install Binaries
+brew "cfssl"
 brew "composer"
 brew "git"
 brew "go"
 brew "grit"
 brew "jq"
 brew "less"
-brew "protobuf"
+brew "mariadb"
 brew "node"
+brew "pgcli"
+brew "php@7.4"
+brew "protobuf"
 brew "watch"
 brew "wget"
 brew "yarn"
-brew "cfssl"
-brew "php@7.4"
 
 # Install Apps
 cask "1password-cli"
