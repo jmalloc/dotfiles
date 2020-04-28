@@ -5,10 +5,13 @@ tap "jmalloc/grit"
 tap "dbcli/tap"
 
 # Install Binaries
+brew "asciinema"
 brew "cfssl"
+brew "colordiff"
 brew "composer"
 brew "git"
 brew "go"
+brew "graphviz"
 brew "grit"
 brew "jq"
 brew "less"
