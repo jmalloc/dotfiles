@@ -71,6 +71,9 @@
     sw = switch
     swm = switch master
     b = branch
+    bmm = branch --merged master
     nb = switch -c
     m = merge --no-ff
     ff = merge --ff-only
+[url "ssh://git@github.cwx.io/"]
+	insteadOf = https://github.cwx.io/
