@@ -8,6 +8,9 @@
     whitespace = trailing-space,space-before-tab,tabwidth=4
     pager = /usr/local/opt/git/share/git-core/contrib/diff-highlight/diff-highlight | less
 
+[include]
+    path = ~/.gitconfig.local
+
 [diff]
     renames = true
 
