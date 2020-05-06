@@ -32,48 +32,162 @@
     untracked = red
 
 [alias]
-    ; diff (w = word, s = ignore space, c = cached)...
-    d = diff
-    dc = diff --cached
-    wd = diff --word-diff
+    ; --------------------------------------------------------------------------
+    ; DIFF ALIASES
+    ;
+    ; The prefix characters below are used in combination with `d`, the base
+    ; alias for diff.
+    ;
+    ;   w = word
+    ;   s = ignore space
+    ;   c = cached (staged changes)
+    ;
+    d   = diff
+    wd  = diff --word-diff
+    sd  = diff --ignore-all-space
+    dc  = diff --cached
     wdc = diff --cached --word-diff
-    sd = diff --ignore-all-space
     sdc = diff --cached --ignore-all-space
 
-    ; logging ...
-    l  = log --pretty='%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --first-parent -20 ; log
-    lp = log --pretty='%C(dim)%<|(15)%p %C(cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' -20 ; log showing parent commits
-    lg = log --pretty='%C(dim cyan)%H%C(reset)%C(cyan)%d%C(reset) %C(dim)by %an %ar%n%s%+b%n' --graph ; log graph
-    lb = !git l $(git merge-base $(basename $(git remote show origin | grep 'HEAD branch:' | cut -d: -f2)) HEAD)..HEAD ; log this branch
-    lm = "!f() { git log --pretty='%C(dim)%<|(15)%p %C(cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar' --stat \"$1^..$1\"; }; f"; log merge
-    lt = !git l ...$(git describe --abbrev=0)~ -n1000 ; log changes since last tag on this branch
+    ; --------------------------------------------------------------------------
+    ; LOGGING ALIASES
+    ;
+    ; l = log recent commits
+    ;
+    ;   --first-parent essentially means that the commits "within" a merge
+    ;   commit are not shown. It does not affect how non-merge commits are
+    ;   displayed. The result is that when viewing the log for "master" (or
+    ;   equivalent), you tend to see a list of merged PRs, and on a "regular"
+    ;   branch you see the regular commits made on that branch.
+    l  = log-pretty --max-count 20 --first-parent
 
-    ; staging + committing ...
-    s = status -bs
-    c = commit
-    t = tag
-    cm = commit -m
-    ca = commit --amend
-    a = add
-    aa = add -A
-    ap = add -A --patch
-    wip = "!git add -A && git commit -m 'WIP [ci skip]'"
+    ; lm = log commits "within" a merge commit
+    ;
+    ;   This is like a companion to the `l` alias. It shows the commits the `l`
+    ;   does not, namely those "within" a merge commit. The first commit shown
+    ;   is the merge commit itself.
+    lm = "!f() { git log-pretty \"$1^..$1\"; }; f"
+
+    ; lb = log this branch
+    ;
+    ;   Shows the commits on the current branch that were made since it diverged
+    ;   from the default branch.
+    lb = !git log-pretty --first-parent $(git diverge-commit)..HEAD
+
+    ; lt = log since tag
+    ;
+    ;   Shows all commits on the current branch that were made since the last
+    ;   tag that points to a commit on this branch (which may not be the latest
+    ;   tag chronologically).
+    lt = !git log-pretty --first-parent ...$(git describe --abbrev=0)~
+
+    ; --------------------------------------------------------------------------
+    ; STAGING & COMMITTING ALIASES
+    ;
+    s   = status --short --branch
+    c   = commit
+    ca  = commit --amend
+    a   = add
+    aa  = add --all
+    ap  = add --all --patch
+
+    ; unstage
+    ;
+    ;   Removes staged changes from the cache, the opposite of "add".
     unstage = restore --staged
+
+    ; wip = add a "work in progress commit"
+    ;
+    ;   I use these commits like a "more severe" version of stash, when
+    ;   switching branches or when I need to stop work midway through a large
+    ;   change and I'd like to push unfinished changes to origin.
+    ;
+    ;   I only ever use it on personal "feature" branches, and use the
+    ;   "uncommit" alias when I resume work to ensure they don't stay in
+    ;   the history.
+    wip = "!git add -A && git commit -m 'WIP [ci skip]'"
+
+    ; uncommit = return to a state before the most recent commit
+    ;
+    ;   --mixed preserves the changes from the most recent commit and leaves
+    ;   them unstaged. This a companion alias to the "wip" alias above.
     uncommit = reset HEAD~ --mixed
+
+    ; destroy = eliminate all uncommitted changes
+    ;
+    ;   Removes all staged and unstaged changes and removes any untracked files.
     destroy = "!echo 'Destroying all uncomitted changes in 3 seconds...' && sleep 3 && git restore --staged . && git restore --worktree . && git clean --force -d"
 
-    ; push + pull ...
-    p = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
+    ; --------------------------------------------------------------------------
+    ; PUSH & PULL ALIASES
+    ;
+    ; p = push
+    ;
+    ;   Pushes and sets the upstream to a branch with the same name. I use this
+    ;   universally for new and existing branches as I almost never push to a remote branch with a different name.
+    p  = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
+
+    ; p = push tags
+    ;
+    ;   Pushes the current branch and any unpushed tags that point to the
+    ;   current branch.
     pt = push --follow-tags
+
+    ; p = force push
+    ;
+    ;   I use this semi-frequently on feature branches, after rebasing from
+    ;   master, for example. --force-with-lease is a marginally safer form of
+    ;   --force that verifies no changes have occurred on the remote since you
+    ;   last did a pull/fetch. This will probably stop you blowing away somebody
+    ;   else changes, but wont stop you destroying your own! In practice I
+    ;   almost never force push to any branch that is used by other people.
     pf = push --force-with-lease
 
-    ; branching ...
-    sw = switch
-    swm = switch master
-    b = branch
-    bmm = branch --merged master
-    nb = switch -c
-    m = merge --no-ff
-    ff = merge --ff-only
-[url "ssh://git@github.cwx.io/"]
-	insteadOf = https://github.cwx.io/
+    ; --------------------------------------------------------------------------
+    ; BRANCHING, MERGING, REBASING, ETC ALIASES
+    ;
+    b   = branch
+    sw  = switch
+    nb  = switch --create ; nb = new branch
+
+    ff  = merge --ff-only
+
+    cp  = cherry-pick
+    cpc = cherry-pick --continue
+    cpa = cherry-pick --abort
+
+    rb  = rebase
+    rbc = rebase --continue
+    rbs = rebase --skip
+    rba = rebase --abort
+
+    ; rbi = rebase interactive
+    ;
+    ;   Starts an interactive rebase that includes the commits on the current
+    ;   branch since it diverged from the default branch.
+    rbi = !git rebase --interactive $(git diverge-commit)
+
+    ; swm = switch to master
+    ;
+    ;   It actually switches to the default branch, it doesn't have to be called
+    ;   "master", but this alias is now in my muscle memory and in practice the
+    ;   default branch is almost always "master".
+    swm = !git switch $(git default-branch)
+
+    ; mb = merged branches
+    ;
+    ;   Lists the branches that are merged into the default branch.
+    mb = !git branch --merged $(git default-branch)
+
+    ; ub = unmerged branches
+    ;
+    ;   Lists the branches that are NOT merged into the default branch.
+    ub = !git branch --no-merged $(git default-branch)
+
+    ; --------------------------------------------------------------------------
+    ; HELPER ALIASES
+    ;
+    ; These are used inside other aliases to avoid repetition.
+    log-pretty = log --pretty='%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar'
+    default-branch = !basename $(git remote show origin | grep 'HEAD branch:' | cut -d: -f2)
+    diverge-commit = !git merge-base $(git default-branch) HEAD
