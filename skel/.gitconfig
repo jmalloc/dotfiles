@@ -127,7 +127,13 @@
     ; p = push
     ;
     ;   Pushes and sets the upstream to a branch with the same name. I use this
-    ;   universally for new and existing branches as I almost never push to a remote branch with a different name.
+    ;   universally for new and existing branches as I almost never push to a
+    ;   remote branch with a different name.
+    ;
+    ;   I haven't yet been able to find a simple way to do this once when a new
+    ;   branch is created. You can't use "git branch --set-upstream-to" unless
+    ;   the branch already exists, so I just set the upstream unconditionally on
+    ;   every push.
     p  = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
 
     ; p = push tags
@@ -191,6 +197,14 @@
     ; HELPER ALIASES
     ;
     ; These are used inside other aliases to avoid repetition.
+    ;
+    ; Note that I don't simply set the "format.pretty" configuration option
+    ; because I've run into trouble in the past with some tools that try to
+    ; parse the default output of "git log", not that I can recall what they
+    ; were.
+    ;
+    ; It's also useful to just be able to run "git log" and see what many of my
+    ; colleagues see, as it's often very different to what my aliases will show.
     log-pretty = log --pretty='%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar'
     default-branch = !basename $(git remote show origin | grep 'HEAD branch:' | cut -d: -f2)
     diverge-commit = !git merge-base $(git default-branch) HEAD
