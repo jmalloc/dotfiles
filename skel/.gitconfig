@@ -9,7 +9,7 @@
     pager = /usr/local/opt/git/share/git-core/contrib/diff-highlight/diff-highlight | less
 
 [include]
-    path = ~/.gitconfig.local
+    path = ~/.gitconfig.private
 
 [diff]
     renames = true
