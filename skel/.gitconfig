@@ -20,8 +20,8 @@
 [help]
     autocorrect = 10
 
-[branch]
-    autosetuprebase = always
+[pull]
+    rebase = true
 
 [tag]
     sort = version:refname
