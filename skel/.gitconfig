@@ -20,6 +20,9 @@
 [help]
     autocorrect = 10
 
+[branch]
+    autosetuprebase = always
+
 [tag]
     sort = version:refname
 
