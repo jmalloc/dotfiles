@@ -21,7 +21,7 @@
     autocorrect = 10
 
 [pull]
-    rebase = true
+    ff = only
 
 [tag]
     sort = version:refname
