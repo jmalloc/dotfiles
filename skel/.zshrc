@@ -5,6 +5,7 @@ compinit
 bashcompinit
 
 setopt clobber # allow output redirection to clobber existing files
+ulimit -n 8192 # set shell's open file handle limit
 
 for FILE in "$HOME/.dotfiles/public/zshrc.d/"*.zsh; do
     source "$FILE"
