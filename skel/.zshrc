@@ -4,6 +4,10 @@ autoload -U bashcompinit
 compinit
 bashcompinit
 
+# Undo aliasing of run-help to man, so it can be used to get help on zsh builtins.
+unalias run-help
+autoload run-help
+
 setopt clobber # allow output redirection to clobber existing files
 ulimit -n 8192 # set shell's open file handle limit
 
