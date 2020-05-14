@@ -14,14 +14,5 @@ for FILE in "$HOME/.dotfiles/private/zshrc.d/"*.zsh; do
     source "$FILE"
 done
 
-function git {
-    if [[ "$1" == "checkout" ]]; then
-        echo 'ERROR: Use "git switch" or "git restore" instead' >&2
-        return 1
-    else
-        command git "$@"
-    fi
-}
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
