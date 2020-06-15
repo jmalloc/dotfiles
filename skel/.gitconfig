@@ -40,6 +40,9 @@
 [format]
     pretty = "%C(dim cyan)%h%C(reset) %C(yellow)|%C(reset) %s%C(cyan)%d%C(reset) %C(dim)by %an %ar"
 
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+
 [alias]
     ; --------------------------------------------------------------------------
     ; DIFF ALIASES
