@@ -62,22 +62,42 @@ echo "Elevating to superuser."
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+if ! pkgutil --pkg-info=com.apple.pkg.CLTools_Executables > /dev/null; then
+	echo "Installing Xcode command-line tools. Click 'install' when prompted..."
+	xcode-select --install > /dev/null
+fi
+
+while ! pkgutil --pkg-info=com.apple.pkg.CLTools_Executables > /dev/null; do
+    sleep 10
+    echo "Waiting for Xcode command-line tools to finish installing ..."
+done
+
 if ! hash brew 2>/dev/null; then
     echo "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
-    echo "Installing dependencies..."
-    brew install jq mas
-    brew install --cask 1password-cli
 fi
 
-if ! mas account > /dev/null; then
+if ! hash jq 2>/dev/null; then
+    echo "Installing jq..."
+    brew install jq
+fi
+
+if ! hash mas 2>/dev/null; then
+    echo "Installing mas..."
+    brew install mas
+fi
+
+if ! mas account; then
     op get item --account="$OP_ACCOUNT" "$OP_ITEM_APPLEID" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
     echo "Sign in to the App Store first. The password has been copied to the clipboard."
+    mas open
+    open "x-apple.systempreferences:com.apple.preferences.AppleIDPrefPane"
+    exit 1
+fi
 
-    while ! mas account > /dev/null; then
-        mas signin
-    fi
+if ! hash op 2>/dev/null; then
+    echo "Installing 1Password CLI..."
+    brew cask install 1password-cli
 fi
 
 while ! op list vaults --account="$OP_ACCOUNT" > /dev/null 2>&1; do
