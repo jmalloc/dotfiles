@@ -84,17 +84,6 @@ if ! hash op 2>/dev/null; then
     brew install --cask 1password-cli
 fi
 
-if ! mas account > /dev/null; then
-    op get item --account="$OP_ACCOUNT" "$OP_ITEM_APPLEID" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
-    echo "Sign in to the App Store first. The password has been copied to the clipboard."
-    mas open
-
-    # Wait until App Store authentication is completed.
-    while ! mas account > /dev/null; do
-        sleep 5
-    done
-fi
-
 while ! op list vaults --account="$OP_ACCOUNT" > /dev/null 2>&1; do
     # Check if the 1Password account is already known to the CLI, and if so use
     # the "short form" sign-in syntax. This prevents the need to re-enter the
@@ -105,6 +94,17 @@ while ! op list vaults --account="$OP_ACCOUNT" > /dev/null 2>&1; do
         eval $(op signin "${OP_ACCOUNT//_/-}.1password.com" "$OP_EMAIL")
     fi
 done
+
+if ! mas account > /dev/null; then
+    op get item --account="$OP_ACCOUNT" "$OP_ITEM_APPLEID" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
+    echo "Sign in to the App Store first. The password has been copied to the clipboard."
+    mas open
+
+    # Wait until App Store authentication is completed.
+    while ! mas account > /dev/null; do
+        sleep 5
+    done
+fi
 
 if [[ -d "$DOTFILES_PATH_PUBLIC" ]]; then
     echo "Pulling $DOTFILES_REPO_PUBLIC..."
