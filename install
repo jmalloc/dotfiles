@@ -62,12 +62,12 @@ echo "Elevating to superuser."
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-if ! hash brew 2>/dev/null; then
+if [ -e /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
     echo "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 if ! hash jq 2>/dev/null; then
     echo "Installing jq..."
