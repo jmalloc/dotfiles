@@ -3,12 +3,17 @@ cask_args appdir: "/Applications"
 tap "homebrew/cask-fonts"
 tap "jmalloc/grit"
 tap "dbcli/tap"
+tap "ktr0731/evans"
 
 # Install Binaries
+brew "adr-tools"
 brew "asciinema"
 brew "cfssl"
+brew "clang-format"
 brew "colordiff"
 brew "composer"
+brew "evans"
+brew "gh"
 brew "git"
 brew "go"
 brew "graphviz"
@@ -19,8 +24,9 @@ brew "litecli"
 brew "mycli"
 brew "node"
 brew "pgcli"
-brew "php@7.4"
+brew "php"
 brew "protobuf"
+brew "python3"
 brew "watch"
 brew "wget"
 brew "yarn"
@@ -28,11 +34,19 @@ brew "yarn"
 # Install Apps
 cask "1password-cli"
 cask "docker"
+cask "google-chrome"
+cask "kicad"
+cask "ngrok"
+cask "steam"
+cask "tunnelblick"
 cask "visual-studio-code"
 
 # Install Apps form the App Store
 mas "1Password 7", id: 1333542190
+mas "Brother P-touch Editor", id: 1453365242
+mas "Logic Pro", id: 634148309
 mas "Magnet", id: 441258766
+mas "Parcel", id: 639968404
 mas "Slack", id: 803453959
 
 # Install Fonts
