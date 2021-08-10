@@ -89,9 +89,10 @@ if ! mas account > /dev/null; then
     echo "Sign in to the App Store first. The password has been copied to the clipboard."
     mas open
 
-    while ! mas account > /dev/null; then
+    # Wait until App Store authentication is completed.
+    while ! mas account > /dev/null; do
         sleep 5
-    fi
+    done
 fi
 
 while ! op list vaults --account="$OP_ACCOUNT" > /dev/null 2>&1; do
