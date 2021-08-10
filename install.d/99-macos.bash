@@ -3,7 +3,7 @@ echo "Applying macOS defaults..."
 ### DISPLAY ####################################################################
 
 # Turn off font smoothing on retina displays
-if system_profiler SPDisplaysDataType | grep 'retina' > /dev/null; then
+if system_profiler SPDisplaysDataType | grep -i 'retina' > /dev/null; then
   defaults -currentHost write NSGlobalDomain AppleFontSmoothing -int 0
 fi
 
