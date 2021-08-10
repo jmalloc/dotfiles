@@ -87,17 +87,19 @@ if ! hash mas 2>/dev/null; then
     brew install mas
 fi
 
-if ! mas account; then
-    op get item --account="$OP_ACCOUNT" "$OP_ITEM_APPLEID" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
-    echo "Sign in to the App Store first. The password has been copied to the clipboard."
-    mas open
-    open "x-apple.systempreferences:com.apple.preferences.AppleIDPrefPane"
-    exit 1
-fi
-
 if ! hash op 2>/dev/null; then
     echo "Installing 1Password CLI..."
     brew cask install 1password-cli
+fi
+
+if ! mas account > /dev/null; then
+    op get item --account="$OP_ACCOUNT" "$OP_ITEM_APPLEID" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
+    echo "Sign in to the App Store first. The password has been copied to the clipboard."
+    mas open
+
+    while ! mas account > /dev/null; then
+        sleep 5
+    fi
 fi
 
 while ! op list vaults --account="$OP_ACCOUNT" > /dev/null 2>&1; do
