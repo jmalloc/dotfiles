@@ -76,9 +76,6 @@ defaults write NSGlobalDomain com.apple.sound.beep.feedback -int 1
 defaults write com.apple.messageshelper.AlertsController PlaySoundsKey -int 0
 
 
-
-
-
 ### DESKTOP & FINDER ###########################################################
 
 # Use list view by default
