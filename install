@@ -39,7 +39,7 @@ export DOTFILES_PATH_PRIVATE="$HOME/.dotfiles/private"
 export OP_ACCOUNT="$(echo 'dGVhbV9hd2t3YXJkCg==' | base64 --decode)"
 
 # OP_EMAIL is the email address you used to sign into 1Password within.
-export OP_EMAIL="$(echo 'bWFpbGphbWVzaGFycmlzQGdtYWlsLmNvbQo=' | base64 --decode)"
+export OP_EMAIL="$(echo 'Y29udGFjdEBqYW1lc2hhcnJpcy5pZC5hdQo=' | base64 --decode)"
 
 # OP_ITEM_APPLEID is the name of the *LOGIN* containing your Apple ID.
 export OP_ITEM_APPLEID="Apple ID (AU)"
