@@ -95,16 +95,21 @@ while ! op list vaults --account="$OP_ACCOUNT" > /dev/null 2>&1; do
     fi
 done
 
-if ! mas account > /dev/null; then
+# TODO: https://github.com/mas-cli/mas/issues/417
+#
+# This can return to using "mas account" instead of prompting the user once this
+# issue is resolved.
+while true; do
+    read -p "Are you signed in to the macOS App Store? [yn] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        break
+    fi
+
     op get item --account="$OP_ACCOUNT" "$OP_ITEM_APPLEID" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
     echo "Sign in to the App Store first. The password has been copied to the clipboard."
     mas open
-
-    # Wait until App Store authentication is completed.
-    while ! mas account > /dev/null; do
-        sleep 5
-    done
-fi
+done
 
 if [[ -d "$DOTFILES_PATH_PUBLIC" ]]; then
     echo "Pulling $DOTFILES_REPO_PUBLIC..."
