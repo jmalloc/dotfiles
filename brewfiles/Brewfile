@@ -4,7 +4,10 @@ tap "homebrew/cask-fonts"
 tap "jmalloc/grit"
 
 # Install Binaries
+brew "git"
+brew "go"
 brew "grit"
+brew "less" # required for the --quit-if-one-screen option to work properly
 
 # Install Apps
 cask "1password-cli"
