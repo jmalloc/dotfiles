@@ -8,6 +8,7 @@ brew "git"
 brew "go"
 brew "grit"
 brew "less" # required for the --quit-if-one-screen option to work properly
+brew "terraform"
 
 # Install Apps
 cask "1password-cli"
