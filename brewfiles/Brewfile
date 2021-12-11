@@ -8,7 +8,7 @@ brew "git"
 brew "go"
 brew "grit"
 brew "less" # required for the --quit-if-one-screen option to work properly
-brew "node@14"
+brew "node"
 brew "terraform"
 brew "yarn"
 
