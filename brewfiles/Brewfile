@@ -15,6 +15,7 @@ brew "yarn"
 # Install Apps
 cask "1password-cli"
 cask "docker"
+cask "google-chrome"
 cask "kicad"
 cask "visual-studio-code"
 
