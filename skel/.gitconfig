@@ -8,6 +8,9 @@
     whitespace = trailing-space,space-before-tab,tabwidth=4
     pager = /opt/homebrew/opt/git/share/git-core/contrib/diff-highlight/diff-highlight | less
 
+[commit]
+    cleanup = scissors
+
 [include]
     path = ~/.gitconfig.private
 
