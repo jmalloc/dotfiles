@@ -164,6 +164,24 @@
     ;   almost never force push to any branch that is used by other people.
     pf = push --force-with-lease
 
+    ; release = create a new tag based on the latest entry in CHANGELOG.md
+    ;
+    ;   Creates an annotated tag for a release.
+    ;
+    ;   By default, Git ignores lines in the commit message the start with a
+    ;   hash (#), which is unfortunately also the start of a markdown heading.
+    ;
+    ;   To get around this, I use --cleanup=whitespace, which stops Git from
+    ;   treating hash-prefixed lines as comments. By default Git includes some
+    ;   hash-prefixed lines in the commit message, which have to be manually
+    ;   removed. Setting an empty message and passing --edit prevent these
+    ;   lines from being added.
+    ;
+    ;   If/when git supports the "scissors" cleanup mode for tag commits, I
+    ;   would use that instead of this workaround.
+    ;
+    release = !git tag --annotate --cleanup=whitespace --edit --message \"$(git changelog-tag-message)\" \"$(git changelog-tag-name)\"
+
     ; --------------------------------------------------------------------------
     ; BRANCHING, MERGING, REBASING, ETC ALIASES
     ;
@@ -211,3 +229,5 @@
     ; These are used inside other aliases to avoid repetition.
     default-branch = !basename $(git remote show origin | grep 'HEAD branch:' | cut -d: -f2)
     diverge-commit = !git merge-base $(git default-branch) HEAD
+    changelog-tag-name = "!awk '/^## \\[.+\\]/{print \"v\" substr($2, 2, length($2) - 2); exit}' CHANGELOG.md"
+    changelog-tag-message = "!awk '/^## \\[.+\\]/{header = 1; count++}; count > 1 {exit}; header == 1 {header = 0; print \"Version \" substr($2, 2, length($2) - 2); next}; count' CHANGELOG.md"
