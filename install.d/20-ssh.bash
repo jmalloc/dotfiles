@@ -11,7 +11,7 @@ if [ ! -e "$PRIVKEY" ]; then
 fi
 
 echo "Adding SSH passphrase to keychain..."
-cat "$PRIVKEY" | DISPLAY= SSH_ASKPASS="$DOTFILES_PATH_PUBLIC/bin/passphrase.bash" ssh-add -K
+cat "$PRIVKEY" | DISPLAY= SSH_ASKPASS="$DOTFILES_PATH_PUBLIC/bin/passphrase.bash" ssh-add --apple-use-keychain
 
 if [ "$PUBKEY" -ot "$PRIVKEY" ]; then
     echo "Generating public SSH key from private key..."
