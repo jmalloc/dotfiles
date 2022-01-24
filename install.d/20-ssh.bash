@@ -21,7 +21,7 @@ fi
 
 pushd "$DOTFILES_PATH_PUBLIC" > /dev/null
 if git remote get-url origin | grep "https://" > /dev/null; then
-    echo "Switching dotfiles repo use SSH..."
+    echo "Switching dotfiles repo to use SSH..."
     git remote set-url origin "git@github.com:$DOTFILES_REPO_PUBLIC.git"
 fi
 popd > /dev/null
