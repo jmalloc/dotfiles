@@ -4,6 +4,7 @@ tap "homebrew/cask-fonts"
 tap "jmalloc/grit"
 
 # Install Binaries
+brew "awscli"
 brew "git"
 brew "gnupg"
 brew "go"
