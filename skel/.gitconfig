@@ -30,7 +30,7 @@
 
 [tag]
     sort = version:refname
-    forceSignAnnotated = true
+    gpgsign = true
 
 [color "diff"]
     meta = dim
