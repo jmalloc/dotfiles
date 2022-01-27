@@ -1,6 +1,7 @@
 [user]
     name = James Harris
     email = contact@jamesharris.id.au
+    signingkey = AC537F144FA9388C
 
 [core]
     autocrlf = input
@@ -10,6 +11,7 @@
 
 [commit]
     cleanup = scissors
+    gpgsign = true
 
 [include]
     path = ~/.gitconfig.private
@@ -28,6 +30,7 @@
 
 [tag]
     sort = version:refname
+    forceSignAnnotated = true
 
 [color "diff"]
     meta = dim

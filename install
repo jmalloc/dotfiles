@@ -48,6 +48,9 @@ export OP_ITEM_APPLEID="Apple ID (AU)"
 # The document must have a "Passphrase" field containing the key's passphrase.
 export OP_ITEM_SSHKEY="SSH Private Key"
 
+# OP_ITEM_GPGKEY is the name of the *DOCUMENT* containing your GPG private key.
+export OP_ITEM_GPGKEY="GPG Private Key"
+
 ################################################################################
 ### END OF CONFIGURATION
 ################################################################################

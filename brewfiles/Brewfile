@@ -12,6 +12,7 @@ brew "jq"
 brew "less" # required for the --quit-if-one-screen option to work properly
 brew "mas"
 brew "node"
+brew "pinentry-mac"
 brew "terraform"
 brew "yarn"
 
