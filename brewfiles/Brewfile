@@ -14,6 +14,7 @@ brew "jq"
 brew "less" # required for the --quit-if-one-screen option to work properly
 brew "mas"
 brew "node"
+brew "pgcli"
 brew "pinentry-mac"
 brew "terraform"
 brew "yarn"
@@ -23,6 +24,7 @@ cask "1password-cli"
 cask "docker"
 cask "google-chrome"
 cask "kicad"
+cask "qgis"
 cask "visual-studio-code"
 
 # Install Apps form the App Store
