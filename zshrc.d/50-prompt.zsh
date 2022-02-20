@@ -1,4 +1,7 @@
-# This file contains custom p10k prompt segments.
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Before are functiosn for custom p10k prompt segments.
 # Their display location is configured in .p10k.zsh.
 
 function prompt_docker() {
