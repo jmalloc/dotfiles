@@ -8,5 +8,5 @@ autoload -U bashcompinit
 compinit
 bashcompinit
 
-zstyle ':completion:*' matcher-list 'r:|?=**'
+# zstyle ':completion:*' matcher-list 'r:|?=**'
 zstyle ':completion:*' menu select
