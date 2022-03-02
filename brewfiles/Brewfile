@@ -2,9 +2,11 @@ cask_args appdir: "/Applications"
 
 tap "homebrew/cask-fonts"
 tap "jmalloc/grit"
+tap "ktr0731/evans"
 
 # Install Binaries
 brew "awscli"
+brew "evans"
 brew "git"
 brew "gnupg"
 brew "go"
