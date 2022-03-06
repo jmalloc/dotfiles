@@ -6,6 +6,7 @@ tap "ktr0731/evans"
 
 # Install Binaries
 brew "awscli"
+brew "composer"
 brew "evans"
 brew "git"
 brew "gnupg"
@@ -17,6 +18,7 @@ brew "less" # required for the --quit-if-one-screen option to work properly
 brew "mas"
 brew "node"
 brew "pgcli"
+brew "php"
 brew "pinentry-mac"
 brew "terraform"
 brew "yarn"
