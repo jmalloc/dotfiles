@@ -105,6 +105,7 @@
     s   = status --short --branch
     c   = commit
     ca  = commit --amend
+    can = commit --amend --no-edit
     a   = add
     aa  = add --all
     ap  = add --all --patch
