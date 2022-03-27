@@ -29,7 +29,6 @@ cask "1password-cli"
 cask "docker"
 cask "google-chrome"
 cask "kicad"
-cask "qgis"
 cask "visual-studio-code"
 
 # Install Apps form the App Store
