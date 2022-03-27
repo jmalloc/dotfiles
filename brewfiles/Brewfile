@@ -14,6 +14,7 @@ brew "go"
 brew "graphviz"
 brew "grit"
 brew "jq"
+brew "kubectx"
 brew "less" # required for the --quit-if-one-screen option to work properly
 brew "mas"
 brew "node"
