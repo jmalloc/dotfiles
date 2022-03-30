@@ -13,6 +13,7 @@ brew "gnupg"
 brew "go"
 brew "graphviz"
 brew "grit"
+brew "helm"
 brew "jq"
 brew "kubectx"
 brew "less" # required for the --quit-if-one-screen option to work properly
