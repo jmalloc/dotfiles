@@ -16,6 +16,8 @@ brew "grit"
 brew "helm"
 brew "jq"
 brew "kubectx"
+brew "kubectx"
+brew "kubernetes-cli@1.22" # pinned at this version for compatibility with EKS
 brew "less" # required for the --quit-if-one-screen option to work properly
 brew "mas"
 brew "node"
