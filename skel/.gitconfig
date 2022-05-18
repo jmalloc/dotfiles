@@ -187,7 +187,7 @@
     release = !git tag --annotate --cleanup=whitespace --edit --message \"$(git changelog-tag-message)\" \"$(git changelog-tag-name)\"
 
     ; tag-md = create a new tag and allow markdown in the commit message.
-    tag-md = git tag --annotate --cleanup=whitespace --edit --message ""
+    tag-md = tag --annotate --cleanup=whitespace --edit --message ""
 
     ; --------------------------------------------------------------------------
     ; BRANCHING, MERGING, REBASING, ETC ALIASES
