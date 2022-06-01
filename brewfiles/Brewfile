@@ -1,5 +1,6 @@
 cask_args appdir: "/Applications"
 
+tap "datawire/blackbird"
 tap "homebrew/cask-fonts"
 tap "jmalloc/grit"
 tap "ktr0731/evans"
@@ -16,7 +17,6 @@ brew "grit"
 brew "helm"
 brew "jq"
 brew "kubectx"
-brew "kubectx"
 brew "kubernetes-cli@1.22" # pinned at this version for compatibility with EKS
 brew "less" # required for the --quit-if-one-screen option to work properly
 brew "mas"
@@ -24,6 +24,7 @@ brew "node"
 brew "pgcli"
 brew "php"
 brew "pinentry-mac"
+brew "telepresence-arm64"
 brew "terraform"
 brew "yarn"
 
