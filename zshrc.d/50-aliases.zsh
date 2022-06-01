@@ -3,6 +3,7 @@ alias e='code .'
 alias g='git'
 alias h='hive'
 alias m='make'
+alias tp='teleprescence'
 alias tf='terraform'
 alias k='kubectl'
 
