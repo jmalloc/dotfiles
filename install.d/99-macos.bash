@@ -161,6 +161,11 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 
 ### OTHER ######################################################################
 
+# Make XCode use system's regular Git setup for pulling Swift package manager
+# dependencies.
+
+defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
+
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
