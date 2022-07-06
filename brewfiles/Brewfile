@@ -15,7 +15,6 @@ brew "gnupg"
 brew "go"
 brew "graphviz"
 brew "grit"
-brew "helm"
 brew "jq"
 brew "kubectx"
 brew "kubernetes-cli@1.22" # pinned at this version for compatibility with EKS
