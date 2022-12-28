@@ -30,6 +30,7 @@ brew "watch"
 brew "yarn"
 
 # Install Apps
+cask "1password"
 cask "1password-cli"
 cask "docker"
 cask "google-chrome"
@@ -37,7 +38,6 @@ cask "kicad"
 cask "visual-studio-code"
 
 # Install Apps form the App Store
-mas "1Password 7", id: 1333542190
 mas "Brother P-touch Editor", id: 1453365242
 mas "Logic Pro", id: 634148309
 mas "Magnet", id: 441258766
