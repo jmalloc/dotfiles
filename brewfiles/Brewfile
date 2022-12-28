@@ -31,13 +31,9 @@ brew "yarn"
 cask "1password-cli"
 cask "1password"
 cask "docker"
-cask "google-chrome"
-cask "kicad"
 cask "visual-studio-code"
 
 # Install Apps form the App Store
-mas "Brother P-touch Editor", id: 1453365242
-mas "Logic Pro", id: 634148309
 mas "Magnet", id: 441258766
 mas "Parcel", id: 639968404
 mas "Slack", id: 803453959
