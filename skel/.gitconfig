@@ -1,13 +1,19 @@
 [user]
     name = James Harris
     email = contact@jamesharris.id.au
-    signingkey = AC537F144FA9388C
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILkD50Q6rwx1QUZm3tUYT6tDqp9MzRGeVWI16mp43Hg+
 
 [core]
     autocrlf = input
     excludesfile = ~/.gitignore.global
     whitespace = trailing-space,space-before-tab,tabwidth=4
     pager = /opt/homebrew/opt/git/share/git-core/contrib/diff-highlight/diff-highlight | less
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+    program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 [commit]
     cleanup = scissors

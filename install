@@ -14,7 +14,7 @@ export DOTFILES_REPO_PRIVATE="jmalloc/dotfiles-private"
 
 # DOTFILES_BRANCH is the name of the branch to be used on both the dotfiles and
 # dotfiles-private repositories.
-export DOTFILES_BRANCH="monterey"
+export DOTFILES_BRANCH="ventura"
 
 # DOTFILES_PATH_[PUBLIC|PRIVATE] are the paths into which the public and private
 # repos are cloned, respectively.
@@ -38,18 +38,8 @@ export DOTFILES_PATH_PRIVATE="$HOME/.dotfiles/private"
 # the string "my".
 export OP_ACCOUNT="$(echo 'dGVhbV9hd2t3YXJkCg==' | base64 --decode)"
 
-# OP_EMAIL is the email address you used to sign into 1Password within.
-export OP_EMAIL="$(echo 'Y29udGFjdEBqYW1lc2hhcnJpcy5pZC5hdQo=' | base64 --decode)"
-
 # OP_ITEM_APPLEID is the name of the *LOGIN* containing your Apple ID.
 export OP_ITEM_APPLEID="Apple ID (AU)"
-
-# OP_ITEM_SSHKEY is the name of the *DOCUMENT* containing your SSH private key.
-# The document must have a "Passphrase" field containing the key's passphrase.
-export OP_ITEM_SSHKEY="SSH Private Key"
-
-# OP_ITEM_GPGKEY is the name of the *DOCUMENT* containing your GPG private key.
-export OP_ITEM_GPGKEY="GPG Private Key"
 
 ################################################################################
 ### END OF CONFIGURATION
@@ -72,14 +62,9 @@ fi
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-if ! hash jq 2>/dev/null; then
-    echo "Installing jq..."
-    brew install jq
-fi
-
-if ! hash mas 2>/dev/null; then
-    echo "Installing mas..."
-    brew install mas
+if [[ ! -d /Applications/1Password.app ]]; then
+    echo "Installing 1Password..."
+    brew install --cask 1password
 fi
 
 if ! hash op 2>/dev/null; then
@@ -87,32 +72,46 @@ if ! hash op 2>/dev/null; then
     brew install --cask 1password-cli
 fi
 
-while ! op list vaults --account="$OP_ACCOUNT" > /dev/null 2>&1; do
-    # Check if the 1Password account is already known to the CLI, and if so use
-    # the "short form" sign-in syntax. This prevents the need to re-enter the
-    # secret key if it is already known.
-    if op signin --list | grep "$OP_ACCOUNT" > /dev/null 2>&1; then
-        eval $(op signin "$OP_ACCOUNT")
-    else
-        eval $(op signin "${OP_ACCOUNT//_/-}.1password.com" "$OP_EMAIL")
-    fi
+echo "First, add your personal 1Password account to the app, then enable the following option(s) in the preferences:"
+echo
+echo "    - Developer > 1Password SSH Agent > Use the SSH agent"
+echo "    - Developer > Command-Line Interface (CLI) > Connect with 1Password CLI"
+echo
+
+open "/Applications/1Password.app"
+
+read -p "Have you configured the specified options? [yn] " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    echo "Unable to continue without configuring 1Password."
+    exit 1
+fi
+
+until op account get --account="$OP_ACCOUNT" &>/dev/null
+do
+    echo "1Password CLI session not detected."
+    echo "Signing in to 1Password CLI..."
+    eval $(op signin --account="$OP_ACCOUNT")
 done
 
-# TODO: https://github.com/mas-cli/mas/issues/417
-#
-# This can return to using "mas account" instead of prompting the user once this
-# issue is resolved.
-while true; do
-    read -p "Are you signed in to the macOS App Store? [yn] " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        break
-    fi
+if ! hash mas 2>/dev/null; then
+    echo "Installing mas..."
+    brew install mas
+fi
 
-    op get item --account="$OP_ACCOUNT" "$OP_ITEM_APPLEID" | jq --raw-output '.details.fields[]? | select(.designation == "password") | .value' | tr -d '\n' | pbcopy
-    echo "Sign in to the App Store first. The password has been copied to the clipboard."
-    mas open
-done
+op item get --account="$OP_ACCOUNT" --fields=password "$OP_ITEM_APPLEID" | tr -d '\n' | pbcopy
+echo "Sign in to the App Store first. Password has been copied to the clipboard."
+mas open
+open "x-apple.systempreferences:com.apple.preferences.AppleIDPrefPane"
+
+read -p "Have you signed in? [yn] " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+    echo "Unable to continue without being signed in to the App Store."
+    exit 1
+fi
 
 if [[ -d "$DOTFILES_PATH_PUBLIC" ]]; then
     echo "Pulling $DOTFILES_REPO_PUBLIC..."
@@ -125,7 +124,7 @@ else
     echo "Cloning $DOTFILES_REPO_PUBLIC..."
     git clone \
         --branch "$DOTFILES_BRANCH" \
-        --single-branch "https://github.com/$DOTFILES_REPO_PUBLIC.git" \
+        --single-branch "git@github.com:$DOTFILES_REPO_PUBLIC.git" \
         "$DOTFILES_PATH_PUBLIC"
 fi
 

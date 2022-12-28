@@ -7,31 +7,29 @@ tap "ktr0731/evans"
 
 # Install Binaries
 brew "awscli"
-brew "bat"
+brew "clang-format" # needed for VSCode protobuf extension to support formatting
 brew "composer"
 brew "evans"
 brew "git"
-brew "gnupg"
 brew "go"
 brew "graphviz"
 brew "grit"
 brew "jq"
 brew "kubectx"
-brew "kubernetes-cli@1.22" # pinned at this version for compatibility with EKS
+brew "kubernetes-cli"
 brew "less" # required for the --quit-if-one-screen option to work properly
 brew "mas"
 brew "node"
 brew "pgcli"
 brew "php"
-brew "pinentry-mac"
 brew "telepresence-arm64"
 brew "terraform"
 brew "watch"
 brew "yarn"
 
 # Install Apps
-cask "1password"
 cask "1password-cli"
+cask "1password"
 cask "docker"
 cask "google-chrome"
 cask "kicad"
