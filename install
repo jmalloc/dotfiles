@@ -103,7 +103,6 @@ fi
 op item get --account="$OP_ACCOUNT" --fields=password "$OP_ITEM_APPLEID" | tr -d '\n' | pbcopy
 echo "Sign in to the App Store first. Password has been copied to the clipboard."
 mas open
-open "x-apple.systempreferences:com.apple.preferences.AppleIDPrefPane"
 
 read -p "Have you signed in? [yn] " -n 1 -r
 echo
