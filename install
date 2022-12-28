@@ -113,6 +113,13 @@ then
     exit 1
 fi
 
+if [[ ! -f "$HOME/.ssh/config" ]]; then
+    echo "Temporarily configuring SSH to use the 1Password SSH agent..."
+    mkdir -p "$HOME/.ssh"
+    echo 'Host *
+    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"' > "$HOME/.ssh/config"
+fi
+
 if [[ -d "$DOTFILES_PATH_PUBLIC" ]]; then
     echo "Pulling $DOTFILES_REPO_PUBLIC..."
     pushd "$DOTFILES_PATH_PUBLIC" > /dev/null
