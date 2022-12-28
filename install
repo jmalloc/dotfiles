@@ -36,7 +36,7 @@ export DOTFILES_PATH_PRIVATE="$HOME/.dotfiles/private"
 
 # OP_ACCOUNT is your 1Password account name. If you have a personal account, use
 # the string "my".
-export OP_ACCOUNT="$(echo 'dGVhbV9hd2t3YXJkCg==' | base64 --decode)"
+export OP_ACCOUNT="$(echo 'dGVhbS1hd2t3YXJkCg==' | base64 --decode)"
 
 # OP_ITEM_APPLEID is the name of the *LOGIN* containing your Apple ID.
 export OP_ITEM_APPLEID="Apple ID (AU)"
