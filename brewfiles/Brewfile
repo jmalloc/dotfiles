@@ -6,6 +6,7 @@ tap "jmalloc/grit"
 tap "ktr0731/evans"
 
 # Install Binaries
+brew "around"
 brew "awscli"
 brew "clang-format" # needed for VSCode protobuf extension to support formatting
 brew "composer"
