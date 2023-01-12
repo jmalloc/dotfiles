@@ -4,6 +4,7 @@ tap "datawire/blackbird"
 tap "homebrew/cask-fonts"
 tap "jmalloc/grit"
 tap "ktr0731/evans"
+tap "remotemobprogramming/brew"
 
 # Install Binaries
 brew "around"
@@ -20,6 +21,7 @@ brew "kubectx"
 brew "kubernetes-cli"
 brew "less" # required for the --quit-if-one-screen option to work properly
 brew "mas"
+brew "mob"
 brew "node"
 brew "pgcli"
 brew "php"
