@@ -7,7 +7,6 @@ tap "ktr0731/evans"
 tap "remotemobprogramming/brew"
 
 # Install Binaries
-brew "around"
 brew "awscli"
 brew "clang-format" # needed for VSCode protobuf extension to support formatting
 brew "composer"
@@ -33,6 +32,7 @@ brew "yarn"
 # Install Apps
 cask "1password-cli"
 cask "1password"
+cask "around"
 cask "docker"
 cask "visual-studio-code"
 
