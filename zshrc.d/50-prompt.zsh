@@ -23,3 +23,13 @@ function prompt_gitwip() {
         p10k segment -b 1 -f 11 -t "WORK IN PROGRESS"
     fi
 }
+
+function prompt_telepresence() {
+    local container="$(printenv TELEPRESENCE_CONTAINER)"
+
+    if [ -z "$container" ]; then
+        return
+    fi
+
+    p10k sigment -b 1 -f 11 -t "intercepting $container"
+}
