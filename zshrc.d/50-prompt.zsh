@@ -31,5 +31,5 @@ function prompt_telepresence() {
         return
     fi
 
-    p10k sigment -b 1 -f 11 -t "intercepting $container"
+    p10k segment -b 1 -f 11 -t "intercepting $container"
 }
