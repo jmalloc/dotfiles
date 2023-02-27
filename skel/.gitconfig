@@ -156,7 +156,7 @@
     ;
     ;   Pushes the current branch and any unpushed tags that point to the
     ;   current branch.
-    pt = push --follow-tags
+    pt = push --follow-tags --atomic
 
     ; p = force push
     ;
