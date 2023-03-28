@@ -7,8 +7,8 @@ tap "ktr0731/evans"
 
 # Install Binaries
 brew "awscli"
-brew "bat"
 brew "composer"
+brew "direnv"
 brew "evans"
 brew "git"
 brew "gnupg"
@@ -26,6 +26,7 @@ brew "php"
 brew "pinentry-mac"
 brew "telepresence-arm64"
 brew "terraform"
+brew "vale"
 brew "watch"
 brew "yarn"
 
