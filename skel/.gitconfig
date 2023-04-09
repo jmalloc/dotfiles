@@ -4,10 +4,11 @@
     signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILkD50Q6rwx1QUZm3tUYT6tDqp9MzRGeVWI16mp43Hg+
 
 [core]
-    autocrlf = input
+    attributesfile = ~/.gitattributes.global
     excludesfile = ~/.gitignore.global
-    whitespace = trailing-space,space-before-tab,tabwidth=4
+    autocrlf = input
     pager = /opt/homebrew/opt/git/share/git-core/contrib/diff-highlight/diff-highlight | less
+    whitespace = trailing-space,space-before-tab,tabwidth=4
 
 [gpg]
 	format = ssh
@@ -24,6 +25,7 @@
 
 [diff]
     renames = true
+    algorithm = minimal
 
 [fetch]
     prune = true
