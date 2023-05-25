@@ -9,3 +9,5 @@
 Desktop.ini
 Thumbs.db
 debug.test
+go.work
+go.work.sum
