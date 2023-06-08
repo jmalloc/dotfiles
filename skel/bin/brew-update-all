@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+
+brew update
+brew bundle --verbose --file="$HOME/.dotfiles/public/brewfiles/Brewfile"
+brew upgrade
