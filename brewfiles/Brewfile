@@ -39,6 +39,7 @@ cask "around"
 cask "google-chrome"
 cask "docker"
 cask "visual-studio-code"
+cask "zoom"
 
 # Install Apps form the App Store
 mas "Magnet", id: 441258766
