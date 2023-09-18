@@ -1,3 +1,4 @@
+alias c='cilium'
 alias d='docker'
 alias e='code .'
 alias g='git'
