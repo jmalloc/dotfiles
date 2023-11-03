@@ -14,7 +14,7 @@ export DOTFILES_REPO_PRIVATE="jmalloc/dotfiles-private"
 
 # DOTFILES_BRANCH is the name of the branch to be used on both the dotfiles and
 # dotfiles-private repositories.
-export DOTFILES_BRANCH="ventura"
+export DOTFILES_BRANCH="sonoma"
 
 # DOTFILES_PATH_[PUBLIC|PRIVATE] are the paths into which the public and private
 # repos are cloned, respectively.

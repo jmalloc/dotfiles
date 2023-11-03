@@ -1,5 +1,5 @@
-# Dotfiles (Ventura)
+# Dotfiles (Sonoma)
 
 ```shell
-bash <(curl -fsSL https://raw.githubusercontent.com/jmalloc/dotfiles/ventura/install)
+bash <(curl -fsSL https://raw.githubusercontent.com/jmalloc/dotfiles/sonoma/install)
 ```
