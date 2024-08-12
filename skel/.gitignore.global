@@ -3,6 +3,7 @@
 .AppleDouble
 .DS_Store
 .envrc
+.envrc.*
 .LSOverride
 .Spotlight-V100
 .Trashes
