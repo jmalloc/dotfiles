@@ -8,17 +8,13 @@ export BRANCH="nix"
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-mkdir -p /tmp/dotfiles
-cd /tmp/dotfiles
+dir=$(mktemp -d -t dotfiles)
+trap 'rm -rf -- "$dir"' EXIT
+cd $dir
 
-if [ -d .git ]; then
-    git pull
-else
-    git clone \
-        --single-branch --branch "${BRANCH}"  \
-        "git@github.com:${REPO}.git" .
-fi
+curl https://github.com/${REPO}/archive/refs/heads/${BRANCH}.zip --output dotfiles.zip
+unzip dotfiles.zip
 
-for f in "install.d/"*; do
+for f in "install.d/"*-*; do
   source "$f"
 done
