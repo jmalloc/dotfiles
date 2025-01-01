@@ -20,7 +20,7 @@ curl \
     --output dotfiles.zip \
     https://github.com/${REPO}/archive/refs/heads/${BRANCH}.zip
 
-unzip dotfiles.zip
+unzip -q dotfiles.zip
 cd "dotfiles-${BRANCH}"
 
 for f in "install.d/"*-*; do
