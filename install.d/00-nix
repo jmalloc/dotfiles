@@ -1,5 +1,6 @@
 if [ -d /nix ]; then
     echo "Nix is already installed"
+    source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 else
     echo "Installing Nix"
     curl -sSf -L https://install.lix.systems/lix \
