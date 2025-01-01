@@ -5,32 +5,32 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
-  let
-    configuration = { pkgs, ... }: {
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+  let configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [
-          pkgs.awscli
-          pkgs.evans
-          pkgs.git
-          pkgs.go
-          pkgs.graphviz
-          pkgs.jq
-          pkgs.kubectl
-          pkgs.kubectx
-          pkgs.kubernetes-helm
-          pkgs.less # required for the --quit-if-one-screen option to work properly
-          pkgs.mob
-          pkgs.pgcli
-          pkgs.terraform
-          pkgs.unixtools.watch
-          pkgs.vale
-          pkgs.vim
-        ];
+      environment.systemPackages = [
+        pkgs.awscli
+        pkgs.evans
+        pkgs.git
+        pkgs.go
+        pkgs.graphviz
+        pkgs.jq
+        pkgs.kubectl
+        pkgs.kubectx
+        pkgs.kubernetes-helm
+        pkgs.less # required for the --quit-if-one-screen option to work properly
+        pkgs.mob
+        pkgs.pgcli
+        pkgs.terraform
+        pkgs.unixtools.watch
+        pkgs.vale
+        pkgs.vim
+      ];
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -51,18 +51,18 @@
       # Allow unfree (non-open-source) packages.
       nixpkgs.config.allowUnfree = true;
     };
-  in
-  {
-    darwinConfigurations.studio-mac = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
-    };
-
-    darwinConfigurations.workshop-mac = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
-    };
-
-    darwinConfigurations.james-mbp = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+  in {
+    darwinConfigurations.common = nix-darwin.lib.darwinSystem {
+      modules = [
+        configuration
+        nix-homebrew.darwinModules.nix-homebrew
+        {
+          nix-homebrew = {
+            enable = true;
+            user = "james";
+          };
+        }
+      ];
     };
   };
 }
