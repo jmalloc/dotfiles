@@ -1,4 +1,4 @@
-if [ -d /nix ]; then
+if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
     echo "Nix is already installed"
     source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 else
