@@ -5,7 +5,9 @@ set -o pipefail
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-curl -sSf -L https://install.lix.systems/lix \
-    | sh -s -- install --enable-flakes --no-confirm
+if [ ! -d /nix ]; then
+    curl -sSf -L https://install.lix.systems/lix \
+        | sh -s -- install --enable-flakes --no-confirm
+fi
 
 echo continuing ...
