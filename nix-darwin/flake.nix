@@ -47,6 +47,9 @@
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
+
+      # Allow unfree (non-open-source) packages.
+      nixpkgs.config.allowUnfree = true;
     };
   in
   {
