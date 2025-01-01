@@ -36,7 +36,7 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."common" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.common = nix-darwin.lib.darwinSystem {
       modules = [ configuration ];
     };
   };
