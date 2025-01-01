@@ -8,4 +8,4 @@ else
     source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 fi
 
-nix run nix-darwin -- switch --flake nix-darwin-flake.nix
+nix run nix-darwin -- switch --flake nix-darwin/flake.nix
