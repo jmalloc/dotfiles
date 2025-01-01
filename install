@@ -16,5 +16,6 @@ curl https://github.com/${REPO}/archive/refs/heads/${BRANCH}.zip --output dotfil
 unzip dotfiles.zip
 
 for f in "install.d/"*-*; do
-  source "$f"
+    echo "--- $f"
+    source "$f"
 done
