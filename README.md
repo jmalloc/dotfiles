@@ -1,5 +1,5 @@
 # Dotfiles
 
-```
-curl -sSf -L https://install.lix.systems/lix | sh -s -- install
+```shell
+bash <(curl -fsSL https://raw.githubusercontent.com/jmalloc/dotfiles/nix/install)
 ```
