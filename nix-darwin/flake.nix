@@ -13,7 +13,23 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
-        [ pkgs.vim
+        [
+          pkgs.awscli
+          pkgs.evans
+          pkgs.git
+          pkgs.go
+          pkgs.graphviz
+          pkgs.jq
+          pkgs.kubectl
+          pkgs.kubectx
+          pkgs.kubernetes-helm
+          pkgs.less # required for the --quit-if-one-screen option to work properly
+          pkgs.mob
+          pkgs.pgcli
+          pkgs.terraform
+          pkgs.unixtools.watch
+          pkgs.vale
+          pkgs.vim
         ];
 
       # Necessary for using flakes on this system.
@@ -34,9 +50,15 @@
     };
   in
   {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations.common = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.studio-mac = nix-darwin.lib.darwinSystem {
+      modules = [ configuration ];
+    };
+
+    darwinConfigurations.workshop-mac = nix-darwin.lib.darwinSystem {
+      modules = [ configuration ];
+    };
+
+    darwinConfigurations.james-mbp = nix-darwin.lib.darwinSystem {
       modules = [ configuration ];
     };
   };

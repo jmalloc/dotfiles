@@ -8,30 +8,14 @@ tap "remotemobprogramming/brew"
 
 # Install Binaries
 brew "adr-tools"
-brew "awscli"
-brew "cilium-cli"
 brew "clang-format" # needed for VSCode protobuf extension to support formatting
 brew "composer"
 brew "direnv"
-brew "evans"
-brew "git"
-brew "go"
-brew "graphviz"
 brew "grit"
-brew "helm"
-brew "jq"
-brew "kubectx"
-brew "kubernetes-cli"
-brew "less" # required for the --quit-if-one-screen option to work properly
 brew "mas"
-brew "mob"
 brew "node"
-brew "pgcli"
 brew "php"
 brew "telepresence-arm64"
-brew "terraform"
-brew "vale"
-brew "watch"
 brew "yarn"
 
 # Install Apps
