@@ -10,10 +10,18 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 dir=$(mktemp -d -t dotfiles)
 trap 'rm -rf -- "$dir"' EXIT
-cd $dir
+cd "$dir"
 
-curl https://github.com/${REPO}/archive/refs/heads/${BRANCH}.zip --output dotfiles.zip
+curl \
+    --fail \
+    --silent \
+    --show-error \
+    --location \
+    --output dotfiles.zip \
+    https://github.com/${REPO}/archive/refs/heads/${BRANCH}.zip
+
 unzip dotfiles.zip
+cd "dotfiles-${BRANCH}"
 
 for f in "install.d/"*-*; do
     echo "--- $f"
