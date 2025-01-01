@@ -1,4 +1,7 @@
-# if [ ! -d /nix ]; then
-#     curl -sSf -L https://install.lix.systems/lix \
-#         | sh -s -- install --enable-flakes --no-confirm
-# fi
+if [ -d /nix ]; then
+    echo "Nix is already installed"
+else
+    echo "Installing Nix"
+    curl -sSf -L https://install.lix.systems/lix \
+        | sh -s -- install --enable-flakes --no-confirm
+fi
