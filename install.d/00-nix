@@ -5,3 +5,5 @@ else
     curl -sSf -L https://install.lix.systems/lix \
         | sh -s -- install --enable-flakes --no-confirm
 fi
+
+nix run nix-darwin -- switch --flake nix-darwin-flake.nix
