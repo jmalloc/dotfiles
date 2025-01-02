@@ -74,7 +74,8 @@
       };
 
       programs.direnv.enable = true;
-      programs.zsh.interactiveShellInit = "eval \"$(grit shell-integration)\"";
+
+      programs.zsh.interactiveShellInit = "eval \"$(grit shell-integration)\"\n";
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
