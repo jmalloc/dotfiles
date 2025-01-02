@@ -14,10 +14,13 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
+        pkgs._1password-cli
+        pkgs._1password-gui
         pkgs.awscli
         pkgs.evans
         pkgs.git
         pkgs.go
+        pkgs.google-chrome
         pkgs.graphviz
         pkgs.jq
         pkgs.kubectl
@@ -26,11 +29,22 @@
         pkgs.less # required for the --quit-if-one-screen option to work properly
         pkgs.mob
         pkgs.pgcli
+        pkgs.slack
         pkgs.terraform
         pkgs.unixtools.watch
         pkgs.vale
         pkgs.vim
+        pkgs.vscode
+        pkgs.zoom-us
       ];
+
+      homebrew = {
+        enable = true;
+        onActivation.cleanup = "zap";
+        casks = [
+          "around"
+        ];
+      };
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
