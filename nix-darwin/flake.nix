@@ -84,15 +84,15 @@
         };
       };
 
-      # power = {
-      #   restartAfterPowerFailure = true;
-      #   restartAfterFreeze = true;
+      power = {
+        restartAfterPowerFailure = true;
+        restartAfterFreeze = true;
 
-      #   sleep = {
-      #     computer = "never";
-      #     display = "never";
-      #   };
-      # };
+        sleep = {
+          computer = "never";
+          display = "never";
+        };
+      };
 
       # programs.zsh = {
       #   variables = {
