@@ -14,8 +14,6 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
-        pkgs._1password-cli
-        pkgs._1password-gui
         pkgs.awscli
         pkgs.evans
         pkgs.git
@@ -41,9 +39,17 @@
       homebrew = {
         enable = true;
         onActivation.cleanup = "zap";
+
         casks = [
+          "1password"
+          "1password-cli"
           "around"
         ];
+
+        masApps = {
+          "magnet" = 441258766;
+          "parcel" = 639968404;
+        };
       };
 
       # Necessary for using flakes on this system.
