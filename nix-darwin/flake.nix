@@ -64,6 +64,7 @@
           "1password"
           "1password-cli"
           "around"
+          "betterdisplay"
           "slack"
         ];
 
