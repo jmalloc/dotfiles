@@ -1,18 +1,12 @@
 cask_args appdir: "/Applications"
 
-tap "datawire/blackbird"
 tap "homebrew/cask-fonts"
-tap "jmalloc/grit"
-tap "remotemobprogramming/brew"
 
 # Install Binaries
 brew "clang-format" # needed for VSCode protobuf extension to support formatting
 brew "composer"
-brew "grit"
-brew "mas"
 brew "node"
 brew "php"
-brew "telepresence-arm64"
 brew "yarn"
 
 # Install Apps

@@ -85,6 +85,19 @@
         };
       };
 
+      environment.shellAliases = {
+        d  = "docker";
+        e  = "code .";
+        g  = "git";
+        h  = "helm";
+        k  = "kubectl";
+        m  = "make";
+        tf = "terraform";
+        tp = "telepresence";
+        ls = "ls -lhG";
+        la = "ls -lhGa";
+      };
+
       programs.zsh = {
         variables = {
           SSH_AUTH_SOCK = "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
