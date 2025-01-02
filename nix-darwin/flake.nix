@@ -85,6 +85,19 @@
         };
       };
 
+      programs.zsh = {
+        variables = {
+          SSH_AUTH_SOCK = "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+        };
+      };
+
+      programs.ssh = {
+        extraConfig = ''
+          Host *
+            IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+        '';
+      };
+
       power = {
         restartAfterPowerFailure = true;
         restartAfterFreeze = true;
@@ -94,12 +107,6 @@
           display = "never";
         };
       };
-
-      # programs.zsh = {
-      #   variables = {
-      #     SSH_AUTH_SOCK = "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
-      #   };
-      # };
 
       system.defaults = {
         NSGlobalDomain = {
