@@ -75,7 +75,47 @@
 
       programs.direnv.enable = true;
 
-      programs.zsh.interactiveShellInit = "eval \"$(grit shell-integration)\"\n";
+      environment.etc = {
+        "zshrc.local" = {
+          enable = true;
+          text = ''
+            eval "$(grit shell-integration)"
+          '';
+        };
+      };
+
+      # power = {
+      #   restartAfterPowerFailure = true;
+      #   restartAfterFreeze = true;
+
+      #   sleep = {
+      #     computer = "never";
+      #     display = "never";
+      #   };
+      # };
+
+      # programs.zsh = {
+      #   variables = {
+      #     SSH_AUTH_SOCK = "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+      #   };
+      # };
+
+      # system.defaults = {
+      #   NSGlobalDomain = {
+      #     AppleKeyboardUIMode = 3;
+      #     "com.apple.keyboard.fnState" = true;
+
+      #     ApplePressAndHoldEnabled = false;
+      #     InitialKeyRepeat = 15;
+      #     KeyRepeat = 2;
+
+      #     NSAutomaticCapitalizationEnabled = false;
+      #     NSAutomaticDashSubstitutionEnabled = false;
+      #     NSAutomaticPeriodSubstitutionEnabled = false;
+      #     NSAutomaticQuoteSubstitutionEnabled = false;
+      #     NSAutomaticSpellingCorrectionEnabled = false;
+      #   };
+      # };
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
