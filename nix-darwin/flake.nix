@@ -153,6 +153,13 @@
           NSAutomaticQuoteSubstitutionEnabled = false;
           NSAutomaticSpellingCorrectionEnabled = false;
         };
+
+        dock = {
+          static-only = true;
+          persistent-apps = [];
+          autohide = true;
+          autohide-delay = 1000.0; # "disable" the dock
+        };
       };
 
       # Necessary for using flakes on this system.
