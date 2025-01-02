@@ -45,7 +45,10 @@
 
       homebrew = {
         enable = true;
+
         onActivation.cleanup = "zap";
+        onActivation.autoUpdate = true;
+        onActivation.upgrade = true;
 
         casks = [
           "1password"
@@ -58,6 +61,8 @@
           "parcel" = 639968404;
         };
       };
+
+      programs.direnv.enable = true;
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
