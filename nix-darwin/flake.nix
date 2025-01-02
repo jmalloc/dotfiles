@@ -34,7 +34,6 @@
         pkgs.less # required for the --quit-if-one-screen option to work properly
         pkgs.mob
         pkgs.pgcli
-        pkgs.slack
         pkgs.terraform
         pkgs.unixtools.watch
         pkgs.vale
