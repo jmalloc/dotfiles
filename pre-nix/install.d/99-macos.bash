@@ -21,26 +21,6 @@ defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
 ### KEYBOARD ###################################################################
 
-# Disable press-and-hold for keys in favor of key repeat
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-
-# Set a short initial delay and fast repeat rate
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
-defaults write NSGlobalDomain KeyRepeat -int 2
-
-# Enable full keyboard access for all controls (tab through inputs, etc)
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
-
-# Use function keys as actual function keys
-defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
-
-# Disable auto correct and other substitutions
-defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
-defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
-defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-
 # Disable auto correct and other substitutions in Message.app.
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
