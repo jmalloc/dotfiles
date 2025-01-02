@@ -21,9 +21,5 @@ brew "yarn"
 # Install Apps
 cask "docker"
 
-# Install Apps form the App Store
-mas "Magnet", id: 441258766
-mas "Parcel", id: 639968404
-
 # Install Fonts
 cask "font-meslo-for-powerline"

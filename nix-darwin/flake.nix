@@ -7,9 +7,16 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+  outputs = inputs@{
+    self,
+    nix-darwin,
+    nixpkgs,
+    mac-app-util,
+    nix-homebrew,
+  }:
   let configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
@@ -75,6 +82,7 @@
     darwinConfigurations.common = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
+        mac-app-util.darwinModules.default
         nix-homebrew.darwinModules.nix-homebrew
         {
           nix-homebrew = {
