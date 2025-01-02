@@ -50,6 +50,10 @@
         onActivation.autoUpdate = true;
         onActivation.upgrade = true;
 
+        brews = [
+          "adr-tools"
+        ];
+
         casks = [
           "1password"
           "1password-cli"
