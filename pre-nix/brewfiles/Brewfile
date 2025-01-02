@@ -6,10 +6,8 @@ tap "jmalloc/grit"
 tap "remotemobprogramming/brew"
 
 # Install Binaries
-brew "adr-tools"
 brew "clang-format" # needed for VSCode protobuf extension to support formatting
 brew "composer"
-brew "direnv"
 brew "grit"
 brew "mas"
 brew "node"

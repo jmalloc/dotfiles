@@ -50,8 +50,15 @@
         onActivation.autoUpdate = true;
         onActivation.upgrade = true;
 
+        taps = [
+          "datawire/blackbird"
+          "jmalloc/grit"
+        ];
+
         brews = [
           "adr-tools"
+          "datawire/blackbird/telepresence-arm64"
+          "jmalloc/grit/grit"
         ];
 
         casks = [
