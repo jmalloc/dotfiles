@@ -1,0 +1,3 @@
+[
+  "$(go env GOPATH)/bin"
+]

@@ -12,15 +12,17 @@
 
   brews = [
     "adr-tools"
+    "clang-format" # needed for VSCode protobuf extension to support formatting
     "datawire/blackbird/telepresence-arm64"
     "jmalloc/grit/grit"
   ];
 
   casks = [
-    "1password"
     "1password-cli"
+    "1password"
     "around"
     "betterdisplay"
+    "docker" # Docker Desktop
     "slack"
   ];
 

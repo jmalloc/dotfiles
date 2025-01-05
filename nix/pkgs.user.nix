@@ -1,0 +1,20 @@
+{ pkgs }:
+[
+  pkgs.awscli
+  pkgs.evans
+  pkgs.go
+  pkgs.graphviz
+  pkgs.jq
+  pkgs.kubectl
+  pkgs.kubectx
+  pkgs.kubernetes-helm
+  pkgs.mob
+  pkgs.nixpkgs-fmt
+  pkgs.nodejs
+  pkgs.pgcli
+  pkgs.terraform
+  pkgs.vale
+  pkgs.vscode
+  pkgs.yarn
+  pkgs.zoom-us
+]

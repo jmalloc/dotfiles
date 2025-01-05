@@ -32,16 +32,8 @@
           home = "/Users/james";
         };
 
-        environment.systemPackages = [
-          pkgs.git
-          pkgs.google-chrome
-          pkgs.less # GNU less is required for the --quit-if-one-screen option to work properly
-          pkgs.nixpkgs-fmt
-          pkgs.unixtools.watch
-          pkgs.vim
-        ];
-
-        homebrew = import ./brew.nix;
+        environment.systemPackages = import ./pkgs.system.nix { inherit pkgs; };
+        homebrew = import ./pkgs.brew.nix;
 
         programs.direnv.enable = true;
 
