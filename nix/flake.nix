@@ -89,15 +89,6 @@
 
       programs.direnv.enable = true;
 
-      environment.etc = {
-        "zshrc.local" = {
-          enable = true;
-          text = ''
-            eval "$(grit shell-integration)"
-          '';
-        };
-      };
-
       environment.shellAliases = {
         d  = "docker";
         e  = "code .";
