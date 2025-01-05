@@ -33,59 +33,15 @@
         };
 
         environment.systemPackages = [
-          pkgs.nixpkgs-fmt
-          pkgs.awscli
-          pkgs.evans
           pkgs.git
-          pkgs.go
           pkgs.google-chrome
-          pkgs.graphviz
-          pkgs.jq
-          pkgs.kubectl
-          pkgs.kubectx
-          pkgs.kubernetes-helm
           pkgs.less # GNU less is required for the --quit-if-one-screen option to work properly
-          pkgs.mob
-          pkgs.pgcli
-          pkgs.terraform
+          pkgs.nixpkgs-fmt
           pkgs.unixtools.watch
-          pkgs.vale
           pkgs.vim
-          pkgs.vscode
-          pkgs.zoom-us
         ];
 
-        homebrew = {
-          enable = true;
-
-          onActivation.cleanup = "zap";
-          onActivation.autoUpdate = true;
-          onActivation.upgrade = true;
-
-          taps = [
-            "datawire/blackbird"
-            "jmalloc/grit"
-          ];
-
-          brews = [
-            "adr-tools"
-            "datawire/blackbird/telepresence-arm64"
-            "jmalloc/grit/grit"
-          ];
-
-          casks = [
-            "1password"
-            "1password-cli"
-            "around"
-            "betterdisplay"
-            "slack"
-          ];
-
-          masApps = {
-            "magnet" = 441258766;
-            "parcel" = 639968404;
-          };
-        };
+        homebrew = import ./brew.nix;
 
         programs.direnv.enable = true;
 
