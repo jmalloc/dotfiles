@@ -1,6 +1,6 @@
 {
-    enable = true;
-    initExtra = ''
-        eval "$(grit shell-integration)"
-    '';
+  enable = true;
+  initExtra = ''
+    eval "$(grit shell-integration)"
+  '';
 }
