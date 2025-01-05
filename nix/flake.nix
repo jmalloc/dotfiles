@@ -26,6 +26,11 @@
     home-manager,
   }:
   let configuration = { pkgs, ... }: {
+    users.users.james = {
+      name = "james";
+      home = "/Users/james";
+    };
+
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
