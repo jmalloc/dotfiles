@@ -32,6 +32,7 @@
   programs = {
     git = import ./program.git.nix;
     ssh = import ./program.ssh.nix;
+    starship = import ./program.starship.nix;
     zsh = import ./program.zsh.nix;
   };
 }
