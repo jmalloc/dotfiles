@@ -22,6 +22,7 @@
     core = {
       autocrlf = "input";
       whitespace = "trailing-space,space-before-tab,tabwidth=4";
+      editor = "code --wait";
     };
 
     diff = {
