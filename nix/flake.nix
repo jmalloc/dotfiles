@@ -19,8 +19,8 @@
 
   outputs =
     inputs@{ self
-    , nix-darwin
     , nixpkgs
+    , nix-darwin
     , mac-app-util
     , nix-homebrew
     , home-manager

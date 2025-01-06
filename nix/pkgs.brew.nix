@@ -6,12 +6,14 @@
   onActivation.upgrade = true;
 
   taps = [
+    "betsecure/tap"
     "datawire/blackbird"
     "jmalloc/grit"
   ];
 
   brews = [
     "adr-tools"
+    "betsecure/tap/bescuttle"
     "clang-format" # needed for VSCode protobuf extension to support formatting
     "datawire/blackbird/telepresence-arm64"
     "jmalloc/grit/grit"

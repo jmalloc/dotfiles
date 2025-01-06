@@ -1,6 +1,6 @@
 { pkgs }:
 [
-  pkgs.awscli
+  pkgs.awscli2
   pkgs.evans
   pkgs.go
   pkgs.graphviz

@@ -13,9 +13,16 @@
     shellAliases = import ./shell.aliases.nix;
 
     file = {
+      aws = {
+        enable = true;
+        source = ./config/aws;
+        target = ".aws/config";
+        force = true;
+      };
+
       ghostty = {
         enable = true;
-        source = ./ghostty.config;
+        source = ./config/ghostty;
         target = "Library/Application\ Support/com.mitchellh.ghostty/config";
         force = true;
       };
