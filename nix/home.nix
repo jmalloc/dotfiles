@@ -11,6 +11,15 @@
     sessionPath = import ./shell.path.nix;
     sessionVariables = import ./shell.env.nix;
     shellAliases = import ./shell.aliases.nix;
+
+    file = {
+      ghostty = {
+        enable = true;
+        source = ./ghostty.config;
+        target = "Library/Application\ Support/com.mitchellh.ghostty/config";
+        force = true;
+      };
+    };
   };
 
   programs = {

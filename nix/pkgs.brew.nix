@@ -23,6 +23,7 @@
     "around"
     "betterdisplay"
     "docker" # Docker Desktop
+    "ghostty" # ghostty is in Nix packages, but it's marked as broken on Darwin
     "slack"
   ];
 
