@@ -23,8 +23,8 @@
 
     custom.git_wip = {
       require_repo = true;
-      symbol = "🚧 WORK IN PROGRESS";
-      style = "bold red";
+      symbol = "🚧 WORK IN PROGRESS ";
+      style = "red";
       when = "grep WIP <(git log -n 1 --pretty=%B)";
     };
   };
