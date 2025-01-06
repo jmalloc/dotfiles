@@ -88,6 +88,25 @@
     "go.work.sum"
   ];
 
+  includes = [
+    {
+      condition = "hasconfig:remote.*.url:git@github.com:airdial/**";
+      contents.user.email = "james@airdial.com";
+    }
+    {
+      condition = "hasconfig:remote.*.url:https://github.com/airdial/**";
+      contents.user.email = "james@airdial.com";
+    }
+    {
+      condition = "hasconfig:remote.*.url:git@github.com:betsecure/**";
+      contents.user.email = "james.harris@betsecure.com";
+    }
+    {
+      condition = "hasconfig:remote.*.url:https://github.com/betsecure/**";
+      contents.user.email = "james.harris@betsecure.com";
+    }
+  ];
+
   aliases = {
     # --------------------------------------------------------------------------
     # DIFF ALIASES
