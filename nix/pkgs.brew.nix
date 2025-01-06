@@ -23,6 +23,7 @@
     "1password-cli"
     "1password"
     "around"
+    "autodesk-fusion"
     "betterdisplay"
     "docker" # Docker Desktop
     "ghostty" # ghostty is in Nix packages, but it's marked as broken on Darwin
