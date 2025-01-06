@@ -30,6 +30,7 @@
   };
 
   programs = {
+    bat = import ./program.bat.nix;
     git = import ./program.git.nix;
     ssh = import ./program.ssh.nix;
     starship = import ./program.starship.nix;

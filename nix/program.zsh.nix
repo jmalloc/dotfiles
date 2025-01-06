@@ -1,6 +1,12 @@
 {
   enable = true;
-  initExtra = ''
-    eval "$(grit shell-integration)"
-  '';
+  initExtra = builtins.readFile ./config/zshrc;
+
+  autosuggestion = {
+    enable = true;
+  };
+
+  syntaxHighlighting = {
+    enable = true;
+  };
 }

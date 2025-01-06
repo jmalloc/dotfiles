@@ -1,0 +1,11 @@
+bindkey "${terminfo[khome]}" beginning-of-line
+bindkey "${terminfo[kend]}"  end-of-line
+bindkey "${terminfo[kdch1]}" delete-char
+
+function zle-line-init () { echoti smkx; }  # enter application mode (make home/end work)
+function zle-line-finish () { echoti rmkx; } # exit application mode
+
+zle -N zle-line-init
+zle -N zle-line-finish
+
+eval "$(grit shell-integration)"
