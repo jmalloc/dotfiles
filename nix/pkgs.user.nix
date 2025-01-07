@@ -15,6 +15,8 @@
   pkgs.terraform
   pkgs.vale
   pkgs.vscode
+  pkgs.wabt
+  pkgs.wasmer
   pkgs.yarn
   pkgs.zoom-us
 ]
