@@ -25,7 +25,6 @@
   home.shellAliases = {
     b = "bsctl";
     d = "docker";
-    m = "make";
     tp = "telepresence";
   };
 
@@ -37,6 +36,7 @@
     ./home/go.nix
     ./home/k8s.nix
     ./home/less.nix
+    ./home/make.nix
     ./home/ssh.nix
     ./home/starship.nix
     ./home/terraform.nix
