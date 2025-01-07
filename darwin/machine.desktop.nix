@@ -7,7 +7,13 @@
       computer = "never";
       display = "never";
     };
+  };
 
-    # TODO: Remove Wi-Fi icon from the menu bar.
+  system.defaults = {
+    CustomUserPreferences = {
+      "~/Library/Preferences/ByHost/com.apple.controlcenter" = {
+        "WiFi" = 24; # 24 == hide (of course!)
+      };
+    };
   };
 }
