@@ -58,7 +58,13 @@ let
   ];
 in
 {
-  Mac = nix-darwin.lib.darwinSystem {
+  # M4 Mac mini
+  "3571D32A-50AE-5E84-B982-06A591BBDD20" = nix-darwin.lib.darwinSystem {
+    modules = modules ++ [ (import ./darwin/machine.desktop.nix) ];
+  };
+
+  # M1 Mac mini
+  "EBCF8D9B-0E58-56ED-806F-D314B2761BB4" = nix-darwin.lib.darwinSystem {
     modules = modules ++ [ (import ./darwin/machine.desktop.nix) ];
   };
 

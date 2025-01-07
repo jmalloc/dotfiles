@@ -1,1 +1,1 @@
-nix run nix-darwin -- switch --flake ".#$(sysctl -n hw.model | egrep -io '^[a-z]+')"
+make switch

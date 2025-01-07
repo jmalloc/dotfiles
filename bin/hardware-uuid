@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+
+system_profiler SPHardwareDataType | grep "Hardware UUID" | egrep -io '([a-z0-9-]{36})'
