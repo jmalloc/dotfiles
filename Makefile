@@ -1,3 +1,3 @@
-.PHONY: nix
-nix:
-	nix run nix-darwin -- switch --flake ./nix#common
+.PHONY: try
+switch:
+	nix run nix-darwin -- switch --flake .#$$(sysctl -n hw.model | egrep -io '^[a-z]+')

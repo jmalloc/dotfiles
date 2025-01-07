@@ -1,6 +1,6 @@
 {
   enable = true;
-  initExtra = builtins.readFile ./config/zshrc;
+  initExtra = builtins.readFile ../home/zshrc;
 
   autosuggestion = {
     enable = true;

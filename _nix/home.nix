@@ -15,14 +15,14 @@
     file = {
       aws = {
         enable = true;
-        source = ./config/aws;
+        source = ../home/aws;
         target = ".aws/config";
         force = true;
       };
 
       ghostty = {
         enable = true;
-        source = ./config/ghostty;
+        source = ../home/ghostty;
         target = "Library/Application\ Support/com.mitchellh.ghostty/config";
         force = true;
       };
