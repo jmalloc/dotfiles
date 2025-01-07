@@ -36,9 +36,12 @@ let
 
     home-manager.darwinModules.home-manager
     {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.${user.name} = import ./home.nix;
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        sharedModules = [ mac-app-util.homeManagerModules.default ];
+        users.${user.name} = import ./home.nix;
+      };
     }
 
     nix-homebrew.darwinModules.nix-homebrew

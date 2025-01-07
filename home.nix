@@ -6,7 +6,7 @@
   # import list below.
   home.packages = [
     pkgs.evans
-    pkgs.google-chrome # TODO: does mac-app-util link this properly?
+    pkgs.google-chrome
     pkgs.graphviz
     pkgs.jq
     pkgs.mob
