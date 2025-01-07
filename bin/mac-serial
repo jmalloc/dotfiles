@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+
+system_profiler SPHardwareDataType | grep "Serial" | egrep -o '([A-Z0-9]+)$'

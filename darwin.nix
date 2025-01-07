@@ -59,16 +59,26 @@ let
 in
 {
   # M4 Mac mini
-  "3571D32A-50AE-5E84-B982-06A591BBDD20" = nix-darwin.lib.darwinSystem {
-    modules = modules ++ [ (import ./darwin/machine.desktop.nix) ];
+  "XLHWC6CH2D" = nix-darwin.lib.darwinSystem {
+    modules = modules ++ [
+      (import ./darwin/machine.desktop.nix)
+      { networking.hostName = "studio-mac"; }
+    ];
   };
 
   # M1 Mac mini
-  "EBCF8D9B-0E58-56ED-806F-D314B2761BB4" = nix-darwin.lib.darwinSystem {
-    modules = modules ++ [ (import ./darwin/machine.desktop.nix) ];
+  "C07G60W2Q6P0" = nix-darwin.lib.darwinSystem {
+    modules = modules ++ [
+      (import ./darwin/machine.desktop.nix)
+      { networking.hostName = "workshop-mac"; }
+    ];
   };
 
-  MacBookPro = nix-darwin.lib.darwinSystem {
-    modules = modules ++ [ (import ./darwin/machine.laptop.nix) ];
+  # MacBook Pro
+  "H34L3QX9TT" = nix-darwin.lib.darwinSystem {
+    modules = modules ++ [
+      (import ./darwin/machine.laptop.nix)
+      { networking.hostName = "james-mpb"; }
+    ];
   };
 }
