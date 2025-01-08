@@ -9,6 +9,7 @@
     pkgs.google-chrome
     pkgs.graphviz
     pkgs.jq
+    pkgs.kcl
     pkgs.mob
     pkgs.nixpkgs-fmt
     pkgs.nodejs
