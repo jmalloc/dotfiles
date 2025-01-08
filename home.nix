@@ -19,6 +19,7 @@
     pkgs.wabt
     pkgs.wasmer
     pkgs.yarn
+    pkgs.yq-go
     pkgs.zoom-us
   ];
 
