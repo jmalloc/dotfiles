@@ -6,6 +6,7 @@
   # import list below.
   home.packages = [
     pkgs.evans
+    pkgs.gh
     pkgs.google-chrome
     pkgs.graphviz
     pkgs.jq
