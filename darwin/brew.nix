@@ -9,6 +9,7 @@
     taps = [
       "betsecure/tap"
       "datawire/blackbird"
+      "hashicorp/tap"
       "jmalloc/grit"
     ];
 
@@ -17,6 +18,7 @@
       "betsecure/tap/bescuttle" # TODO: Install as Nix package.
       "clang-format" # For formatting .proto files in Visual Studio Code
       "datawire/blackbird/telepresence-arm64" # TODO: Try Nix package.
+      "hashicorp/tap/tfstacks" # No Nix package.
       "jmalloc/grit/grit" # No Nix package.
     ];
 
