@@ -20,6 +20,7 @@
       "datawire/blackbird/telepresence-arm64" # TODO: Try Nix package.
       "hashicorp/tap/tfstacks" # No Nix package.
       "jmalloc/grit/grit" # No Nix package.
+      "vsce" # No Nix package.
     ];
 
     casks = [
