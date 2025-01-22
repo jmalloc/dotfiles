@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   programs.ssh = {
     knownHosts = {
       github_ed25519 = {

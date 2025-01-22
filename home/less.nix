@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home = {
     # GNU less is required for the --quit-if-one-screen option to work properly.
     packages = [ pkgs.less ];

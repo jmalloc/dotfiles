@@ -1,9 +1,10 @@
-{ self
-, nix-darwin
-, mac-app-util
-, home-manager
-, nix-homebrew
-, ...
+{
+  self,
+  nix-darwin,
+  mac-app-util,
+  home-manager,
+  nix-homebrew,
+  ...
 }:
 let
   user = {
@@ -21,7 +22,9 @@ let
 
       nixpkgs = {
         hostPlatform = "aarch64-darwin";
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+        };
       };
 
       system = {

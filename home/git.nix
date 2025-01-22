@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   home = {
     shellAliases = {
       g = "git";
@@ -202,7 +203,6 @@
       #   Removes all staged and unstaged changes and removes any untracked
       #   files.
       destroy = "!echo 'Destroying all uncomitted changes in 3 seconds...' && sleep 3 && git restore --staged . && git restore --worktree . && git clean --force -d";
-
 
       # --------------------------------------------------------------------------
       # PUSH & PULL ALIASES

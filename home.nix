@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home = {
     # These packages do not require any additional configuration.
     #
@@ -13,7 +14,7 @@
       pkgs.jq
       pkgs.kcl
       pkgs.mob
-      pkgs.nixpkgs-fmt
+      pkgs.nixfmt-rfc-style
       pkgs.nodejs
       pkgs.pgcli
       pkgs.unixtools.watch

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   homebrew = {
     enable = true;
 
@@ -31,6 +32,7 @@
       "betterdisplay" # No nix package (macOS specific).
       "docker" # Docker Desktop
       "ghostty" # Nix package is marked as broken on Darwin
+      "live-home-3d" # No Nix package.
       "slack" # Nix package didn't allow loading slack:// links from Safari
     ];
 
