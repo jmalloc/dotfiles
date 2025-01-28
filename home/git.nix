@@ -263,7 +263,7 @@
       #
       b = "branch";
       sw = "switch";
-      nb = "switch --create ; nb = new branch";
+      nb = "switch --create";
 
       ff = "merge --ff-only";
 
