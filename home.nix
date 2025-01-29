@@ -41,6 +41,7 @@
   imports = [
     ./home/aws.nix
     ./home/bat.nix
+    ./home/direnv.nix
     ./home/ghostty.nix
     ./home/git.nix
     ./home/go.nix

@@ -10,6 +10,10 @@
 
       direnv = {
         disabled = false;
+        loaded_msg = "ok";
+        unloaded_msg = "";
+        allowed_msg = "";
+        format = "[$symbol$loaded$allowed]($style) ";
       };
 
       git_commit = {
