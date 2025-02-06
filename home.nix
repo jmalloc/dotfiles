@@ -17,6 +17,7 @@
       pkgs.nixfmt-rfc-style
       pkgs.nodejs
       pkgs.pgcli
+      pkgs.protobuf # for protoc
       pkgs.unixtools.watch
       pkgs.vale
       pkgs.wabt
