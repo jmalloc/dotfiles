@@ -12,6 +12,7 @@
       "datawire/blackbird"
       "hashicorp/tap"
       "jmalloc/grit"
+      "kcl-lang/tap"
     ];
 
     brews = [
@@ -21,6 +22,7 @@
       "datawire/blackbird/telepresence-arm64" # TODO: Try Nix package.
       "hashicorp/tap/tfstacks" # No Nix package.
       "jmalloc/grit/grit" # No Nix package.
+      "kcl-lang/tap/kcl-lsp" # No Nix package.
       "vsce" # No Nix package.
     ];
 
