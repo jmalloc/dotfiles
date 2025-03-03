@@ -12,6 +12,7 @@
       pkgs.google-chrome
       pkgs.graphviz
       pkgs.jq
+      pkgs.jwt-cli
       pkgs.kcl
       pkgs.mob
       pkgs.nixfmt-rfc-style
