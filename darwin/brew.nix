@@ -9,7 +9,6 @@
 
     taps = [
       "betsecure/tap"
-      "datawire/blackbird"
       "hashicorp/tap"
       "jmalloc/grit"
       "kcl-lang/tap"
@@ -17,9 +16,9 @@
 
     brews = [
       "adr-tools" # No Nix package. TODO: Try "adrs" Nix package.
-      "betsecure/tap/bescuttle" # TODO: Install as Nix package.
+      "betsecure/tap/bescuttle"
+      "betsecure/tap/telepresence"
       "clang-format" # For formatting .proto files in Visual Studio Code
-      "datawire/blackbird/telepresence-arm64" # TODO: Try Nix package.
       "hashicorp/tap/tfstacks" # No Nix package.
       "jmalloc/grit/grit" # No Nix package.
       "kcl-lang/tap/kcl-lsp" # No Nix package.
