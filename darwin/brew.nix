@@ -33,10 +33,8 @@
       "betterdisplay" # No nix package (macOS specific).
       "coscreen" # No Nix package.
       "docker" # Docker Desktop
-      "drovio" # No Nix package.
       "ghostty" # Nix package is marked as broken on Darwin
       "live-home-3d" # No Nix package.
-      "pop" # No Nix package.
       "slack" # Nix package didn't allow loading slack:// links from Safari
     ];
 

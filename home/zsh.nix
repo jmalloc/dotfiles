@@ -10,7 +10,7 @@
   programs.zsh = {
     enable = true;
 
-    initExtra = builtins.readFile ./zshrc;
+    initContent = builtins.readFile ./zshrc;
 
     autosuggestion = {
       enable = true;

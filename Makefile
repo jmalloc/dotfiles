@@ -1,11 +1,16 @@
 SERIAL ?= $(shell bin/mac-serial)
 
-.PHONY: try
-switch:
+.PHONY: install
+install: update switch
+
+.PHONY: update
+update:
 	nix flake update
+
+.PHONY: switch
+switch:
 	nix run nix-darwin -- switch --flake .#$(SERIAL)
 
-.PHONY: try
+.PHONY: build
 build:
-	nix flake update
 	nix run nix-darwin -- build --flake .#$(SERIAL)
