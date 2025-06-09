@@ -1,28 +1,2 @@
-[sso-session BetSecure]
-sso_start_url = https://betsecure.awsapps.com/start
-sso_region = ap-southeast-2
-sso_registration_scopes = sso:account:access
-
 [default]
-sso_session = BetSecure
-sso_account_id = 707276723221
-sso_role_name = principal@dev
-region = ap-southeast-2
-s3 = multipart_threshold = 640MB
-
-[profile internal]
-sso_session = BetSecure
-sso_account_id = 639431410716
-sso_role_name = principal@internal
-
-[profile sandbox]
-sso_session = BetSecure
-sso_account_id = 539446012985
-sso_role_name = principal@sandbox
-region = ap-southeast-2
-
-[profile management]
-sso_session = BetSecure
-sso_account_id = 899784315230
-sso_role_name = principal@main
 region = ap-southeast-2

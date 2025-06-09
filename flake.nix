@@ -21,7 +21,6 @@
     # https://github.com/zhaofengli/nix-homebrew
     nix-homebrew = {
       url = "github:zhaofengli-wip/nix-homebrew";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # https://github.com/hraban/mac-app-util

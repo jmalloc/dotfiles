@@ -28,6 +28,7 @@ let
       };
 
       system = {
+        primaryUser = user.name;
         configurationRevision = self.rev or self.dirtyRev or null;
         stateVersion = 5;
       };

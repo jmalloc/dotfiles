@@ -11,7 +11,7 @@
 
   system.defaults = {
     CustomUserPreferences = {
-      "~/Library/Preferences/ByHost/com.apple.controlcenter" = {
+      "/Users/james/Library/Preferences/ByHost/com.apple.controlcenter" = {
         "WiFi" = 24; # 24 == hide (of course!)
       };
     };

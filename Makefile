@@ -9,7 +9,8 @@ update:
 
 .PHONY: switch
 switch:
-	nix run nix-darwin -- switch --flake .#$(SERIAL)
+	sudo mkdir -p /tmp/nix-home
+	HOME=/tmp/nix-home sudo nix run nix-darwin -- switch --flake .#$(SERIAL)
 
 .PHONY: build
 build:
