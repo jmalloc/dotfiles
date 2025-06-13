@@ -27,6 +27,7 @@
       "1password" # Nix package is marked as broken.
       "autodesk-fusion" # No nix package.
       "betterdisplay" # No nix package (macOS specific).
+      "coscreen" # No Nix package.
       "docker" # Docker Desktop
       "ghostty" # Nix package is marked as broken on Darwin
       "live-home-3d" # No Nix package.
