@@ -30,6 +30,7 @@
       "coscreen" # No Nix package.
       "docker" # Docker Desktop
       "ghostty" # Nix package is marked as broken on Darwin
+      "inkscape" # Nix package crashes.
       "live-home-3d" # No Nix package.
       "slack" # Nix package didn't allow loading slack:// links from Safari
     ];
