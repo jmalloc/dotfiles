@@ -33,6 +33,7 @@
       "inkscape" # Nix package crashes.
       "live-home-3d" # No Nix package.
       "slack" # Nix package didn't allow loading slack:// links from Safari
+      "steam"
     ];
 
     masApps = {

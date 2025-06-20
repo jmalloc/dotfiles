@@ -17,7 +17,7 @@
       pkgs.mob
       pkgs.nixfmt-rfc-style
       pkgs.nodejs
-      pkgs.nodePackages.sass
+      pkgs.nodePackages.prettier
       pkgs.pgcli
       pkgs.protobuf # for protoc
       pkgs.unixtools.watch
