@@ -14,7 +14,6 @@
     signing = {
       signByDefault = true;
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILkD50Q6rwx1QUZm3tUYT6tDqp9MzRGeVWI16mp43Hg+";
-      signer = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
     };
 
     # https://github.com/dandavison/delta

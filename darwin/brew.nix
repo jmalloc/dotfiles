@@ -23,8 +23,6 @@
     ];
 
     casks = [
-      "1password-cli" # Nix package is marked as broken.
-      "1password" # Nix package is marked as broken.
       "autodesk-fusion" # No nix package.
       "betterdisplay" # No nix package (macOS specific).
       "coscreen" # No Nix package.
