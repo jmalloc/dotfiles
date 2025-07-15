@@ -26,7 +26,7 @@
       "autodesk-fusion" # No nix package.
       "betterdisplay" # No nix package (macOS specific).
       "coscreen" # No Nix package.
-      "docker" # Docker Desktop
+      "docker-desktop" # Docker Desktop
       "font-monaspace"
       "ghostty" # Nix package is marked as broken on Darwin
       "inkscape" # Nix package crashes.
