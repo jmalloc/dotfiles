@@ -42,6 +42,15 @@
         style = "red";
         when = "grep WIP <(git log -n 1 --pretty=%B)";
       };
+
+      custom.golang_workspace = {
+        symbol = "🏗️ GO WORKSPACE";
+        style = "yellow";
+        when = ''
+          gowork=$(go env GOWORK 2>/dev/null)
+          [ -n "$gowork" ] && [ "$gowork" != "off" ]
+        '';
+      };
     };
   };
 }
