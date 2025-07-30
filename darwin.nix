@@ -78,8 +78,16 @@ in
     ];
   };
 
-  # MacBook Pro
+  # MacBook Pro (Silver)
   "H34L3QX9TT" = nix-darwin.lib.darwinSystem {
+    modules = modules ++ [
+      (import ./darwin/machine.laptop.nix)
+      { networking.hostName = "james-mpb-old"; }
+    ];
+  };
+
+  # MacBook Pro (Black)
+  "J2XM7FJ26H" = nix-darwin.lib.darwinSystem {
     modules = modules ++ [
       (import ./darwin/machine.laptop.nix)
       { networking.hostName = "james-mpb"; }
