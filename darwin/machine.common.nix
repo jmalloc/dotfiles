@@ -67,7 +67,7 @@
   };
 
   system.activationScripts.extraActivation.text = lib.mkAfter ''
-    chmod 0440 /etc/sudoers.d/10-nix-darwin-extra-config
+    test -f /etc/sudoers.d/10-nix-darwin-extra-config && chmod 0440 /etc/sudoers.d/10-nix-darwin-extra-config
     sudo visudo --check --strict
   '';
 }
