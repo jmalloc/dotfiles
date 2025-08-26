@@ -12,6 +12,7 @@
       pkgs.google-chrome
       pkgs.graphviz
       pkgs.jq
+      pkgs.jre8
       pkgs.jwt-cli
       pkgs.kcl
       pkgs.mob
@@ -20,6 +21,7 @@
       pkgs.nodePackages.prettier
       pkgs.pgcli
       pkgs.protobuf # for protoc
+      pkgs.tableplus
       pkgs.unixtools.watch
       pkgs.vale
       pkgs.wabt
