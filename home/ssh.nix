@@ -2,13 +2,17 @@
 {
   programs.ssh = {
     enable = true;
-    addKeysToAgent = "yes";
+    enableDefaultConfig = false;
 
-    # Note that this configuration is placed into a "Host *" block, not at the
-    # "root" of the ssh config file.
+    matchBlocks = {
+      "*" = {
+        addKeysToAgent = "yes";
+        identityFile = "~/Library/Mobile\\ Documents/com~apple~CloudDocs/dotfiles/ssh/id_ed25519";
+      };
+    };
+
     extraConfig = ''
       UseKeychain yes
-      IdentityFile "~/Library/Mobile Documents/com~apple~CloudDocs/dotfiles/ssh/id_ed25519"
     '';
   };
 }
