@@ -166,6 +166,8 @@
       a = "add";
       aa = "add --all";
       ap = "add --all --patch";
+      r = "restore";
+      rp = "restore --patch";
 
       # unstage
       #
