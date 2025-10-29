@@ -8,16 +8,16 @@
     # import list below.
     packages = [
       pkgs.evans
+      pkgs.ffmpeg
       pkgs.gh
       pkgs.google-chrome
       pkgs.graphviz
       pkgs.jq
-      pkgs.jre8
       pkgs.jwt-cli
       pkgs.kcl
       pkgs.mob
-      pkgs.nixfmt-rfc-style
       pkgs.ngrok
+      pkgs.nixfmt-rfc-style
       pkgs.nodejs
       pkgs.nodePackages.prettier
       pkgs.pgcli
