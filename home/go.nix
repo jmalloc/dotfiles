@@ -6,5 +6,9 @@
     sessionPath = [
       "$(go env GOPATH)/bin"
     ];
+
+    sessionVariables = {
+      GOPRIVATE = "go.dialer.dev";
+    };
   };
 }
