@@ -22,6 +22,7 @@
       pkgs.nodePackages.prettier
       pkgs.pgcli
       pkgs.protobuf # for protoc
+      pkgs.sqlc
       pkgs.tableplus
       pkgs.unixtools.watch
       pkgs.vale
