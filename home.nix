@@ -21,6 +21,7 @@
       pkgs.nodejs
       pkgs.nodePackages.prettier
       pkgs.pgcli
+      pkgs.pnpm
       pkgs.protobuf # for protoc
       pkgs.sqlc
       pkgs.tableplus
