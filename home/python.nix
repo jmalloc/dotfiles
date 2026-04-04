@@ -2,8 +2,8 @@
 {
   home = {
     packages = [
-      pkgs.python311
-      pkgs.python311Packages.pip
+      pkgs.python314
+      pkgs.python314Packages.pip
     ];
   };
 }

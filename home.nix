@@ -10,7 +10,6 @@
       pkgs.evans
       pkgs.ffmpeg
       pkgs.gh
-      pkgs.google-chrome
       pkgs.graphviz
       pkgs.jq
       pkgs.jwt-cli
@@ -19,9 +18,9 @@
       pkgs.ngrok
       pkgs.nixfmt-rfc-style
       pkgs.nodejs
-      pkgs.nodePackages.prettier
       pkgs.pgcli
       pkgs.pnpm
+      pkgs.prettier
       pkgs.protobuf # for protoc
       pkgs.sqlc
       pkgs.tableplus
@@ -31,7 +30,6 @@
       pkgs.wasmer
       pkgs.yarn
       pkgs.yq-go
-      pkgs.zoom-us
     ];
 
     sessionVariables = {
