@@ -22,6 +22,7 @@
       pkgs.pnpm
       pkgs.prettier
       pkgs.protobuf # for protoc
+      pkgs.ripgrep
       pkgs.sqlc
       pkgs.tableplus
       pkgs.unixtools.watch
