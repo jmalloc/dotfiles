@@ -21,6 +21,7 @@
       "hashicorp/tap/tfstacks" # No Nix package.
       "jmalloc/grit/grit" # No Nix package.
       "kcl-lang/tap/kcl-lsp" # No Nix package.
+      "skills" # No Nix package.
       "twilio/brew/twilio" # CLI, no Nix package.
       "vsce" # No Nix package.
     ];
