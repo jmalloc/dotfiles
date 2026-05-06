@@ -7,6 +7,7 @@
     # variables, aliases, etc, then move it to a separate module and add it to the
     # import list below.
     packages = [
+      pkgs.claude-code
       pkgs.evans
       pkgs.ffmpeg
       pkgs.gh

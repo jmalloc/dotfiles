@@ -20,7 +20,9 @@
 
     # https://github.com/zhaofengli/nix-homebrew
     nix-homebrew = {
-      url = "github:zhaofengli-wip/nix-homebrew";
+      # url = "github:zhaofengli-wip/nix-homebrew";
+      # Pinned to 2026-01-26 to avoid masApps installation failure (https://github.com/zhaofengli/nix-homebrew/issues/131)
+      url = "github:zhaofengli/nix-homebrew/a5409abd0d5013d79775d3419bcac10eacb9d8c5";
     };
 
     # https://github.com/hraban/mac-app-util
