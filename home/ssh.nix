@@ -4,15 +4,10 @@
     enable = true;
     enableDefaultConfig = false;
 
-    matchBlocks = {
-      "*" = {
-        addKeysToAgent = "yes";
-        identityFile = "~/Library/Mobile\\ Documents/com~apple~CloudDocs/dotfiles/ssh/id_ed25519";
-      };
+    settings."*" = {
+      AddKeysToAgent = "yes";
+      IdentityFile = "~/Library/Mobile\\ Documents/com~apple~CloudDocs/dotfiles/ssh/id_ed25519";
+      UseKeychain = "yes";
     };
-
-    extraConfig = ''
-      UseKeychain yes
-    '';
   };
 }

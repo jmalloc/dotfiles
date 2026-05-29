@@ -4,7 +4,10 @@
     enable = true;
 
     onActivation.cleanup = "zap";
-    onActivation.autoUpdate = true;
+    # autoUpdate is disabled due to a bug in nix-homebrew's brew wrapper that
+    # breaks PATH handling after Homebrew's auto-update re-exec.
+    # See: https://github.com/zhaofengli/nix-homebrew/issues/131
+    onActivation.autoUpdate = false;
     onActivation.upgrade = true;
 
     taps = [

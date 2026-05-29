@@ -9,7 +9,7 @@
 
   inputs = {
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+      url = "github:NixOS/nixpkgs/nixos-26.05";
     };
 
     # https://github.com/LnL7/nix-darwin
@@ -20,9 +20,7 @@
 
     # https://github.com/zhaofengli/nix-homebrew
     nix-homebrew = {
-      # url = "github:zhaofengli-wip/nix-homebrew";
-      # Pinned to 2026-01-26 to avoid masApps installation failure (https://github.com/zhaofengli/nix-homebrew/issues/131)
-      url = "github:zhaofengli/nix-homebrew/a5409abd0d5013d79775d3419bcac10eacb9d8c5";
+      url = "github:zhaofengli/nix-homebrew";
     };
 
     # https://github.com/hraban/mac-app-util
@@ -34,7 +32,7 @@
 
     # https://github.com/nix-community/home-manager
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
