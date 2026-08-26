@@ -57,6 +57,7 @@ let
     }
 
     (import ./darwin/brew.nix)
+    (import ./darwin/mas.nix)
     (import ./darwin/ssh.nix)
     (import ./darwin/machine.common.nix)
   ];

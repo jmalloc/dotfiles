@@ -11,10 +11,22 @@
     onActivation.upgrade = true;
 
     taps = [
-      "hashicorp/tap"
-      "jmalloc/grit"
-      "kcl-lang/tap"
-      "twilio/brew"
+      {
+        name = "hashicorp/tap";
+        trusted = true;
+      }
+      {
+        name = "jmalloc/grit";
+        trusted = true;
+      }
+      {
+        name = "kcl-lang/tap";
+        trusted = true;
+      }
+      {
+        name = "twilio/brew";
+        trusted = true;
+      }
     ];
 
     brews = [
@@ -33,22 +45,13 @@
     casks = [
       "autodesk-fusion" # No nix package.
       "betterdisplay" # No nix package (macOS specific).
-      "coscreen" # No Nix package.
       "docker-desktop" # Docker Desktop
       "font-monaspace"
       "ghostty" # Nix package is marked as broken on Darwin
-      "inkscape" # Nix package crashes.
       "live-home-3d" # No Nix package.
       "slack" # Nix package didn't allow loading slack:// links from Safari
       "steam"
-      "voiceink"
     ];
 
-    masApps = {
-      "p-touch" = 1453365242;
-      "magnet" = 441258766;
-      "parcel" = 639968404;
-      "xcode" = 497799835;
-    };
   };
 }

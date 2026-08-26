@@ -48,6 +48,14 @@
         condition = "hasconfig:remote.*.url:https://github.com/airdial/**";
         contents.user.email = "james@airdial.com";
       }
+      {
+        condition = "hasconfig:remote.*.url:git@github.com:dialer-io/**";
+        contents.user.email = "james@dialer.io";
+      }
+      {
+        condition = "hasconfig:remote.*.url:https://github.com/dialer-io/**";
+        contents.user.email = "james@dialer.io";
+      }
     ];
 
     settings = {

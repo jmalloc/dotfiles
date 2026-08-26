@@ -9,7 +9,7 @@
 
   inputs = {
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-26.05";
+      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
 
     # https://github.com/LnL7/nix-darwin
@@ -27,12 +27,12 @@
     # Ensures macOS applications are indexed by Spotlight
     mac-app-util = {
       url = "github:hraban/mac-app-util";
-      # nixpkgs is pinned to some specific hash
+      # mac-app-util pins its own nixpkgs; inputs.nixpkgs.follows is not supported.
     };
 
     # https://github.com/nix-community/home-manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
