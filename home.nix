@@ -47,6 +47,7 @@
   };
 
   imports = [
+    ./home/apm.nix
     ./home/aws.nix
     ./home/bat.nix
     ./home/direnv.nix
