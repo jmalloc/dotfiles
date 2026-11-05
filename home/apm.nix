@@ -1,9 +1,13 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   # The global APM manifest. "apm install -g" installs these packages and
   # deploys them to each agent's user-level directory, such as ~/.claude/skills.
   # Projects install their own packages into their own directories, and agents
   # read both.
+  #
+  # "make switch" runs "apm install -g" after switching. It isn't run during
+  # activation, because fetching packages relies on the user's own environment,
+  # such as git, SSH and the keychain.
   manifest = {
     name = "global";
     version = "0.0.0";
@@ -15,23 +19,7 @@ let
       "mattpocock/skills/skills/productivity/grill-me#4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
     ];
   };
-
-  # Installed by Homebrew, see darwin/brew.nix.
-  apm = "/opt/homebrew/bin/apm";
 in
 {
   home.file.".apm/apm.yml".source = (pkgs.formats.yaml { }).generate "apm.yml" manifest;
-
-  # Install the packages listed in the manifest. A failure, such as being
-  # offline, doesn't stop the rest of the activation.
-  #
-  # Activation runs with a minimal PATH, and apm needs git to fetch packages.
-  home.activation.apmInstall = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
-    if [ -x ${apm} ]; then
-      run env PATH="${lib.makeBinPath [ pkgs.git ]}:$PATH" ${apm} install -g \
-        || warnEcho "apm install -g failed, run it manually"
-    else
-      warnEcho "apm is not installed, skipping apm install -g"
-    fi
-  '';
 }
