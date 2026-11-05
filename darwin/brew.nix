@@ -38,7 +38,6 @@
       "jmalloc/grit/grit" # No Nix package.
       "kcl-lang/tap/kcl-lsp" # No Nix package.
       "mise" # Nix package is much older.
-      "skills" # No Nix package.
       "twilio/brew/twilio" # CLI, no Nix package.
       "vsce" # No Nix package.
     ];
