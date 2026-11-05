@@ -24,9 +24,12 @@ in
 
   # Install the packages listed in the manifest. A failure, such as being
   # offline, doesn't stop the rest of the activation.
+  #
+  # Activation runs with a minimal PATH, and apm needs git to fetch packages.
   home.activation.apmInstall = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
     if [ -x ${apm} ]; then
-      run ${apm} install -g || warnEcho "apm install -g failed, run it manually"
+      run env PATH="${lib.makeBinPath [ pkgs.git ]}:$PATH" ${apm} install -g \
+        || warnEcho "apm install -g failed, run it manually"
     else
       warnEcho "apm is not installed, skipping apm install -g"
     fi
