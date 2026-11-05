@@ -31,6 +31,7 @@
 
     brews = [
       "adr-tools" # No Nix package. TODO: Try "adrs" Nix package.
+      "apm" # Nix package is much older.
       "awscli" # Nix package is an older version.
       "clang-format" # For formatting .proto files in Visual Studio Code
       "hashicorp/tap/tfstacks" # No Nix package.
