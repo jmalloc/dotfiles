@@ -1,5 +1,51 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 let
+  # The GitHub MCP server's tools that are enabled. Tools that modify anything
+  # are listed separately.
+  githubTools = [
+    "get_commit"
+    "get_copilot_job_status"
+    "get_file_contents"
+    "get_label"
+    "get_latest_release"
+    "get_me"
+    "get_release_by_tag"
+    "get_tag"
+    "get_team_members"
+    "get_teams"
+    "issue_read"
+    "list_branches"
+    "list_commits"
+    "list_issue_fields"
+    "list_issue_types"
+    "list_issues"
+    "list_pull_requests"
+    "list_releases"
+    "list_repository_collaborators"
+    "list_tags"
+    "pull_request_read"
+    "run_secret_scanning"
+    "search_code"
+    "search_commits"
+    "search_issues"
+    "search_pull_requests"
+    "search_repositories"
+    "search_users"
+    "ui_get"
+  ]
+  ++ [
+    "add_comment_to_pending_review"
+    "add_issue_comment"
+    "add_reply_to_pull_request_comment"
+    "create_pull_request"
+    "issue_write"
+    "pull_request_review_write"
+    "request_copilot_review"
+    "sub_issue_write"
+    "update_issue_comment"
+    "update_pull_request"
+  ];
+
   # The global APM manifest. "apm install -g" installs these packages and
   # deploys them to each agent's user-level directory, such as ~/.claude/skills.
   # Projects install their own packages into their own directories, and agents
@@ -12,12 +58,39 @@ let
     name = "global";
     version = "0.0.0";
     targets = [ "claude" ];
-    dependencies.apm = [
-      # Third-party skills are pinned to a commit, because skills run inside the
-      # agent's context. Update the commit deliberately, after reviewing the
-      # changes.
-      "mattpocock/skills/skills/productivity/grill-me#4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
-    ];
+    dependencies = {
+      apm = [
+        # Third-party skills are pinned to a commit, because skills run inside
+        # the agent's context. Update the commit deliberately, after reviewing
+        # the changes.
+        "mattpocock/skills/skills/productivity/grill-me#4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+      ];
+
+      # MCP servers. Credentials never appear here: each server's
+      # headersHelper is a command that Claude Code runs to produce the
+      # headers, reading the token from the relevant CLI's own credentials.
+      mcp = [
+        {
+          name = "github";
+          registry = false;
+          transport = "http";
+          url = "https://api.githubcopilot.com/mcp/";
+          headersHelper = "printf '${
+            builtins.toJSON {
+              Authorization = "Bearer %s";
+              X-MCP-Tools = lib.concatStringsSep "," githubTools;
+            }
+          }' \"$(gh auth token)\"";
+        }
+        {
+          name = "terraform";
+          registry = false;
+          transport = "http";
+          url = "https://mcp.terraform.io/mcp";
+          headersHelper = ''jq -c "{Authorization: (\"Bearer \" + .credentials[\"app.terraform.io\"].token)}" ~/.terraform.d/credentials.tfrc.json'';
+        }
+      ];
+    };
   };
 in
 {
