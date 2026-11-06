@@ -37,6 +37,7 @@
       "debug.test"
       "go.work"
       "go.work.sum"
+      ".claude/"
     ];
 
     includes = [
