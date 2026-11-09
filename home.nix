@@ -17,7 +17,7 @@
       pkgs.kcl
       pkgs.mob
       pkgs.ngrok
-      pkgs.nixfmt-rfc-style
+      pkgs.nixfmt
       pkgs.nodejs
       pkgs.pgcli
       pkgs.pnpm
