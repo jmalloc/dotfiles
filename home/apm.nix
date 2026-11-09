@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   # The GitHub MCP server's tools that are enabled. Tools that modify anything
   # are listed separately.
@@ -88,6 +93,22 @@ let
           transport = "http";
           url = "https://mcp.terraform.io/mcp";
           headersHelper = ''jq -c "{Authorization: (\"Bearer \" + .credentials[\"app.terraform.io\"].token)}" ~/.terraform.d/credentials.tfrc.json'';
+        }
+        # The managed AWS MCP server, through AWS's local signing proxy. The
+        # profiles come from home/aws.nix, and the agent picks one per call.
+        # Sign in to each SSO session with "aws sso login" first.
+        {
+          name = "aws";
+          registry = false;
+          transport = "stdio";
+          command = "uvx";
+          args = [
+            # Pinned, because the proxy signs requests with AWS credentials.
+            # Update the version deliberately.
+            "mcp-proxy-for-aws-cli==1.8.0"
+            "https://aws-mcp.us-east-1.api.aws/mcp"
+          ];
+          env.AWS_MCP_PROXY_PROFILES = lib.concatStringsSep " " config.dotfiles.aws.mcpProfiles;
         }
       ];
     };

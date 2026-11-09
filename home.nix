@@ -27,6 +27,7 @@
       pkgs.sqlc
       pkgs.tableplus
       pkgs.unixtools.watch
+      pkgs.uv # for uvx, which runs the AWS MCP proxy
       pkgs.vale
       pkgs.wabt
       pkgs.wasmer
