@@ -23,6 +23,7 @@
       pkgs.pnpm
       pkgs.prettier
       pkgs.protobuf # for protoc
+      pkgs.railway
       pkgs.ripgrep
       pkgs.sqlc
       pkgs.tableplus
