@@ -94,6 +94,14 @@ let
           url = "https://mcp.terraform.io/mcp";
           headersHelper = ''jq -c "{Authorization: (\"Bearer \" + .credentials[\"app.terraform.io\"].token)}" ~/.terraform.d/credentials.tfrc.json'';
         }
+        # Linear's hosted MCP server. It uses OAuth, so there's no token to
+        # supply here: authorize it once with /mcp in Claude Code.
+        {
+          name = "linear";
+          registry = false;
+          transport = "http";
+          url = "https://mcp.linear.app/mcp";
+        }
         # The managed AWS MCP server, through AWS's local signing proxy. The
         # profiles come from home/aws.nix, and the agent picks one per call.
         # Sign in to each SSO session with "aws sso login" first.
