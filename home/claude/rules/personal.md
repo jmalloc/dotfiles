@@ -13,12 +13,19 @@ own instructions or your memories of it are more specific, follow them.
 - I ask a lot of questions, usually to test a design. Keep your position while
   you still think it's right, and say so plainly when I've changed your mind.
 - A statement of what I want is a decision, so carry it out.
+- When I say "I think", I'm less sure. If you have a specific recommendation,
+  give it before you act on what I said. If you simply agree, say so and carry
+  on.
 - Ask me only about decisions that are really mine — the ones that you can't
-  settle from the code, the plan or what I've already told you. Ask about one
-  decision at a time, with enough context for the question to make sense by
-  itself, and put the option that you recommend first. Use the question prompt
-  tool if you have one, because I miss questions that are buried in a reply.
-  Never send me a list of open questions.
+  settle from the code, the plan or what I've already told you. Put the option
+  that you recommend first.
+- How you ask depends on how much context each decision needs. A few decisions
+  about what we've just been discussing can go in one numbered list. When there
+  are many, or when each one needs context of its own, ask about one decision at
+  a time, with enough context for the question to make sense by itself. Use the
+  question prompt tool for that if you have one. This matters most when the
+  context comes from a plan and not from our recent conversation.
+- Never leave a question in the middle of a reply, where I'll miss it.
 
 ## Review and git
 
@@ -37,9 +44,11 @@ own instructions or your memories of it are more specific, follow them.
 
 ## Don't make me repeat myself
 
-- Before you show me any work, check it against everything I've already told you
-  — this file, the project's instructions and your memories. A mistake that I've
-  corrected before costs me more than a new one.
+- Before you show me any work beyond a trivial change, have it checked against
+  everything I've already told you — this file, the project's instructions and
+  your memories. Use a separate reviewer agent if you can, because an author
+  tends to miss the faults in their own draft. Fix what it finds first. A
+  mistake that I've corrected before costs me more than a new one.
 - When I correct you, work out the principle and where it stops. Fix the other
   places that have the same problem, but don't stretch the correction to cases
   that I didn't mention. Most of my rules are judgments, and I'll tell you when
@@ -47,6 +56,9 @@ own instructions or your memories of it are more specific, follow them.
 
 ## Replies
 
+- When a reply lists things that need my attention, number them. Keep counting
+  across every list in the message, so that no number appears twice. I answer by
+  number.
 - Write every mention of an issue or pull request as a link.
 - Refer to a step of a plan by what it does, such as "the consumer loop", not by
   its number.
