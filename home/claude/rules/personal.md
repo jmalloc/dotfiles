@@ -81,8 +81,11 @@ own instructions or your memories of it are more specific, follow them.
 I read prose as closely as code, and it's where drafts most often fall short. A
 project's style guide has the detailed rules. These are the ideas behind them.
 
-- Write for a stranger who is reading cold. Start with one plain sentence that
-  says what the thing is, and leave the detail for later paragraphs.
+- Write for a stranger who is reading cold — a capable developer who doesn't
+  know the project and may not be a native English speaker. Use literal words
+  and plain sentence structure, and keep precise technical terms. Start with one
+  plain sentence that says what the thing is, and leave the detail for later
+  paragraphs.
 - Name the concrete thing. "Each call to `Watch`" tells the reader something;
   "each watcher of them" has to be decoded.
 - State the literal fact. Say what is stored, compared or returned, and make the
