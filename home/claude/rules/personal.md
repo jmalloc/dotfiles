@@ -1,8 +1,14 @@
 # Working with me
 
-These are my standing preferences for how an agent works with me, in every
-repository. "I" is James, the user, and "you" are the agent. Where a project's
-own instructions or your memories of it are more specific, follow them.
+"I" is James, the user, and "you" are the agent. Where a project's own
+instructions or your memories of it are more specific, follow them. If you are
+a subagent, report back to your caller instead of asking me, and don't stage,
+commit or start another reviewer.
+
+I want to be proud of what we make, and polish is part of the job. Show me work
+only when you can justify every line of it. If you know something is rough, fix
+it first, or name it plainly. Polish means doing the requested work well, not
+widening its scope.
 
 ## Questions
 
@@ -12,20 +18,16 @@ own instructions or your memories of it are more specific, follow them.
   question back to me as a list of options.
 - I ask a lot of questions, usually to test a design. Keep your position while
   you still think it's right, and say so plainly when I've changed your mind.
-- A statement of what I want is a decision, so carry it out.
-- When I say "I think", I'm less sure. If you have a specific recommendation,
-  give it before you act on what I said. If you simply agree, say so and carry
-  on.
+- A statement of what I want is a decision, so carry it out. When I hedge it
+  with "I think", either say you agree and carry on, or give your recommendation
+  and wait.
 - Ask me only about decisions that are really mine — the ones that you can't
-  settle from the code, the plan or what I've already told you. Put the option
-  that you recommend first.
-- How you ask depends on how much context each decision needs. A few decisions
-  about what we've just been discussing can go in one numbered list. When there
-  are many, or when each one needs context of its own, ask about one decision at
-  a time, with enough context for the question to make sense by itself. Use the
-  question prompt tool for that if you have one. This matters most when the
-  context comes from a plan and not from our recent conversation.
-- Never leave a question in the middle of a reply, where I'll miss it.
+  settle from the code, the plan or what I've already told you.
+- When there are a few decisions about what we've just discussed, ask them in
+  one numbered list. When there are many, or each needs its own context (above
+  all, context from a plan), ask one at a time with the question tool if you
+  have one, and give each question enough context to stand alone. Put the
+  option you recommend first. Never leave a question in running prose.
 
 ## Review and git
 
@@ -35,10 +37,15 @@ own instructions or your memories of it are more specific, follow them.
   track your own progress, such as ticking off a step in a plan, hunks that
   change only imports, and comment rewraps in which no word changed. The
   project's own documentation is reviewed like code, so leave it unstaged.
-- Work one step at a time. After each step, tell me what changed and wait.
-- Ask before every commit. "Commit as we go" means one commit for each step, not
+- Work one task at a time. In a plan, a task is the unit that ends in a commit.
+  After each task, tell me what changed and wait. I rarely read a long plan in
+  one sitting, so write each task so that it makes sense by itself, and when you
+  present a task, include the context from the plan that I need to judge it.
+- Ask before every commit. "Commit as we go" means one commit for each task, not
   permission to commit without asking. Once I've staged a change and said
-  "approved", commit what is staged and carry on.
+  "approved", commit what is staged and carry on. If the project's tooling
+  formats or generates files because of the staged changes, stage them too, and
+  list them when you commit.
 - Keep the history of a feature branch linear. Rebase the branch onto the main
   branch; never merge the main branch into it. Ask before you force-push.
 
@@ -47,20 +54,25 @@ own instructions or your memories of it are more specific, follow them.
 - Before you show me any work beyond a trivial change, have it checked against
   everything I've already told you — this file, the project's instructions and
   your memories. Use a separate reviewer agent if you can, because an author
-  tends to miss the faults in their own draft. Fix what it finds first. A
-  mistake that I've corrected before costs me more than a new one.
+  tends to miss the faults in their own draft. Fix what it finds first, and
+  mention only the findings that you chose not to fix, and why. A mistake that
+  I've corrected before costs me more than a new one.
 - When I correct you, work out the principle and where it stops. Fix the other
   places that have the same problem, but don't stretch the correction to cases
   that I didn't mention. Most of my rules are judgments, and I'll tell you when
-  you've taken one too far.
+  you've taken one too far. When you save a correction to memory or propose it
+  for this file, tell me in one line where you think it stops, so that I can
+  fix the limit while it's fresh.
 
 ## Replies
 
-- When a reply lists things that need my attention, number them. Keep counting
-  across every list in the message, so that no number appears twice. I answer by
-  number.
+- When a reply lists things that need my attention, number them. A number stays
+  with its item until I've answered it, so keep counting from the highest number
+  that's still open, across messages as well as within one. Start again at 1
+  only when nothing is open. Repeat an item that's still open, with its number,
+  rather than letting it drop. I answer by number.
 - Write every mention of an issue or pull request as a link.
-- Refer to a step of a plan by what it does, such as "the consumer loop", not by
+- Refer to a task of a plan by what it does, such as "the consumer loop", not by
   its number.
 
 ## Code
@@ -72,11 +84,13 @@ own instructions or your memories of it are more specific, follow them.
   the domain its own type, with its own behavior, instead of passing loose
   values around. Prefer a verb from the domain, such as `peer.Outranks(self)`,
   to a generic one such as `Less`. Name a dependency by the role it plays, not
-  by its type.
+  by its type. I choose names by seeing them, so when a new domain concept
+  needs a name, give me several candidates, each in the sentence that it would
+  produce in a doc comment.
 - **Only a promise may look like a promise.** Use a set when order means
   nothing, so that no caller or test comes to depend on the order of a slice.
   Test what is guaranteed, not what happens to occur, and never assert on log
-  output. Documentation says what a caller may rely on, not how the code works.
+  output.
 - **Treat awkwardness as a sign that the design is wrong.** When you want a
   constructor for an internal type, a test that reaches into unexported state,
   or a special case inside a loop, question the design that made it necessary
@@ -93,11 +107,17 @@ own instructions or your memories of it are more specific, follow them.
 I read prose as closely as code, and it's where drafts most often fall short. A
 project's style guide has the detailed rules. These are the ideas behind them.
 
-- Write for a stranger who is reading cold — a capable developer who doesn't
-  know the project and may not be a native English speaker. Use literal words
-  and plain sentence structure, and keep precise technical terms. Start with one
-  plain sentence that says what the thing is, and leave the detail for later
-  paragraphs.
+- Write for a stranger who is reading cold — a developer who knows the language
+  but not this project or domain, may be early in their career, and may not be a
+  native English speaker. I use this code to teach how the harder parts work, so
+  a doc that only an expert can follow has failed. Explain or link the concepts
+  that the code relies on, but not the language.
+- Use literal words and plain sentence structure, and keep precise technical
+  terms. Start with one plain sentence that says what the thing is, and leave
+  the detail for later paragraphs.
+- When I say that I don't understand something, I already know the domain, so a
+  developer who doesn't will understand it even less. Explain it more plainly or
+  restructure it. Rewording alone rarely fixes it.
 - Name the concrete thing. "Each call to `Watch`" tells the reader something;
   "each watcher of them" has to be decoded.
 - State the literal fact. Say what is stored, compared or returned, and make the
@@ -105,4 +125,5 @@ project's style guide has the detailed rules. These are the ideas behind them.
   of speech such as "the topic names the queue".
 - Describe the code as it is now. Leave out its history, the alternatives that
   it doesn't use, and anything that reading the code already shows.
-- Document the contract, and keep the internals out of it.
+- Document the contract — what a caller may rely on — and keep the internals out
+  of it.
