@@ -24,9 +24,10 @@ own instructions or your memories of it are more specific, follow them.
 
 - I read every line of a code change, and I use the git index as my checklist. A
   staged change is one that I've approved, so don't stage code yourself.
-- You may stage changes that need no review — documentation that you edited as
-  part of the step, hunks that change only imports, and comment rewraps in which
-  no word changed.
+- You may stage changes that need no review — updates to the documents that
+  track your own progress, such as ticking off a step in a plan, hunks that
+  change only imports, and comment rewraps in which no word changed. The
+  project's own documentation is reviewed like code, so leave it unstaged.
 - Work one step at a time. After each step, tell me what changed and wait.
 - Ask before every commit. "Commit as we go" means one commit for each step, not
   permission to commit without asking. Once I've staged a change and said
