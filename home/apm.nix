@@ -56,7 +56,7 @@ let
   # Projects install their own packages into their own directories, and agents
   # read both.
   #
-  # "make switch" runs "apm install -g" after switching. It isn't run during
+  # "make install" runs "apm install -g" after switching. It isn't run during
   # activation, because fetching packages relies on the user's own environment,
   # such as git, SSH and the keychain.
   manifest = {
