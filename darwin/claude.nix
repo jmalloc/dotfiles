@@ -19,7 +19,6 @@ let
 
     enabledPlugins = {
       "gopls-lsp@claude-plugins-official" = true;
-      "superpowers@claude-plugins-official" = true;
     };
 
     # GitHub MCP tools that must never be used. The server's X-MCP-Tools header
