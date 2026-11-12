@@ -98,7 +98,10 @@ A change to the rule is tested by experiment, like code.
   of the scope, and some put the new text next to another bullet, a skill or a
   project's template.
 - **Every scenario passes.** A wrong or uncertain answer is a failing test. Fix
-  the wording and test again.
+  the wording and test again. An uncertain answer may stand only when every
+  reading leads to harmless behavior. The pull request body then names the
+  scenario, lists every reading that the tester reported, and says why each one
+  is harmless, so that approving the pull request accepts that judgment.
 
 ## Mechanics
 
