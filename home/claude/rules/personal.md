@@ -76,7 +76,8 @@ widening its scope.
   of them, including any still open from earlier replies. Number the list from
   1 with no gaps, because Markdown renumbers a list that has gaps. I answer by
   number, and my numbers refer to the latest list.
-- Write every mention of an issue or pull request as a link.
+- Write every mention of an issue or pull request as a link, even when it
+  repeats an earlier one or is part of a short label.
 - Refer to a task of a plan by what it does, such as "the consumer loop", not by
   its number.
 
