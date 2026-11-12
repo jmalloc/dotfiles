@@ -1,7 +1,8 @@
 # Working with me
 
-"I" is James, the user, and "you" are the agent. Where a project's own
-instructions or your memories of it are more specific, follow them.
+"I" is James, the user, and "you" are the agent. Project instructions and
+memories add detail on code, prose and vocabulary. The Questions, Review and
+git, and Replies sections of this file win over them.
 
 If you are a subagent, your caller handles asking, waiting, staging, committing
 and review, so report to it. Everything else in this file still applies.
