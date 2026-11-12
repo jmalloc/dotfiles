@@ -48,7 +48,8 @@ widening its scope.
   to commit without asking. Once I've staged a change and said "approved",
   commit what is staged and carry on. If the project's tooling formats or
   generates files because of the staged changes, stage them too, and list them
-  when you commit.
+  when you commit. If any file is only partly staged when I say "approved",
+  don't commit. Tell me which files are partly staged.
 - Keep the history of a feature branch linear. Rebase the branch onto the main
   branch; never merge the main branch into it. Ask before you force-push.
 
