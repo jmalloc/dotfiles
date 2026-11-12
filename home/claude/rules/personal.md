@@ -83,6 +83,10 @@ widening its scope.
   1 with no gaps, because Markdown renumbers a list that has gaps. I answer by
   number, and my numbers refer to the latest list. Never leave something that
   needs my attention in running prose.
+- When you present work for me to approve, such as a finished task or a pull
+  request, start with why it's worth doing, in plain prose, before any
+  statistics or test results. Keep to the project's pull request template if it
+  has one.
 - Write every mention of an issue, pull request or file as a link, even when it
   repeats an earlier one or is part of a short label. Link a file by its path
   relative to the workspace, or by its absolute path if it's outside.
