@@ -17,6 +17,20 @@ let
       "gopls-lsp@claude-plugins-official" = true;
     };
 
+    # Sends a reply back to the agent when it mentions a file or an issue
+    # without a link, which my personal rule asks for but agents often forget.
+    # A Stop hook runs only in the main session, not in subagents.
+    hooks.Stop = [
+      {
+        hooks = [
+          {
+            type = "command";
+            command = "${pkgs.python3}/bin/python3 -I ${./claude/check-reply-links.py}";
+          }
+        ];
+      }
+    ];
+
     # GitHub MCP tools that must never be used. The server's X-MCP-Tools header
     # (see home/apm.nix) doesn't enable them either; this is a second layer.
     permissions.deny = [
