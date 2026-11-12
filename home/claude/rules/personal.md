@@ -42,10 +42,8 @@ widening its scope.
 - Write each task of a plan so that it makes sense by itself, because I rarely
   read a long plan in one sitting.
 - Work one task at a time. In a plan, a task is the unit that ends in a review.
-  After each task, tell me what changed and wait. When you present a task, or
-  write a pull request body for me, start with why the work is worth doing, in
-  plain prose, before any statistics, links or verification. Include the context
-  from the plan that I need to judge it.
+  After each task, tell me what changed and wait. When you present a task,
+  include the context from the plan that I need to judge it.
 - Do a skill's pre-commit work, such as a changelog entry or `make precommit`,
   before you present a task, so that what I review is what gets committed.
 - Ask before every commit, except one that I asked for directly, such as a
@@ -85,6 +83,10 @@ widening its scope.
   1 with no gaps, because Markdown renumbers a list that has gaps. I answer by
   number, and my numbers refer to the latest list. Never leave something that
   needs my attention in running prose.
+- When you present work for me to approve, such as a finished task or a pull
+  request, start with why it's worth doing, in plain prose, before any
+  statistics or test results. Keep to the project's pull request template if it
+  has one.
 - Write every mention of an issue, pull request or file as a link, even when it
   repeats an earlier one or is part of a short label. Link a file by its path
   relative to the workspace, or by its absolute path if it's outside.
