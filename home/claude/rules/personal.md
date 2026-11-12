@@ -48,10 +48,10 @@ widening its scope.
 - Before you present a task, stage the changes that need no review yourself —
   updates to the documents that track your own progress, such as ticking off a
   step in a plan, hunks that change only imports, and hunks that change only
-  whitespace that has no effect on meaning, such as a comment rewrapped without
-  changing a word. Stage a hunk only if all of it qualifies. The project's own
-  documentation is reviewed like code, so leave changes to it unstaged, even
-  when they change only whitespace.
+  whitespace that has no effect on meaning, such as a comment or paragraph
+  rewrapped without changing a word. Stage a hunk only if all of it qualifies.
+  The project's own documentation is otherwise reviewed like code, so leave its
+  other changes unstaged.
 - Write each task of a plan so that it makes sense by itself, because I rarely
   read a long plan in one sitting.
 - Work one task at a time. In a plan, a task is the unit that ends in a review.
