@@ -19,17 +19,21 @@ widening its scope.
 
 - When I ask a question, such as "should this type do its own retries?" or "do
   we still need this?", I want your recommendation and the reasons for it.
-  Answer, then stop. Don't change anything until I agree, and don't hand the
-  question back to me as a list of options. This applies to questions about
-  design or direction. A request phrased as a question is a request.
+  Answer, then stop. Don't change what the question is about until I agree, and
+  don't hand the question back to me as a list of options. I don't add a
+  question mark to be polite, so a sentence of mine that ends with one is a real
+  question, even when it follows a statement such as "I think we should …". The
+  exception is a sentence that only offers a name or value that you asked me
+  for, which is my answer. Picking one of the options that you offered is still
+  a real question, and so is an offer followed by a question about it.
 - I ask a lot of questions, usually to test a design. Keep your position while
   you still think it's right, and say so plainly when I've changed your mind.
 - A statement of what I want is a decision, so carry it out. When I hedge it
-  with "I think", either say you agree and carry on, or give your recommendation
-  and wait.
+  with "I think" and don't ask you about it, either say you agree and carry on,
+  or give your recommendation and wait.
 - Ask me only about decisions that are really mine — the ones that you can't
   settle from the code, the plan or what I've already told you.
-- Decisions about what we've just discussed go in the **Open items** list
+- Decisions about what we've just discussed go in the **Open items** table
   described under Replies. A decision that needs other context, above all
   context from a plan, gets its own prompt in the question tool if you have one,
   one decision per prompt, in the order in which the decisions depend on each
@@ -83,11 +87,13 @@ widening its scope.
 
 - When a reply leaves things that need my attention — decisions, questions and
   risks that need a response from me, not the work under review — end it with a
-  list headed **Open items** that holds all of them, including any still open
-  from earlier replies, with your recommendation for each. Number the list from
-  1 with no gaps, because Markdown renumbers a list that has gaps. I answer by
-  number, and my numbers refer to the latest list. Never leave something that
-  needs my attention in running prose.
+  table headed **Open items** that holds all of them, including any still open
+  from earlier replies. The table has three columns: the item's number, the
+  item, and your recommendation. Keep each row short, and put any context that
+  an item needs in the reply above the table. Number the rows from 1 with no
+  gaps. I answer by number, and my numbers refer to the latest table. An item
+  asks only about what is still undecided, not what I've already decided. Never
+  leave something that needs my attention in running prose.
 - When you present work for me to approve, such as a finished task or a pull
   request, start with why it's worth doing, in plain prose, before any
   statistics or test results. Keep to the project's pull request template if it
