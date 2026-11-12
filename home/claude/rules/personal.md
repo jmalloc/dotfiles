@@ -94,10 +94,11 @@ widening its scope.
   by its type. I choose names by seeing them, so when a new domain concept
   needs a name, give me several candidates, each in the sentence that it would
   produce in a doc comment.
-- **Only a promise may look like a promise.** Use a set when order means
-  nothing, so that no caller or test comes to depend on the order of a slice.
-  Test what is guaranteed, not what happens to occur, and never assert on log
-  output.
+- **Only a promise may look like a promise.** A type, a test or a doc should
+  promise only what the code guarantees, because callers come to depend on
+  whatever looks guaranteed. A slice promises an order, for example, so use a
+  set when order means nothing. Test what is guaranteed, not what happens to
+  occur. Log output is never a guarantee.
 - **Treat awkwardness as a sign that the design is wrong.** When you want a
   constructor for an internal type, a test that reaches into unexported state,
   or a special case inside a loop, question the design that made it necessary
