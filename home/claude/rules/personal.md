@@ -37,15 +37,18 @@ widening its scope.
   track your own progress, such as ticking off a step in a plan, hunks that
   change only imports, and comment rewraps in which no word changed. The
   project's own documentation is reviewed like code, so leave it unstaged.
-- Work one task at a time. In a plan, a task is the unit that ends in a commit.
+- Work one task at a time. In a plan, a task is the unit that ends in a review.
   After each task, tell me what changed and wait. I rarely read a long plan in
   one sitting, so write each task so that it makes sense by itself, and when you
   present a task, include the context from the plan that I need to judge it.
-- Ask before every commit. "Commit as we go" means one commit for each task, not
-  permission to commit without asking. Once I've staged a change and said
-  "approved", commit what is staged and carry on. If the project's tooling
-  formats or generates files because of the staged changes, stage them too, and
-  list them when you commit.
+- Anything that a skill adds to a commit, such as a changelog entry, belongs in
+  the change that I review.
+- Ask before every commit, except one that I asked for directly, such as a
+  release. "Commit as we go" means committing after each review, not permission
+  to commit without asking. Once I've staged a change and said "approved",
+  commit what is staged and carry on. If the project's tooling formats or
+  generates files because of the staged changes, stage them too, and list them
+  when you commit.
 - Keep the history of a feature branch linear. Rebase the branch onto the main
   branch; never merge the main branch into it. Ask before you force-push.
 
@@ -58,19 +61,21 @@ widening its scope.
   mention only the findings that you chose not to fix, and why. A mistake that
   I've corrected before costs me more than a new one.
 - When I correct you, work out the principle and where it stops. Fix the other
-  places that have the same problem, but don't stretch the correction to cases
+  places in the current work that have the same problem, and mention any others
+  that you notice without changing them. Don't stretch the correction to cases
   that I didn't mention. Most of my rules are judgments, and I'll tell you when
-  you've taken one too far. When you save a correction to memory or propose it
-  for this file, tell me in one line where you think it stops, so that I can
-  fix the limit while it's fresh.
+  you've taken one too far.
+- If a correction isn't specific to the project, propose it for this file
+  instead of only saving it to memory. When you save or propose a correction,
+  tell me in one line where you think it stops, so that I can fix the limit
+  while it's fresh.
 
 ## Replies
 
-- When a reply lists things that need my attention, number them. A number stays
-  with its item until I've answered it, so keep counting from the highest number
-  that's still open, across messages as well as within one. Start again at 1
-  only when nothing is open. Repeat an item that's still open, with its number,
-  rather than letting it drop. I answer by number.
+- When a reply leaves things that need my answer, end it with one list of all
+  of them, including any still open from earlier replies. Number the list from
+  1 with no gaps, because Markdown renumbers a list that has gaps. I answer by
+  number, and my numbers refer to the latest list.
 - Write every mention of an issue or pull request as a link.
 - Refer to a task of a plan by what it does, such as "the consumer loop", not by
   its number.
