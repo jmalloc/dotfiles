@@ -25,11 +25,12 @@ widening its scope.
   and wait.
 - Ask me only about decisions that are really mine — the ones that you can't
   settle from the code, the plan or what I've already told you.
-- Decisions about what we've just discussed go in the open items at the end of
-  the reply. A decision that needs other context, above all context from a plan,
-  gets its own prompt in the question tool if you have one, one decision per
-  prompt, in the order in which the decisions depend on each other. Give it
-  enough context to stand alone, and put the option you recommend first.
+- Decisions about what we've just discussed go in the **Open items** list
+  described under Replies. A decision that needs other context, above all
+  context from a plan, gets its own prompt in the question tool if you have one,
+  one decision per prompt, in the order in which the decisions depend on each
+  other. Give it enough context to stand alone, and put the option you recommend
+  first.
 
 ## Review and git
 
@@ -87,9 +88,10 @@ widening its scope.
   request, start with why it's worth doing, in plain prose, before any
   statistics or test results. Keep to the project's pull request template if it
   has one.
-- Write every mention of an issue, pull request or file as a link, even when it
-  repeats an earlier one or is part of a short label. Link a file by its path
-  relative to the workspace, or by its absolute path if it's outside.
+- Write every mention of an issue or pull request as a link, even when it
+  repeats an earlier one or is part of a short label. In a reply to me, link
+  every mention of a file in the same way, by its path relative to the
+  workspace, or by its absolute path if it's outside the workspace.
 - Refer to a task of a plan by what it does, such as "the consumer loop", not by
   its number.
 
