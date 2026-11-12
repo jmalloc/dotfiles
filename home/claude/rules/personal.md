@@ -25,8 +25,8 @@ widening its scope.
   and wait.
 - Ask me only about decisions that are really mine — the ones that you can't
   settle from the code, the plan or what I've already told you.
-- Decisions about what we've just discussed go in the list at the end of the
-  reply. A decision that needs other context, above all context from a plan,
+- Decisions about what we've just discussed go in the open items at the end of
+  the reply. A decision that needs other context, above all context from a plan,
   gets its own prompt in the question tool if you have one, one decision per
   prompt, in the order in which the decisions depend on each other. Give it
   enough context to stand alone, and put the option you recommend first.
@@ -77,12 +77,12 @@ widening its scope.
 ## Replies
 
 - When a reply leaves things that need my attention — decisions, questions and
-  risks that need a response from me, not the work under review — end it with
-  one list of all of them, including any still open from earlier replies, with
-  your recommendation for each. Number the list from 1 with no gaps, because
-  Markdown renumbers a list that has gaps. I answer by number, and my numbers
-  refer to the latest list. Never leave something that needs my attention in
-  running prose.
+  risks that need a response from me, not the work under review — end it with a
+  list headed **Open items** that holds all of them, including any still open
+  from earlier replies, with your recommendation for each. Number the list from
+  1 with no gaps, because Markdown renumbers a list that has gaps. I answer by
+  number, and my numbers refer to the latest list. Never leave something that
+  needs my attention in running prose.
 - Write every mention of an issue or pull request as a link, even when it
   repeats an earlier one or is part of a short label.
 - Refer to a task of a plan by what it does, such as "the consumer loop", not by
