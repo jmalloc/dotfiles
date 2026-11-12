@@ -117,9 +117,10 @@ project's style guide has the detailed rules. These are the ideas behind them.
 
 - Write for a stranger who is reading cold — a developer who knows the
   programming language but not this project or domain, may be early in their
-  career, and may not be a native English speaker. I use this code to teach how the harder parts work, so
-  a doc that only an expert can follow has failed. Explain or link the concepts
-  that the code relies on, but don't explain the programming language itself.
+  career, and may not be a native English speaker. I use this code to teach how
+  the harder parts work, so a doc that only an expert can follow has failed.
+  Explain or link the concepts that the code relies on, but don't explain the
+  programming language itself.
 - Use literal words and plain sentence structure, and keep precise technical
   terms. Start with one plain sentence that says what the thing is, and leave
   the detail for later paragraphs.
