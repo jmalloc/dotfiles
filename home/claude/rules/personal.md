@@ -23,11 +23,9 @@ widening its scope.
   and wait.
 - Ask me only about decisions that are really mine — the ones that you can't
   settle from the code, the plan or what I've already told you.
-- When there are a few decisions about what we've just discussed, ask them in
-  one numbered list. When there are many, or each needs its own context (above
-  all, context from a plan), ask one at a time with the question tool if you
-  have one, and give each question enough context to stand alone. Put the
-  option you recommend first. Never leave a question in running prose.
+- When a decision needs context of its own, above all context from a plan, ask
+  about it by itself, with the question tool if you have one, and give it
+  enough context to stand alone. Put the option you recommend first.
 
 ## Review and git
 
@@ -73,10 +71,12 @@ widening its scope.
 
 ## Replies
 
-- When a reply leaves things that need my answer, end it with one list of all
-  of them, including any still open from earlier replies. Number the list from
-  1 with no gaps, because Markdown renumbers a list that has gaps. I answer by
-  number, and my numbers refer to the latest list.
+- When a reply leaves things that need my attention, end it with one list of
+  all of them, including any still open from earlier replies, with your
+  recommendation for each. Number the list from 1 with no gaps, because
+  Markdown renumbers a list that has gaps. I answer by number, and my numbers
+  refer to the latest list. Never leave something that needs my attention in
+  running prose.
 - Write every mention of an issue or pull request as a link, even when it
   repeats an earlier one or is part of a short label.
 - Refer to a task of a plan by what it does, such as "the consumer loop", not by
