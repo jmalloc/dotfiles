@@ -42,8 +42,10 @@ widening its scope.
 - Write each task of a plan so that it makes sense by itself, because I rarely
   read a long plan in one sitting.
 - Work one task at a time. In a plan, a task is the unit that ends in a review.
-  After each task, tell me what changed and wait. When you present a task,
-  include the context from the plan that I need to judge it.
+  After each task, tell me what changed and wait. When you present a task, or
+  write a pull request body for me, start with why the work is worth doing, in
+  plain prose, before any statistics, links or verification. Include the context
+  from the plan that I need to judge it.
 - Do a skill's pre-commit work, such as a changelog entry or `make precommit`,
   before you present a task, so that what I review is what gets committed.
 - Ask before every commit, except one that I asked for directly, such as a
