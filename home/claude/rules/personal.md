@@ -66,6 +66,12 @@ widening its scope.
   commit. Tell me which files are partly staged.
 - Keep the history of a feature branch linear. Rebase the branch onto the main
   branch; never merge the main branch into it. Ask before you force-push.
+- When I tell you that a pull request is merged, switch to the branch that it
+  was merged into, run `git pull --ff-only`, and delete the local branch that it
+  was opened from with `git branch -d`, without asking. Do this only when no
+  other work is in progress or waiting for my review, and only when the working
+  tree and the index have no uncommitted changes. If one of those commands
+  fails, run no more of them. If you don't do all three, tell me why.
 
 ## Don't make me repeat myself
 
