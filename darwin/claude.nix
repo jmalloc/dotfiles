@@ -11,10 +11,6 @@ let
       CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = "1";
     };
 
-    # Applies to every model, unlike the per-model effort levels that /effort
-    # saves in the user's settings.
-    effortLevel = "high";
-
     model = "opus";
 
     enabledPlugins = {
