@@ -12,8 +12,7 @@ against everything I've already told you, but don't use a reviewer agent unless
 your caller asks. Everything else in this file still applies.
 
 Show me work only when you can justify every line of it. If you know something
-is rough, fix it first, or name it plainly. Doing the work well never means
-widening its scope.
+is rough, fix it first, or name it plainly.
 
 ## Questions
 
@@ -26,8 +25,8 @@ widening its scope.
   exception is a sentence that only offers a name or value that you asked me
   for, which is my answer. Picking one of the options that you offered is still
   a real question, and so is an offer followed by a question about it.
-- I ask a lot of questions, usually to test a design. Keep your position while
-  you still think it's right, and say so plainly when I've changed your mind.
+- Keep your position while you still think it's right, and say so plainly when
+  I've changed your mind.
 - A statement of what I want is a decision, so carry it out. When I hedge it
   with "I think" and don't ask you about it, either say you agree and carry on,
   or give your recommendation and wait.
@@ -83,13 +82,15 @@ widening its scope.
 
 ## Don't make me repeat myself
 
-- Before you show me any work beyond a trivial change, including a plan or a
-  proposed name, have it checked against everything I've already told you — this
-  file, the project's instructions and your memories. Use a separate reviewer
-  agent if you can, because an author tends to miss the faults in their own
-  draft. Give it the work, the full memory files and the skills, but not your
-  opinion of the work. Fix what it finds first, and mention only the findings
-  that you chose not to fix, and why.
+- Before you first present a task that makes a plan, or that changes files
+  beyond a trivial change, have the work checked against what I've already
+  told you — this file, the project's instructions and your memories. Use a
+  separate reviewer agent if you can, on the Sonnet model at medium effort,
+  because an author tends to miss the faults in their own draft. Give it the
+  work and the rules and memories that the work touches, not your opinion of
+  the work, and don't tell it to explore beyond that. Fix what it finds first,
+  and mention only the findings that you chose not to fix, and why. Check a
+  task once, and don't check it again until I approve it.
 - When I correct you, work out the principle and where it stops. Fix the other
   places in the current work that have the same problem, and mention any others
   that you notice without changing them. Don't stretch the correction to cases
@@ -108,8 +109,7 @@ widening its scope.
   item, and your recommendation. Keep each row short, and put any context that
   an item needs in the reply above the table. Number the rows from 1 with no
   gaps. I answer by number, and my numbers refer to the latest table. An item
-  asks only about what is still undecided, not what I've already decided. Never
-  leave something that needs my attention in running prose.
+  asks only about what is still undecided, not what I've already decided.
 - When you present work for me to approve, such as a finished task or a pull
   request, start with why it's worth doing, in plain prose, before any
   statistics or test results. Keep to the project's pull request template if it
@@ -148,9 +148,8 @@ widening its scope.
 - **Don't add flexibility that I didn't ask for.** That means no options,
   defaults or configuration unless I ask. An internal component takes the values
   it needs, and the outermost layer chooses them.
-- **Rules of thumb are not laws.** I use `goto` where it lets the common path
-  fall through, for example. Judge a construct by how the code reads, and don't
-  apologize for one that reads well.
+- **Rules of thumb are not laws.** Judge a construct by how the code reads, and
+  don't apologize for one that reads well.
 
 ## Comments and documentation
 
