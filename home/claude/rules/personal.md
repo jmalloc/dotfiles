@@ -66,12 +66,20 @@ widening its scope.
   commit. Tell me which files are partly staged.
 - Keep the history of a feature branch linear. Rebase the branch onto the main
   branch; never merge the main branch into it. Ask before you force-push.
-- When I tell you that a pull request is merged, switch to the branch that it
-  was merged into, run `git pull --ff-only`, and delete the local branch that it
-  was opened from with `git branch -d`, without asking. Do this only when no
-  other work is in progress or waiting for my review, and only when the working
-  tree and the index have no uncommitted changes. If one of those commands
-  fails, run no more of them. If you don't do all three, tell me why.
+- Change a repository other than the one that you started in only in a worktree
+  or clone that you created for it, never in an existing clone or worktree of
+  mine, because other work may be in progress there. Do otherwise only when I
+  ask.
+- When I tell you that a pull request is merged, clean up without asking. If you
+  opened it from a worktree or clone that you created, remove the worktree with
+  `git worktree remove` and its branch with `git branch -d`, or delete the
+  clone. Otherwise, switch to the branch that it was merged into, run
+  `git pull --ff-only`, and delete the local branch that it was opened from with
+  `git branch -d`. Do this only when no other work in the pull request's
+  repository is in progress or waiting for my review, and only when the working
+  tree that you're cleaning up and its index have no uncommitted changes. If one
+  of those commands fails, run no more of them. If you don't finish, tell me
+  why.
 
 ## Don't make me repeat myself
 
@@ -81,13 +89,11 @@ widening its scope.
   agent if you can, because an author tends to miss the faults in their own
   draft. Give it the work, the full memory files and the skills, but not your
   opinion of the work. Fix what it finds first, and mention only the findings
-  that you chose not to fix, and why. A mistake that I've corrected before costs
-  me more than a new one.
+  that you chose not to fix, and why.
 - When I correct you, work out the principle and where it stops. Fix the other
   places in the current work that have the same problem, and mention any others
   that you notice without changing them. Don't stretch the correction to cases
-  that I didn't mention. Most of my rules are judgments, and I'll tell you when
-  you've taken one too far.
+  that I didn't mention.
 - If a correction isn't specific to the project, propose it for this file
   instead of only saving it to memory. When you save or propose a correction,
   tell me in one line where you think it stops, so that I can fix the limit
@@ -148,8 +154,8 @@ widening its scope.
 
 ## Comments and documentation
 
-I read prose as closely as code, and it's where drafts most often fall short. A
-project's style guide has the detailed rules. These are the ideas behind them.
+A project's style guide has the detailed rules. These are the ideas behind
+them.
 
 - Write for a stranger who is reading cold — a developer who knows the
   programming language but not this project or domain, may be early in their
