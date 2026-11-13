@@ -68,7 +68,8 @@ let
         # Third-party skills are pinned to a commit, because skills run inside
         # the agent's context. Update the commit deliberately, after reviewing
         # the changes.
-        "mattpocock/skills/skills/productivity/grill-me#4ae2317ddb22b046e26455e4f9c9b3aaaf62212d"
+        "mattpocock/skills/skills/productivity/grill-me#5863806dd4e15c63174bee4e7515a4256792ecfa"
+        "mattpocock/skills/skills/productivity/teach#5863806dd4e15c63174bee4e7515a4256792ecfa"
       ];
 
       # MCP servers. Credentials never appear here: each server's
