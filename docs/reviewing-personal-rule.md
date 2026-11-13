@@ -99,17 +99,20 @@ A change to the rule is tested by experiment, like code.
   project's template.
 - **Every scenario passes.** A wrong or uncertain answer is a failing test. Fix
   the wording and test again. An uncertain answer may stand only when every
-  reading leads to harmless behavior. The pull request body then names the
-  scenario, lists every reading that the tester reported, and says why each one
-  is harmless, so that approving the pull request accepts that judgment.
+  reading leads to harmless behavior. The reply that presents the change then
+  names the scenario, lists every reading that the tester reported, and says why
+  each one is harmless, so that approving the change accepts that judgment.
 
 ## Mechanics
 
 - Lines wrap at 80 columns.
-- The pull request body opens with the failure that the change fixes. It gives
-  the word count from `wc -w`, and says which scenarios were tested.
-- Merging doesn't install the rule. Run `make install`, then compare
-  `~/.claude/rules/personal.md` with `home/claude/rules/personal.md`. Running
-  `make install` before pulling the merge installs the old file.
+- A change to the rule doesn't go through a pull request. I review it locally,
+  in the git index, and the commit goes straight onto the default branch once I
+  approve it.
+- The reply that presents the change opens with the failure that the change
+  fixes. It gives the word count from `wc -w`, and says which scenarios were
+  tested.
+- Committing doesn't install the rule. Run `make install`, then compare
+  `~/.claude/rules/personal.md` with `home/claude/rules/personal.md`.
 
 [rule]: ../home/claude/rules/personal.md
