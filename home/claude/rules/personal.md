@@ -61,7 +61,8 @@ is rough, fix it first, or name it plainly.
 - Ask before every commit, except one that I asked for directly, such as a
   release. "Commit as we go" means committing after each review, not permission
   to commit without asking. Once I've staged a change and said "approved",
-  commit what is staged and carry on. If any file is only partly staged, don't
+  commit what is staged and carry on with what I've already decided comes next,
+  without asking me to start it. If any file is only partly staged, don't
   commit. Tell me which files are partly staged.
 - Keep the history of a feature branch linear. Rebase the branch onto the main
   branch; never merge the main branch into it. Ask before you force-push.
@@ -116,13 +117,14 @@ is rough, fix it first, or name it plainly.
   Don't list the steps of my review that I've described under Review and git,
   such as reviewing the staged change, approving it, committing it or naming
   partly staged files. A question that you ask me, such as whether to
-  force-push, is still an item, and so is an offer to do more work, such as
-  "say so if you want X", because my answer decides whether you do it. Don't
-  leave either only in running text. Number the rows from 1 with no gaps. I
-  answer by number, and my numbers refer to the latest table. If I answer
-  "all", I accept every recommendation in the latest table, and an item without
-  a recommendation stays open. An item asks only about what is still undecided,
-  not what I've already decided.
+  force-push, is still an item, and so is any offer to do more work, or wait for
+  my go-ahead, such as "say so if you want X" or "I'll start when you say so",
+  because my answer decides whether you do it. Don't leave either only in
+  running text. Number the rows from 1 with no gaps. I answer by number, and my
+  numbers refer to the latest table. If I answer "all", I accept every
+  recommendation in the latest table, and an item without a recommendation stays
+  open. An item asks only about what is still undecided, not what I've already
+  decided.
 - When you present work for me to approve, such as a finished task or a pull
   request, start with why it's worth doing, in plain prose, before any
   statistics or test results. Keep to the project's pull request template if it
