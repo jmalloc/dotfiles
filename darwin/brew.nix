@@ -47,7 +47,6 @@
       "betterdisplay" # No nix package (macOS specific).
       "claude" # Claude desktop app. No nix package, and no Mac App Store listing.
       "docker-desktop" # Docker Desktop
-      "font-monaspace"
       "ghostty" # Nix package is marked as broken on Darwin
       "live-home-3d" # No Nix package.
       "slack" # Nix package didn't allow loading slack:// links from Safari

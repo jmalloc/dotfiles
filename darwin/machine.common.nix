@@ -1,5 +1,10 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
+  fonts.packages = [
+    pkgs.monaspace
+    pkgs.open-sans
+  ];
+
   system.defaults = {
     NSGlobalDomain = {
       AppleKeyboardUIMode = 3;
