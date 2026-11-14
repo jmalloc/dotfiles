@@ -131,17 +131,19 @@ rough, fix it first, or name it plainly.
 
   Don't use HTML tags, and don't put that context in the reply above the agenda.
   Don't list the steps of the user's review described under Review and git, such
-  as reviewing the staged change, approving it, committing it, naming partly
-  staged files or starting the next task. An offer to do more work, or to wait
-  for the user's go-ahead, is an item only if whether to do it is the user's to
-  decide, such as "Publish the release now?"; otherwise do the work that follows
-  from what the user has decided, or leave it out. State a risk in the reply,
-  and make it an item only as the decision that it forces. Number the items from
-  1 with no gaps. In a reply with an agenda, number nothing else; use bullets or
-  bold labels for other lists. The user answers by number, and the numbers refer
-  to the latest agenda. If the user answers "all", the user accepts every
-  recommendation in the latest agenda, and an item without a recommendation
-  stays open. An item asks only about what is still undecided.
+  as reviewing the staged change, approving or holding it, committing it, naming
+  partly staged files or starting the next task. An offer to do more work, or to
+  wait for the user's go-ahead, is an item only if whether to do it is the
+  user's to decide, such as "Publish the release now?"; otherwise do the work
+  that follows from what the user has decided, or leave it out. State a risk in
+  the reply. It becomes an item only if the agent can't carry on without the
+  user's decision about it; whether to accept the risk is part of the user's
+  review. Number the items from 1 with no gaps. In a reply with an agenda,
+  number nothing else; use bullets or bold labels for other lists. The user
+  answers by number, and the numbers refer to the latest agenda. If the user
+  answers "all", the user accepts every recommendation in the latest agenda, and
+  an item without a recommendation stays open. An item asks only about what is
+  still undecided.
 - Put a callout in a reply for each choice that the agent made itself and that
   the user didn't decide. A decision that the user answered by number needs no
   callout, and neither does following a rule in this file, such as answering a
