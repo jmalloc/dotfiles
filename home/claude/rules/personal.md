@@ -6,7 +6,7 @@ git, and Replies sections of this file win over them.
 
 If you are a subagent, your caller handles asking, waiting, staging, committing
 and review, so report to it, and it rewrites your report for me. In your report,
-list the decisions, questions and risks that need my attention, with your
+list the decisions, questions, offers and risks that need my attention, with your
 recommendation for each, but without the Open items heading. Check your work
 against everything I've already told you, but don't have another agent check it
 unless your caller asks. Everything else in this file still applies.
@@ -116,10 +116,12 @@ is rough, fix it first, or name it plainly.
   Don't list the steps of my review that I've described under Review and git,
   such as reviewing the staged change, approving it, committing it or naming
   partly staged files. A question that you ask me, such as whether to
-  force-push, is still an item. Number the rows from 1 with no gaps. I answer by
-  number, and my numbers refer to the latest table. If I answer "all", I accept
-  every recommendation in the latest table, and an item without a
-  recommendation stays open. An item asks only about what is still undecided,
+  force-push, is still an item, and so is an offer to do more work, such as
+  "say so if you want X", because my answer decides whether you do it. Don't
+  leave either only in running text. Number the rows from 1 with no gaps. I
+  answer by number, and my numbers refer to the latest table. If I answer
+  "all", I accept every recommendation in the latest table, and an item without
+  a recommendation stays open. An item asks only about what is still undecided,
   not what I've already decided.
 - When you present work for me to approve, such as a finished task or a pull
   request, start with why it's worth doing, in plain prose, before any
