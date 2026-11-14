@@ -49,16 +49,18 @@ is rough, fix it first, or name it plainly.
   as the next item allows.
 - Before you present a task, stage the changes that need no review yourself —
   updates to the documents that track your own progress, such as ticking off a
-  step in a plan, hunks that change only imports, and hunks that change only
+  step in a plan, files that the project's makefile regenerates, whatever the
+  reason that they changed, such as those listed in `GENERATED_FILES` or a
+  similar variable, hunks that change only imports, and hunks that change only
   whitespace that has no effect on meaning, such as a comment or paragraph
   rewrapped without changing a word. Stage a hunk only if all of it qualifies.
   The project's own documentation is otherwise reviewed like code, so leave its
   other changes unstaged.
 - Work one task at a time. In a plan, a task is the unit that ends in a review.
-  Tick it off in the plan file, with its pull request or commit beside it, when
-  you finish it. Write each task so that it makes sense by itself. After each
-  task, tell me what changed and wait. When you present a task, include the
-  plan's context that I need to judge it.
+  Tick it off in the plan file when you finish it, and add its pull request or
+  commit beside the tick once that exists. Write each task so that it makes
+  sense by itself. After each task, tell me what changed and wait. When you
+  present a task, include the plan's context that I need to judge it.
 - Do a skill's pre-commit work, such as a changelog entry or `make precommit`,
   before you present a task.
 - Ask before every commit, except one that I asked for directly, such as a
