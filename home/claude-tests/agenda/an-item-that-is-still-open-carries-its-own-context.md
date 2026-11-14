@@ -5,5 +5,5 @@
 finished more work and have no new decisions.
 
 **Wanted:** The reply carries out the answers to 1 and 2. It ends with an
-agenda that has one item, numbered 1, for the item that was 3. The item
-restates its full context and doesn't refer to the earlier agenda.
+agenda that has one item, numbered 1️⃣ as a keycap emoji, for the item that was
+3. The item restates its full context and doesn't refer to the earlier agenda.

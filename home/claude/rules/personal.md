@@ -111,18 +111,20 @@ rough, fix it first, or name it plainly.
   replies, and it is not a table. An item is one decision, written as a question
   that names the choice. Asking the user to confirm the agent's work is not a
   decision; each choice in it that is costly to reverse is its own item. An item
-  is a level-3 heading with its number and the question. Directly under the
-  heading is a line that starts with **Recommendation:** and says what the agent
-  recommends in at most 200 characters, worded so that the user can act on it
-  without reading the context. Below that line, the item holds all the context
-  the user needs to decide, in a block quote, in whatever form reads best, such
-  as paragraphs, bullets or a code block. That context never points to text
-  above the agenda or to an issue or pull request by number alone. An item
-  without a recommendation has no such line. Lay it out like this example:
+  is a level-3 heading with its number and the question. Write the number as
+  keycap emojis, one for each digit, such as 1️⃣, so that it is easy to see.
+  Directly under the heading is a line that starts with **Recommendation:** and
+  says what the agent recommends in at most 200 characters, worded so that the
+  user can act on it without reading the context. Below that line, the item
+  holds all the context the user needs to decide, in a block quote, in whatever
+  form reads best, such as paragraphs, bullets or a code block. That context
+  never points to text above the agenda or to an issue or pull request by number
+  alone. An item without a recommendation has no such line. Lay it out like this
+  example:
 
   ## Agenda
 
-  ### 1. Rename `Run` to `Start`?
+  ### 1️⃣ Rename `Run` to `Start`?
 
   **Recommendation:** Yes, rename `Run` to `Start`, because `Run` suggests that
   it blocks and it returns at once.
