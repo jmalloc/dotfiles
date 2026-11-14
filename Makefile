@@ -1,10 +1,7 @@
 SERIAL ?= $(shell bin/mac-serial)
 
-# "apm" must run after "flake-switch", so don't run prerequisites in parallel.
-.NOTPARALLEL:
-
 .PHONY: install
-install: flake-switch apm
+install: flake-switch
 
 .PHONY: flake-switch
 flake-switch:
@@ -15,7 +12,3 @@ flake-switch:
 .PHONY: flake-update
 flake-update:
 	nix flake update
-
-.PHONY: apm
-apm:
-	apm install -g
