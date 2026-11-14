@@ -6,10 +6,10 @@ git, and Replies sections of this file win over them.
 
 If you are a subagent, your caller handles asking, waiting, staging, committing
 and review, so report to it, and it rewrites your report for me. In your report,
-list the decisions, questions, offers and risks that need my attention, with your
-recommendation for each, but without the Open items heading. Check your work
-against everything I've already told you, but don't have another agent check it
-unless your caller asks. Everything else in this file still applies.
+list the decisions, questions, offers and risks that need my attention, with
+your recommendation for each, but without the Open items heading. Check your
+work against everything I've already told you, but don't have another agent
+check it unless your caller asks. Everything else in this file still applies.
 
 Show me work only when you can justify every line of it. If you know something
 is rough, fix it first, or name it plainly.
@@ -30,8 +30,8 @@ is rough, fix it first, or name it plainly.
 - A statement of what I want is a decision, so carry it out. When I hedge it
   with "I think" and don't ask you about it, either say you agree and carry on,
   or give your recommendation and wait.
-- Ask me only about decisions that are really mine — the ones that you can't
-  settle from the code, the plan or what I've already told you.
+- Ask me only about decisions that you can't settle from the code, the plan or
+  what I've already told you.
 - Decisions about what we've just discussed go in the **Open items** table
   described under Replies. A decision that needs other context, above all
   context from a plan, gets its own prompt in the question tool if you have one,
@@ -51,142 +51,126 @@ is rough, fix it first, or name it plainly.
   rewrapped without changing a word. Stage a hunk only if all of it qualifies.
   The project's own documentation is otherwise reviewed like code, so leave its
   other changes unstaged.
-- Write each task of a plan so that it makes sense by itself, because I rarely
-  read a long plan in one sitting.
 - Work one task at a time. In a plan, a task is the unit that ends in a review.
-  After each task, tell me what changed and wait. When you present a task,
-  include the context from the plan that I need to judge it.
+  Write each task of a plan so that it makes sense by itself. After each task,
+  tell me what changed and wait. When you present a task, include the context
+  from the plan that I need to judge it.
 - Do a skill's pre-commit work, such as a changelog entry or `make precommit`,
-  before you present a task, so that what I review is what gets committed.
+  before you present a task.
 - Ask before every commit, except one that I asked for directly, such as a
   release. "Commit as we go" means committing after each review, not permission
   to commit without asking. Once I've staged a change and said "approved",
   commit what is staged and carry on with what I've already decided comes next,
   without asking me to start it. If any file is only partly staged, don't
-  commit. Tell me which files are partly staged.
+  commit, and tell me which files.
 - Keep the history of a feature branch linear. Rebase the branch onto the main
   branch; never merge the main branch into it. Ask before you force-push.
 - Change a repository other than the one that you started in only in a worktree
   or clone that you created for it, never in an existing clone or worktree of
-  mine, because other work may be in progress there. Do otherwise only when I
-  ask.
+  mine. Do otherwise only when I ask.
 - When I tell you that a pull request is merged, clean up without asking. If you
   opened it from a worktree or clone that you created, remove the worktree with
   `git worktree remove` and its branch with `git branch -d`, or delete the
   clone. Otherwise, switch to the branch that it was merged into, run
   `git pull --ff-only`, and delete the local branch that it was opened from with
   `git branch -d`. Do this only when no other work in the pull request's
-  repository is in progress or waiting for my review, and only when the working
-  tree that you're cleaning up and its index have no uncommitted changes. If one
-  of those commands fails, run no more of them. If you don't finish, tell me
-  why.
+  repository is in progress or waiting for my review, and the working tree that
+  you're cleaning up and its index have no uncommitted changes. If one of those
+  commands fails, run no more of them. If you don't finish, tell me why.
 
 ## Don't make me repeat myself
 
 - Before you first present a task that makes a plan, or that changes files
   beyond a trivial change, have the `instruction-checker` agent check the work
-  against what I've already told you, because an author tends to miss the
-  faults in their own draft. Give it the work, but not your opinion of the
-  work. If that agent isn't available, use a separate agent on the Sonnet model
-  at medium effort, and also give it the rules and memories that the work
+  against what I've already told you. Give it the work, but not your opinion of
+  the work. If that agent isn't available, use a separate agent on the Sonnet
+  model at medium effort, and also give it the rules and memories that the work
   touches, but don't tell it to explore beyond that. Fix what it finds first,
-  and mention only the findings that you chose not to fix, and why. Check a
-  task once, and don't check it again until I approve it.
+  and mention only the findings that you chose not to fix, and why. Check a task
+  once, and don't check it again until I approve it.
 - When I correct you, work out the principle and where it stops. Fix the other
   places in the current work that have the same problem, and mention any others
   that you notice without changing them. Don't stretch the correction to cases
   that I didn't mention.
 - If a correction isn't specific to the project, propose it for this file
   instead of only saving it to memory. When you save or propose a correction,
-  tell me in one line where you think it stops, so that I can fix the limit
-  while it's fresh.
+  tell me in one line where you think it stops.
 
 ## Replies
 
-- When a reply leaves things that need my attention — decisions, questions and
-  risks that need a response from me, not the work under review — end it with a
-  table headed **Open items** that holds all of them, including any still open
-  from earlier replies. Lay it out like this example, with the context in the
-  item cell after the question:
+- When a reply leaves things that need my attention — decisions, questions,
+  offers and risks that need a response from me, not the work under review — end
+  it with a table headed **Open items** that holds all of them, including any
+  still open from earlier replies. Lay it out like this example, with the
+  context in the item cell after the question:
 
   | # | Item | Recommendation |
   |---|------|----------------|
   | 1 | **Rename `Run` to `Start`?** — `Run` suggests that it blocks, but it returns at once. | Yes. |
 
   Don't use HTML tags, and don't put that context in the reply above the table.
-  Don't list the steps of my review that I've described under Review and git,
-  such as reviewing the staged change, approving it, committing it or naming
-  partly staged files. A question that you ask me, such as whether to
-  force-push, is still an item, and so is any offer to do more work, or wait for
-  my go-ahead, such as "say so if you want X" or "I'll start when you say so",
-  because my answer decides whether you do it. Don't leave either only in
-  running text. Number the rows from 1 with no gaps. I answer by number, and my
-  numbers refer to the latest table. If I answer "all", I accept every
-  recommendation in the latest table, and an item without a recommendation stays
-  open. An item asks only about what is still undecided, not what I've already
-  decided.
+  Don't list the steps of my review described under Review and git, such as
+  reviewing the staged change, approving it, committing it or naming partly
+  staged files. A question that you ask me, such as whether to force-push, is
+  still an item, and so is any offer to do more work, or to wait for my
+  go-ahead, such as "say so if you want X" or "I'll start when you say so".
+  Don't leave either only in running text. Number the rows from 1 with no gaps.
+  I answer by number, and my numbers refer to the latest table. If I answer
+  "all", I accept every recommendation in the latest table, and an item without
+  a recommendation stays open. An item asks only about what is still undecided.
 - When you present work for me to approve, such as a finished task or a pull
   request, start with why it's worth doing, in plain prose, before any
   statistics or test results. Keep to the project's pull request template if it
   has one.
 - In a reply to me, link every mention of an issue, pull request or file, even
   in a table, a heading, a short label or a repeated mention. Link a file to its
-  absolute path, labelled with the shorter of its absolute and relative paths.
-  For example, `#42` in a heading becomes [#42](the issue's URL), and
-  `docs/plan.md` in a table becomes
-  [docs/plan.md](/absolute/path/to/docs/plan.md). A file named by a label, such
-  as "the design doc", is still a mention, so link the label.
+  absolute path, labelled with the shorter of its absolute and relative paths,
+  as in [docs/plan.md](/absolute/path/to/docs/plan.md). A file named by a label,
+  such as "the design doc", is still a mention, so link the label.
 - Refer to a task of a plan by what it does, such as "the consumer loop", not by
   its number.
 
 ## Code
 
 - **Names are design.** If the word for a concept is wrong, I take the model to
-  be wrong, and I'll rename it until it's right. The size of the diff is no
-  reason to keep a poor name. Use the vocabulary of the domain, and never reuse
-  a term that already means something else in the project. Give a concept from
-  the domain its own type, with its own behavior, instead of passing loose
-  values around. Prefer a verb from the domain, such as `peer.Outranks(self)`,
-  to a generic one such as `Less`. Name a dependency by the role it plays, not
-  by its type.
+  be wrong. The size of the diff is no reason to keep a poor name. Use the
+  vocabulary of the domain, and never reuse a term that already means something
+  else in the project. Give a concept from the domain its own type, with its own
+  behavior, instead of passing loose values around. Prefer a verb from the
+  domain, such as `peer.Outranks(self)`, to a generic one such as `Less`. Name a
+  dependency by the role it plays, not by its type.
 - **I choose names by seeing them.** When a new domain concept needs a name,
   give me several candidates, with the one you recommend first, each in the
   sentence that it would produce in a doc comment.
 - **Only a promise may look like a promise.** A type, a test or a doc should
   promise only what the code guarantees, because callers come to depend on
-  whatever looks guaranteed. A slice promises an order, for example, so use a
-  set when order means nothing. Test what is guaranteed, not what happens to
-  occur. Log output is never a guarantee, so never assert on it in a test.
+  whatever looks guaranteed. A slice promises an order, so use a set when order
+  means nothing. Test what is guaranteed, not what happens to occur. Log output
+  is never a guarantee, so never assert on it in a test.
 - **Treat awkwardness as a sign that the design is wrong.** When you want a
   constructor for an internal type, a test that reaches into unexported state,
   or a special case inside a loop, question the design that made it necessary
   before you add it.
-- **Don't add flexibility that I didn't ask for.** That means no options,
-  defaults or configuration unless I ask. An internal component takes the values
-  it needs, and the outermost layer chooses them.
+- **Don't add flexibility that I didn't ask for.** Add no options, defaults or
+  configuration unless I ask. An internal component takes the values it needs,
+  and the outermost layer chooses them.
 - **Rules of thumb are not laws.** Judge a construct by how the code reads, and
   don't apologize for one that reads well.
 
 ## Comments and documentation
 
-A project's style guide has the detailed rules. These are the ideas behind
-them.
-
 - Write for a stranger who is reading cold — a developer who knows the
   programming language but not this project or domain, may be early in their
-  career, and may not be a native English speaker. I use this code to teach how
-  the harder parts work, so a doc that only an expert can follow has failed.
-  Explain or link the concepts that the code relies on, but don't explain the
-  programming language itself.
-- Use literal words and plain sentence structure, and keep precise technical
-  terms. Start with one plain sentence that says what the thing is, and leave
-  the detail for later paragraphs.
+  career, and may not be a native English speaker. Explain or link the concepts
+  that the code relies on, but don't explain the programming language itself.
+- Start with one plain sentence that says what the thing is, and leave the
+  detail for later paragraphs.
 - When I say that I don't understand something, I already know the domain, so a
   developer who doesn't will understand it even less. Explain it more plainly or
   restructure it. Rewording alone rarely fixes it.
-- Name the concrete thing. "Each call to `Watch`" tells the reader something;
-  "each watcher of them" has to be decoded.
-- State the literal fact. Say what is stored, compared or returned, and make the
+- Use literal words and plain sentence structure, and keep precise technical
+  terms. Name the concrete thing, such as "each call to `Watch`", not "each
+  watcher of them". Say what is stored, compared or returned, and make the
   subject of each verb something that really performs the action. Avoid figures
   of speech such as "the topic names the queue".
 - Describe the code as it is now. Leave out its history, the alternatives that
