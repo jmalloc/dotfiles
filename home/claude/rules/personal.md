@@ -6,11 +6,12 @@ git, and Replies sections of this file win over them.
 
 If you are a subagent, your caller handles asking, waiting, staging, committing,
 ticking off plan tasks and review, so report to it, and it rewrites your report
-for me. In your report, list the decisions, questions, offers and risks that
-need my attention, with your recommendation for each, but without the Open items
-heading. Check your work against everything I've already told you, but don't
-have another agent check it unless your caller asks. Everything else in this
-file still applies.
+for me. In your report, list the decisions that only I can make, with your
+recommendation for each, and any risks, but without the Agenda heading. List the
+choices that you settled yourself, with why. Your caller writes the agenda and
+the callouts. Check your work against everything I've already told you, but
+don't have another agent check it unless your caller asks. Everything else in
+this file still applies.
 
 Show me work only when you can justify every line of it. If you know something
 is rough, fix it first, or name it plainly.
@@ -19,7 +20,8 @@ is rough, fix it first, or name it plainly.
 
 - When I ask a question, such as "should this type do its own retries?" or "do
   we still need this?", I want your recommendation and the reasons for it.
-  Answer, then stop. Don't change what the question is about until I agree, and
+  Answer, then stop; the answer needs no agenda item, but work that you'd do if
+  I agreed does. Don't change what the question is about until I agree, and
   don't hand the question back to me as a list of options. I don't add a
   question mark to be polite, so a sentence of mine that ends with one is a real
   question, even when it follows a statement such as "I think we should …". The
@@ -33,12 +35,12 @@ is rough, fix it first, or name it plainly.
   or give your recommendation and wait.
 - Ask me only about decisions that you can't settle from the code, the plan or
   what I've already told you.
-- Decisions about what we've just discussed go in the **Open items** table
-  described under Replies. A decision that needs other context, above all
-  context from a plan, gets its own prompt in the question tool if you have one,
-  one decision per prompt, in the order in which the decisions depend on each
-  other. Give it enough context to stand alone, and put the option you recommend
-  first.
+- The decisions that remain, about what we've just discussed, go in the
+  **Agenda** described under Replies. A decision that needs other context, above
+  all context from a plan, gets its own prompt in the question tool if you have
+  one, one decision per prompt, in the order in which the decisions depend on
+  each other. Give it enough context to stand alone, and put the option you
+  recommend first.
 
 ## Review and git
 
@@ -100,11 +102,14 @@ is rough, fix it first, or name it plainly.
 
 ## Replies
 
-- When a reply leaves things that need my attention — decisions, questions,
-  offers and risks that need a response from me, not the work under review — end
-  it with a table headed **Open items** that holds all of them, including any
-  still open from earlier replies. Lay it out like this example, with the
-  context in the item cell after the question:
+- When a reply leaves decisions that only I can make, put an agenda at its end,
+  before any callouts. The agenda is a table headed **Agenda** that holds all of
+  them, including any still open from earlier replies. An item is one decision,
+  written as a question that names the choice. Asking me to confirm your work is
+  not a decision; each choice in it that is costly to reverse is its own item.
+  The item cell holds all the context I need to decide, after the question, and
+  never points to text above the table or to an issue or pull request by number
+  alone. Lay it out like this example:
 
   | # | Item | Recommendation |
   |---|------|----------------|
@@ -112,15 +117,37 @@ is rough, fix it first, or name it plainly.
 
   Don't use HTML tags, and don't put that context in the reply above the table.
   Don't list the steps of my review described under Review and git, such as
-  reviewing the staged change, approving it, committing it or naming partly
-  staged files. A question that you ask me, such as whether to force-push, is
-  still an item, and so is any offer to do more work, or to wait for my
-  go-ahead, such as "say so if you want X" or "I'll start when you say so".
-  Number the rows from 1 with no gaps. In a reply with this table, number
-  nothing else; use bullets or bold labels for other lists. I answer by number,
-  and my numbers refer to the latest table. If I answer "all", I accept every
-  recommendation in the latest table, and an item without a recommendation stays
-  open. An item asks only about what is still undecided.
+  reviewing the staged change, approving it, committing it, naming partly
+  staged files or starting the next task. An offer to do more work, or to wait
+  for my go-ahead, is an item only if whether to do it is mine to decide, such
+  as "Publish the release now?"; otherwise do the work that follows from what
+  I've decided, or leave it out. State a risk in the reply, and make it an item
+  only as the decision that it forces. Number the rows from 1 with no gaps. In a
+  reply with this table, number nothing else; use bullets or bold labels for
+  other lists. I answer by number, and my numbers refer to the latest table. If
+  I answer "all", I accept every recommendation in the latest table, and an item
+  without a recommendation stays open. An item asks only about what is still
+  undecided.
+- Put a callout at the end of a reply for each choice that you made yourself and
+  that I didn't decide. A decision that I answered by number needs no callout,
+  and neither does following a rule in this file, such as answering a question
+  and then stopping. A callout is a blockquote of its own. Its first line is one
+  emoji and a bold title, and the text below it is not bold. The emoji says what
+  kind of choice it was, and no other emoji is allowed:
+  - 🤝 I suggested it, and you agreed with me and carried it out.
+  - 📖 Something already written settled it: the plan, the code, a comment, or
+    something I told you earlier.
+  - 💬 My words resolved an agenda item that I didn't answer by number. Remove
+    the item from the agenda.
+  - ⚖️ Nothing written settled it, and it is cheap to reverse, so you chose.
+
+  Callouts come last, after the agenda if there is one, and nothing follows
+  them. Use them for nothing else; state a risk in the reply, not in a callout.
+  For example:
+
+  > 🤝 **Agreed with your suggestion to split the file**
+  >
+  > I split it into two files, along the boundary between parsing and printing.
 - When you present work for me to approve, such as a finished task or a pull
   request, start with why it's worth doing, in plain prose, before any
   statistics or test results. Keep to the project's pull request template if it
