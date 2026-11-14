@@ -31,8 +31,8 @@ a title and these parts:
   matter. The files, such as a skill or a project's memory, that the agent has
   loaded besides the rule.
 - **Wanted:** what the agent does or writes, in terms that you can check from
-  its reply, such as "ends with a table that has one row per close call". Don't
-  describe the wording of the rule.
+  its reply, such as "ends with an agenda that has one item per close call".
+  Don't describe the wording of the rule.
 - **Failure:** the real reply or behavior that led to the scenario, quoted. Omit
   this for a scenario that guards against a likely failure and has none yet.
 
@@ -42,7 +42,7 @@ same ground. A scenario that already exists may cover the new behavior. Reuse it
 before you write another.
 
 Take the wanted behavior from what the user has already said. Where the user
-hasn't decided it, put it in the agenda before you edit the rule, one row for
+hasn't decided it, put it in the agenda before you edit the rule, one item for
 each behavior, with your recommendation.
 
 ## 2. Change the rule
@@ -104,15 +104,15 @@ undo:
 - **Hard to undo, or acts outside the session:** git actions such as staging,
   committing, pushing and deleting, filing or posting anything externally, and
   anything that overrides the user's review rules. Each one is its own agenda
-  row before you commit.
+  item before you commit.
 - **Changes only how you write replies:** the agenda, callouts, emojis and
   wording. Commit it after the scenarios pass, and report it in the hand-in. The
   user judges it by seeing it in use.
 - **Tests, skill wording and the layout of the tests:** the user doesn't see
   these unless a scenario fails.
 
-Ask before every commit, with one agenda row for the feature. When the user says
-yes, stage and commit that feature's files. The commit goes straight onto the
-default branch, not through a pull request. Committing doesn't install anything.
-Run `make install`, then check that each file that you changed under
+Ask before every commit, with one agenda item for the feature. When the user
+says yes, stage and commit that feature's files. The commit goes straight onto
+the default branch, not through a pull request. Committing doesn't install
+anything. Run `make install`, then check that each file that you changed under
 `home/claude` has the same content under `~/.claude`.

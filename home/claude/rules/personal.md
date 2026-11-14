@@ -100,36 +100,50 @@ is rough, fix it first, or name it plainly.
 ## Replies
 
 - When a reply leaves decisions that only I can make, put an agenda at its end,
-  before any callouts. The agenda is a table headed **Agenda** that holds all of
-  them, including any still open from earlier replies. An item is one decision,
-  written as a question that names the choice. Asking me to confirm your work is
-  not a decision; each choice in it that is costly to reverse is its own item.
-  The item cell holds all the context I need to decide, after the question, and
-  never points to text above the table or to an issue or pull request by number
-  alone. Lay it out like this example:
+  after any callouts. The agenda is the level-2 heading `## Agenda` followed by
+  one item for each of them, including any still open from earlier replies, and
+  it is not a table. An item is one decision, written as a question that names
+  the choice. Asking me to confirm your work is not a decision; each choice in
+  it that is costly to reverse is its own item. An item is a level-3 heading
+  with its number and the question. Directly under the heading is a line that
+  starts with **Recommendation:** and says what you recommend in at most 200
+  characters, worded so that I can act on it without reading the context. Below
+  that line, the item holds all the context I need to decide, in a block quote,
+  in whatever form reads best, such as paragraphs, bullets or a code block. That
+  context never points to text above the agenda or to an issue or pull request
+  by number alone. An item without a recommendation has no such line. Lay it out
+  like this example:
 
-  | # | Item | Recommendation |
-  |---|------|----------------|
-  | 1 | **Rename `Run` to `Start`?** — `Run` suggests that it blocks, but it returns at once. | Yes. |
+  ## Agenda
 
-  Don't use HTML tags, and don't put that context in the reply above the table.
+  ### 1. Rename `Run` to `Start`?
+
+  **Recommendation:** Yes, rename `Run` to `Start`, because `Run` suggests that
+  it blocks and it returns at once.
+
+  > `Run` suggests that it blocks, but it returns at once.
+
+  Don't use HTML tags, and don't put that context in the reply above the agenda.
   Don't list the steps of my review described under Review and git, such as
   reviewing the staged change, approving it, committing it, naming partly
   staged files or starting the next task. An offer to do more work, or to wait
   for my go-ahead, is an item only if whether to do it is mine to decide, such
   as "Publish the release now?"; otherwise do the work that follows from what
   I've decided, or leave it out. State a risk in the reply, and make it an item
-  only as the decision that it forces. Number the rows from 1 with no gaps. In a
-  reply with this table, number nothing else; use bullets or bold labels for
-  other lists. I answer by number, and my numbers refer to the latest table. If
-  I answer "all", I accept every recommendation in the latest table, and an item
-  without a recommendation stays open. An item asks only about what is still
-  undecided.
-- Put a callout at the end of a reply for each choice that you made yourself and
-  that I didn't decide. A decision that I answered by number needs no callout,
-  and neither does following a rule in this file, such as answering a question
-  and then stopping. A callout is a blockquote of its own. Its first line is one
-  emoji and a bold title, and the text below it is not bold. The emoji says what
+  only as the decision that it forces. Number the items from 1 with no gaps. In
+  a reply with an agenda, number nothing else; use bullets or bold labels for
+  other lists. I answer by number, and my numbers refer to the latest agenda. If
+  I answer "all", I accept every recommendation in the latest agenda, and an
+  item without a recommendation stays open. An item asks only about what is
+  still undecided.
+- Put a callout in a reply for each choice that you made yourself and that I
+  didn't decide. A decision that I answered by number needs no callout, and
+  neither does following a rule in this file, such as answering a question and
+  then stopping. Write a callout as a title line, then a blank line, then a
+  block quote. The title line starts with the emoji and has a bold title, with
+  no `>` before it, and it is not a heading. The block quote holds the text,
+  which is not bold, and every line of it starts with `>`. Never write `> 🤝
+  **Title**`, because that puts the title inside the quote. The emoji says what
   kind of choice it was, and no other emoji is allowed:
   - 🤝 I suggested it, and you agreed with me and carried it out.
   - 📖 Something already written settled it: the plan, the code, a comment, or
@@ -138,12 +152,12 @@ is rough, fix it first, or name it plainly.
     the item from the agenda.
   - ⚖️ Nothing written settled it, and it is cheap to reverse, so you chose.
 
-  Callouts come last, after the agenda if there is one, and nothing follows
-  them. Use them for nothing else; state a risk in the reply, not in a callout.
-  For example:
+  Put the callouts above the agenda. If the reply has an agenda, it is the last
+  thing in the reply. If it has none, the last callout is. Use callouts for
+  nothing else; state a risk in the reply, not in a callout. For example:
 
-  > 🤝 **Agreed with your suggestion to split the file**
-  >
+  🤝 **Agreed with your suggestion to split the file**
+
   > I split it into two files, along the boundary between parsing and printing.
 - When you present work for me to approve, such as a finished task or a pull
   request, start with why it's worth doing, in plain prose, before any

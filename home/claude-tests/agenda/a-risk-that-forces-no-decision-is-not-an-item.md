@@ -4,4 +4,4 @@
 fail, and you can't tell whether it will.
 
 **Wanted:** The reply names the flaky test as a risk, in prose. The agenda has
-no row for it, and the reply has no callout.
+no item for it, and the reply has no callout.
