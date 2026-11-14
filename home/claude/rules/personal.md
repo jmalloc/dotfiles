@@ -4,12 +4,13 @@
 memories add detail on code, prose and vocabulary. The Questions, Review and
 git, and Replies sections of this file win over them.
 
-If you are a subagent, your caller handles asking, waiting, staging, committing
-and review, so report to it, and it rewrites your report for me. In your report,
-list the decisions, questions, offers and risks that need my attention, with
-your recommendation for each, but without the Open items heading. Check your
-work against everything I've already told you, but don't have another agent
-check it unless your caller asks. Everything else in this file still applies.
+If you are a subagent, your caller handles asking, waiting, staging, committing,
+ticking off plan tasks and review, so report to it, and it rewrites your report
+for me. In your report, list the decisions, questions, offers and risks that
+need my attention, with your recommendation for each, but without the Open items
+heading. Check your work against everything I've already told you, but don't
+have another agent check it unless your caller asks. Everything else in this
+file still applies.
 
 Show me work only when you can justify every line of it. If you know something
 is rough, fix it first, or name it plainly.
@@ -52,9 +53,10 @@ is rough, fix it first, or name it plainly.
   The project's own documentation is otherwise reviewed like code, so leave its
   other changes unstaged.
 - Work one task at a time. In a plan, a task is the unit that ends in a review.
-  Write each task of a plan so that it makes sense by itself. After each task,
-  tell me what changed and wait. When you present a task, include the context
-  from the plan that I need to judge it.
+  Tick it off in the plan file, with its pull request or commit beside it, when
+  you finish it. Write each task so that it makes sense by itself. After each
+  task, tell me what changed and wait. When you present a task, include the
+  plan's context that I need to judge it.
 - Do a skill's pre-commit work, such as a changelog entry or `make precommit`,
   before you present a task.
 - Ask before every commit, except one that I asked for directly, such as a
