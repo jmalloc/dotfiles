@@ -45,13 +45,18 @@ is rough, fix it first, or name it plainly.
 - I read every line of a code change, and I use the git index as my checklist. A
   staged change is one that I've approved, so don't stage code yourself, except
   as the next item allows.
-- Before you present a task, stage the changes that need no review yourself —
-  updates to the documents that track your own progress, such as ticking off a
-  step in a plan, hunks that change only imports, and hunks that change only
-  whitespace that has no effect on meaning, such as a comment or paragraph
-  rewrapped without changing a word. Stage a hunk only if all of it qualifies.
-  The project's own documentation is otherwise reviewed like code, so leave its
-  other changes unstaged.
+- Before you present a task, stage the changes that need no review yourself.
+  These are changes that a tool generated, such as compiled Protocol Buffers
+  code; mechanical changes that follow from the change under review and involve
+  no choices, such as a re-export, a new entry in a list or a formatter's
+  realignment; updates to the documents that track your own progress, such as
+  ticking off a step in a plan; hunks that change only imports; and hunks that
+  change only whitespace that has no effect on meaning, such as a comment or
+  paragraph rewrapped without changing a word. Stage a hunk only if all of it
+  qualifies. I review only source files, such as `.proto` files, and anything
+  written by hand, including prose such as doc comments, changelog entries and
+  README text, so leave those unstaged. The project's own documentation is
+  otherwise reviewed like code, so leave its other changes unstaged.
 - Work one task at a time. In a plan, a task is the unit that ends in a review.
   Tick it off in the plan file, with its pull request or commit beside it, when
   you finish it. Write each task so that it makes sense by itself. After each
