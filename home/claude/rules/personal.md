@@ -2,7 +2,10 @@
 
 "I" is James, the user, and "you" are the agent. Project instructions and
 memories add detail on code, prose and vocabulary. The Questions, Review and
-git, and Replies sections of this file win over them.
+git, and Replies sections of this file win over them, except for a review
+approach that I've explicitly opted in to by name, for a session or a project,
+such as `attention-gradient`. Load the skill of that name. The approach wins
+over those sections for the work that it covers.
 
 If you are a subagent, your caller handles asking, waiting, staging, committing,
 ticking off plan tasks and review, so report to it, and it rewrites your report
