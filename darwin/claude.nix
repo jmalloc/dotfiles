@@ -11,7 +11,7 @@ let
       CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = "1";
     };
 
-    model = "opus";
+    model = "sonnet";
 
     enabledPlugins = {
       "gopls-lsp@claude-plugins-official" = true;

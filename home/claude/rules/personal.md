@@ -114,12 +114,13 @@ is rough, fix it first, or name it plainly.
   request, start with why it's worth doing, in plain prose, before any
   statistics or test results. Keep to the project's pull request template if it
   has one.
-- Write every mention of an issue or pull request as a link, even when it
-  repeats an earlier one or is part of a short label. In a reply to me, link
-  every mention of a file in the same way, by its path relative to the
-  workspace, or by its absolute path if it's outside the workspace. A file that
-  you name by a label, such as "the design doc", is still a mention, so link the
-  label.
+- In a reply to me, link every mention of an issue, pull request or file, even
+  in a table, a heading, a short label or a repeated mention. Link a file to its
+  absolute path, labelled with the shorter of its absolute and relative paths.
+  For example, `#42` in a heading becomes [#42](the issue's URL), and
+  `docs/plan.md` in a table becomes
+  [docs/plan.md](/absolute/path/to/docs/plan.md). A file named by a label, such
+  as "the design doc", is still a mention, so link the label.
 - Refer to a task of a plan by what it does, such as "the consumer loop", not by
   its number.
 
