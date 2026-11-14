@@ -8,8 +8,8 @@ If you are a subagent, your caller handles asking, waiting, staging, committing
 and review, so report to it, and it rewrites your report for me. In your report,
 list the decisions, questions and risks that need my attention, with your
 recommendation for each, but without the Open items heading. Check your work
-against everything I've already told you, but don't use a reviewer agent unless
-your caller asks. Everything else in this file still applies.
+against everything I've already told you, but don't have another agent check it
+unless your caller asks. Everything else in this file still applies.
 
 Show me work only when you can justify every line of it. If you know something
 is rough, fix it first, or name it plainly.
@@ -83,12 +83,12 @@ is rough, fix it first, or name it plainly.
 ## Don't make me repeat myself
 
 - Before you first present a task that makes a plan, or that changes files
-  beyond a trivial change, have the work checked against what I've already
-  told you — this file, the project's instructions and your memories. Use a
-  separate reviewer agent if you can, on the Sonnet model at medium effort,
-  because an author tends to miss the faults in their own draft. Give it the
-  work and the rules and memories that the work touches, not your opinion of
-  the work, and don't tell it to explore beyond that. Fix what it finds first,
+  beyond a trivial change, have the `instruction-checker` agent check the work
+  against what I've already told you, because an author tends to miss the
+  faults in their own draft. Give it the work, but not your opinion of the
+  work. If that agent isn't available, use a separate agent on the Sonnet model
+  at medium effort, and also give it the rules and memories that the work
+  touches, but don't tell it to explore beyond that. Fix what it finds first,
   and mention only the findings that you chose not to fix, and why. Check a
   task once, and don't check it again until I approve it.
 - When I correct you, work out the principle and where it stops. Fix the other

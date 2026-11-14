@@ -4,7 +4,11 @@
 Every session loads it, in every project, and so does every subagent. This
 document lists what a change to it must satisfy, for whoever writes the change
 and for whoever reviews it. Where a check has caught a real problem, it gives
-that problem as an example.
+that problem as an example. The project's [`AGENTS.md`][agents] points to this
+document, so the `instruction-checker` agent, defined in
+[`home/claude/agents/instruction-checker.md`][checker], checks a change to the
+rule against it. The agent can't run the scenario tests in "Has it been
+tested?", so the author still runs those.
 
 ## Does the change earn its place?
 
@@ -112,7 +116,10 @@ A change to the rule is tested by experiment, like code.
 - The reply that presents the change opens with the failure that the change
   fixes. It gives the word count from `wc -w`, and says which scenarios were
   tested.
-- Committing doesn't install the rule. Run `make install`, then compare
-  `~/.claude/rules/personal.md` with `home/claude/rules/personal.md`.
+- Committing doesn't install anything. Run `make install`, then check that each
+  file that you changed under `home/claude` has the same content under
+  `~/.claude`.
 
 [rule]: ../home/claude/rules/personal.md
+[checker]: ../home/claude/agents/instruction-checker.md
+[agents]: ../AGENTS.md

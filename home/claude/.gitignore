@@ -1,0 +1,4 @@
+# "apm install -g" deploys skills to ~/.claude/skills (see ../apm.nix). Nothing
+# under this directory may be linked there, so a skills directory is ignored and
+# stays out of the flake.
+/skills/
