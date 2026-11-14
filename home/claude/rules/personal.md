@@ -49,7 +49,8 @@ is rough, fix it first, or name it plainly.
 
 - I read every line of a code change, and I use the git index as my checklist. A
   staged change is one that I've approved, so don't stage code yourself, except
-  as the next item allows.
+  as the next item allows. Add a new file that needs my review with
+  `git add --intent-to-add`, so that it shows in the diff as an unstaged change.
 - Before you present a task, stage the changes that need no review yourself —
   updates to the documents that track your own progress, such as ticking off a
   step in a plan, files that the project's makefile regenerates, whatever the
