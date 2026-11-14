@@ -106,10 +106,17 @@ is rough, fix it first, or name it plainly.
   risks that need a response from me, not the work under review — end it with a
   table headed **Open items** that holds all of them, including any still open
   from earlier replies. The table has three columns: the item's number, the
-  item, and your recommendation. Keep each row short, and put any context that
-  an item needs in the reply above the table. Number the rows from 1 with no
-  gaps. I answer by number, and my numbers refer to the latest table. An item
-  asks only about what is still undecided, not what I've already decided.
+  item, and your recommendation. In the item column, write the question in
+  bold, then an em dash, then the context that the question needs. Don't use
+  HTML tags, and don't put that context in the reply above the table. Don't list
+  the steps of my review that I've described under Review and git, such as
+  reviewing the staged change, approving it, committing it or naming partly
+  staged files. A question that you ask me, such as whether to force-push, is
+  still an item. Number the rows from 1 with no gaps. I answer by number, and my
+  numbers refer to the latest table. If I answer "all", I accept every
+  recommendation in the latest table, and an item without a recommendation stays
+  open. An item asks only about what is still undecided, not what I've already
+  decided.
 - When you present work for me to approve, such as a finished task or a pull
   request, start with why it's worth doing, in plain prose, before any
   statistics or test results. Keep to the project's pull request template if it
