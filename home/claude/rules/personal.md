@@ -77,15 +77,6 @@ is rough, fix it first, or name it plainly.
 - Change a repository other than the one that you started in only in a worktree
   or clone that you created for it, never in an existing clone or worktree of
   mine. Do otherwise only when I ask.
-- When I tell you that a pull request is merged, clean up without asking. If you
-  opened it from a worktree or clone that you created, remove the worktree with
-  `git worktree remove` and its branch with `git branch -d`, or delete the
-  clone. Otherwise, switch to the branch that it was merged into, run
-  `git pull --ff-only`, and delete the local branch that it was opened from with
-  `git branch -d`. Do this only when no other work in the pull request's
-  repository is in progress or waiting for my review, and the working tree that
-  you're cleaning up and its index have no uncommitted changes. If one of those
-  commands fails, run no more of them. If you don't finish, tell me why.
 
 ## Don't make me repeat myself
 
