@@ -114,10 +114,11 @@ is rough, fix it first, or name it plainly.
   staged files. A question that you ask me, such as whether to force-push, is
   still an item, and so is any offer to do more work, or to wait for my
   go-ahead, such as "say so if you want X" or "I'll start when you say so".
-  Don't leave either only in running text. Number the rows from 1 with no gaps.
-  I answer by number, and my numbers refer to the latest table. If I answer
-  "all", I accept every recommendation in the latest table, and an item without
-  a recommendation stays open. An item asks only about what is still undecided.
+  Number the rows from 1 with no gaps. In a reply with this table, number
+  nothing else; use bullets or bold labels for other lists. I answer by number,
+  and my numbers refer to the latest table. If I answer "all", I accept every
+  recommendation in the latest table, and an item without a recommendation stays
+  open. An item asks only about what is still undecided.
 - When you present work for me to approve, such as a finished task or a pull
   request, start with why it's worth doing, in plain prose, before any
   statistics or test results. Keep to the project's pull request template if it
