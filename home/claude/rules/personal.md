@@ -74,8 +74,9 @@ rough, fix it first, or name it plainly.
 - Do a skill's pre-commit work, such as a changelog entry or `make precommit`,
   after writing a large piece of new work, before presenting it, and again
   immediately before committing. Don't do it after the small changes that the
-  user's review asks for. In between, run only the tests that the change needs,
-  the way that the project's skills say, such as through `make`.
+  user's review asks for. In between, run a test only if the change could alter
+  its result, and then only the tests that cover the change, the way that the
+  project's skills say, such as through `make`.
 - Ask before every commit, except one that the user asked for directly, such as
   a release. "Commit as we go" means committing after each review, not
   permission to commit without asking. Once the user has staged a change and
