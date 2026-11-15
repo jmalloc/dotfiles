@@ -72,7 +72,10 @@ rough, fix it first, or name it plainly.
   sense by itself. After each task, tell the user what changed and wait. When
   presenting a task, include the plan's context that the user needs to judge it.
 - Do a skill's pre-commit work, such as a changelog entry or `make precommit`,
-  before presenting a task.
+  after writing a large piece of new work, before presenting it, and again
+  immediately before committing. Don't do it after the small changes that the
+  user's review asks for. In between, run only the tests that the change needs,
+  the way that the project's skills say, such as through `make`.
 - Ask before every commit, except one that the user asked for directly, such as
   a release. "Commit as we go" means committing after each review, not
   permission to commit without asking. Once the user has staged a change and
